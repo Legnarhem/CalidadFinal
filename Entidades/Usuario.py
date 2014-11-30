@@ -1,3 +1,4 @@
+# encoding=UTF-8
 __author__ = 'Gregorio y Ángel'
 
 class Usuario:
@@ -8,6 +9,6 @@ class Usuario:
     def getUserName (self):
         return self.__username
 
-    def setPassword (self, password):
-        self.__password = password
+    def getPassword (self):
+        return self.__password
 

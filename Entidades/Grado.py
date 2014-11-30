@@ -1,14 +1,16 @@
+# encoding=UTF-8
 __author__ = 'Gregorio y Ángel'
+from Comparable import *
 
-
-import Asignatura.py
-
-class Grado:
+class Grado(Comparable):
 
     def __init__(self, codigo, nombre, asignaturas):
         self.__codigo = codigo
         self.__nombre = nombre
         self.__asignaturas = asignaturas
+
+    def _cmpkey(self):
+        return self.getCodigo()
 
     def getCodigo(self):
         return self.__codigo
@@ -20,23 +22,10 @@ class Grado:
         return self.__asignaturas
 
     def setCodigo(self, codigo):
-        if type(codigo)== "int":
+        if type(codigo) is int:
             self.__codigo = codigo
         else:
-            self.__codigo = 00000
-            print "El código debe de ser numérico"
+            raise TypeError("Codigo de grado debe ser numerico")
 
-    def setNombre(self,nombre):
-        self.__nombre = nombre
-
-    def setAsignaturas(self, asignaturas):
-        self.__asignaturas = asignaturas
-
-    def addAsignatura(self, asignatura):
-        self.__asignaturas.append(asignatura)
-
-    def removeAsignatura(self,asignatura):
-        self.__asignaturas.remove(asignatura)
-
-    def buscarAsignatura(self, asignatura):
-        self.__asignaturas.index(asignatura)
+    def __str__(self):
+        return "%s \t\t %s" % (self.getCodigo(), self.getNombre())
