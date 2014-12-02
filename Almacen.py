@@ -74,9 +74,8 @@ def main():
     print "\nProfesores:"
     print "%s \t %9s \t %15s \t%s " % ('Usuario', 'DNI', 'Nombre', 'Apellidos')
     for i in range(0, 50):
-        doc = Docente('docente' + str(i + 1), 'docente' + str(i + 1),
-                      newDNI(fake,dnis),
-                      fake.first_name().encode('utf8'), fake.last_name().encode('utf8'))
+        dni = newDNI(fake,dnis)
+        doc = Docente('u' + dni, 'docente' + str(i + 1), dni, fake.first_name().encode('utf8'), fake.last_name().encode('utf8'))
         doces.append(doc)
         ens = Ensenyanza(doc, asigs[random.randint(0,len(asigs)-1)])
         enses.append(ens)
@@ -86,11 +85,11 @@ def main():
     for e in enses:
         print e
 
-    tecns.append(TecnicoCalidad('tecnico2','tecnico2',
-                                newDNI(fake,dnis),
+    dni = newDNI(fake,dnis)
+    tecns.append(TecnicoCalidad('u'+dni,'tecnico2', dni,
                                 fake.first_name().encode('utf8'),fake.last_name().encode('utf8')))
-    tecns.append(TecnicoCalidad('tecnico2','tecnico2',
-                                newDNI(fake,dnis),
+    dni = newDNI(fake,dnis)
+    tecns.append(TecnicoCalidad('u'+dni,'tecnico2', dni,
                                 fake.first_name().encode('utf8'),fake.last_name().encode('utf8')))
 
     print "\nTecnicos de calidad:"
@@ -321,9 +320,11 @@ class Almacen(object):
         return self.__getEnsenyanzas()
 
 if __name__ == '__main__':
-    # main()
-    #almacen = Almacen.getInstance()
+    #main()
+    almacen = Almacen.getInstance()
+    #for i in almacen.listarDocentesCentro():
+    #    print i
     #print len(almacen.listarAlumnosAsignatura(almacen.obtenerAsignatura(Asignatura(1,None))))
-    #for i in almacen.listarAsignaturasDocente(almacen.obtenerDocente(Docente(None,None,"83913575E",None, None))):
+    #for i in almacen.listarAsignaturasDocente(Docente(None,None,"18690951L",None, None)):
     #    print i
     pass
