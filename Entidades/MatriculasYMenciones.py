@@ -13,3 +13,5 @@ class MatriculasYMenciones:
     def getMenciones(self):
         return self.__menciones
 
+    def __str__(self):
+         return "%s \t\t %s" % (self.getMatriculas(), self.getMenciones())

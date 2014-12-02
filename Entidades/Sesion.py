@@ -14,4 +14,7 @@ class Sesion:
     def getTipo(self):
         return self.__tipo
 
+    def __str__(self):
+        return "DNI: $s \t \t Tipo de sesion: $s" % (self.getDni(), self.getTipo())
+
 

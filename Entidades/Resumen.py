@@ -13,5 +13,7 @@ class Resumen:
     def getNotaAsignaturaPromedio(self):
         return self.__notaAsignaturaPromedio
 
+    def __str__(self):
+        return "Nota promedio: $f \r Nota promedio asignatura: $f" % (self.getNotaPromedio(), self.getNotaAsignaturaPromedio())
     """ No añado los setters porque supongo que solo cambiamos las nota promedios a través de la
     funcion getResumen de UtilExpediente"""

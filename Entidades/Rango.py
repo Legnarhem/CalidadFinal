@@ -20,3 +20,6 @@ class Rango:
 
     def getSobresalientes(self):
         return self.__sobresalientes
+
+    def __str__(self):
+        return "Suspensos: %s \r Aprobados: %s \r Notables: $s \r Sobresalientes: $s" % (self.getSuspensos(), self.getAprobados(), self.getNotables(), self.getSobresalientes())
