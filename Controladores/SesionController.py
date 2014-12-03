@@ -12,14 +12,14 @@ class SesionController:
 
 
     def obtenerSesion(self, user, passw):
-        if Almacen.obtenerDocente(user) is not None:
-            doc = Almacen.obtenerDocente(user)
-            dni = doc.getDNI()
+        dni = user[1:]
+        doc = Docente(None,None,dni,None, None)
+        tec = TecnicoCalidad(None, None, dni, None, None)
+        almacen = self.getAlmacen()
+        if almacen.obtenerDocente(doc) is not None:
             if doc.getPassword() is passw:
                 sesion = Sesion.__init__(dni, "docente")
-        elif Almacen.obtenerTecnicoCalidad(user) is not None:
-            tec = Almacen.obtenerTecnicoCalidad(user)
-            dni = tec.getDNI()
+        elif almacen.obtenerTecnicoCalidad(tec) is not None:
             if tec.getPassword() is passw:
                 sesion = Sesion.__init__(dni, "tecnico")
         else:
@@ -27,4 +27,7 @@ class SesionController:
             sesion = Sesion.__init__(None, None)
 
         return sesion
+
+    def getAlmacen(self):
+        return Almacen.getInstance()
 
