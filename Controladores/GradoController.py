@@ -1,5 +1,5 @@
-__author__ = 'Ángel'
-
+# encoding=UTF-8
+__author__ = 'Gregorio y Ángel'
 from Almacen import *
 from UtilExpedientes import *
 
@@ -12,42 +12,24 @@ class GradoController:
         return Almacen.getInstance()
 
     def obtenerMatriculasYMenciones(self,codigo,sesion):
-        almacen = self.getAlmacen()
         grado = Grado(codigo,None,None)
-        if sesion.getTipo() == "tecnico":
-            return UtilExpedientes.getMatriculasYMenciones(almacen.listarExpedientesGrado(grado))
-        else:
-            print("No tiene permisos para conocer las Matriculas y Menciones de este grado")
-            return None
+        if sesion.getTipo() == "TecnicoCalidad":
+            return UtilExpedientes().getMatriculasYMenciones(self.getAlmacen().listarExpedientesGrado(grado))
+        return None
 
     def obtenerMedia(self,codigo,sesion):
-        almacen = self.getAlmacen()
         grado = Grado(codigo,None,None)
-        if sesion.getTipo() == "tecnico":
-            return UtilExpedientes.getMediaExpedientes(almacen.listarExpedientesGrado(grado))
-        else:
-            print("No tiene permisos para conocer la media de este grado")
-            return None
+        if sesion.getTipo() == "TecnicoCalidad":
+            return UtilExpedientes().getMediaExpedientes(self.getAlmacen().listarExpedientesGrado(grado))
+        return None
 
     def obtenerRango(self,codigo,sesion):
-        almacen = self.getAlmacen()
         grado = Grado(codigo,None,None)
-        if sesion.getTipo() == "tecnico":
-            return UtilExpedientes.getRangosExpediente(almacen.listarExpedientesGrado(grado))
-        else:
-            print("No tiene permisos para conocer los rangos de notas de este grado")
-            return None
+        if sesion.getTipo() == "TecnicoCalidad":
+            return UtilExpedientes().getRangosExpedientes(self.getAlmacen().listarExpedientesGrado(grado))
+        return None
 
-    #Verdaderamente no es problema que los docentes pudieses realizar este metodo
     def listar(self,sesion):
-        almacen = self.getAlmacen()
-        if sesion.getTipo() == "tecnico":
-            return almacen.listarGradosCentro()
-        else:
-            print("No tiene permiso para conocer los grados del centro")
-            return None
-
-    '''
-       No se si un docente que pertenezca al grado puede acceder a alguno de estos metodos, en ese caso avisame y lo
-        modifico.
-    '''
+        if sesion.getTipo() == "TecnicoCalidad":
+            return self.getAlmacen().listarGradosCentro()
+        return None

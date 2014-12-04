@@ -1,4 +1,5 @@
-__author__ = 'Ángel'
+# encoding=UTF-8
+__author__ = 'Gregorio y Ángel'
 
 from Almacen import *
 from UtilExpedientes import *
@@ -11,91 +12,53 @@ class AlumnoController:
         return Almacen.getInstance()
 
     def obtenerAlusAsignatura(self, codigo, sesion):
-        almacen = self.getAlmacen()
         apto = False
-        if sesion.getTipo() == "tecnico":
+        asignatura = Asignatura(codigo,None)
+        if sesion.getTipo() == "TecnicoCalidad":
             apto = True
-        elif sesion.getTipo() == "docente":
-            asignatura = Asignatura(codigo,None)
-            lista = almacen.listarAsignaturasDocente(Docente(None,None,sesion.getDni(),None,None))
+        elif sesion.getTipo() == "Docente":
+            lista = self.getAlmacen().listarAsignaturasDocente(Docente(None,None,sesion.getDNI(),None,None))
             if asignatura in lista:
                 apto = True
-        else:
-            print("No tiene permiso para obtener la lista de alumnos de la asignatura")
-
-        if apto:
-            return almacen.listarAlumnosAsignatura(almacen.obtenerAsignatura(Asignatura(codigo, None)))
-        else:
-            return None
+        return self.getAlmacen().listarAlumnosAsignatura(self.getAlmacen().obtenerAsignatura(Asignatura(codigo, None))) if apto else None
 
     def obtenerAlusGrado(self, codigo, sesion):
-        almacen = self.getAlmacen()
-        if sesion.getTipo() == "tecnico":
-            return almacen.listarAlumnosGrado(Grado(codigo,None,None))
-        else:
-            print("No tiene permiso para obtener la lista de alumnos del Grado")
-            return None
-    '''
-    Habia pensado de ver si el alumno estaba matriculado en alguna de las asignatura que impartía el profesor,
-    y permitir al docente en ese caso poder acceder a esta informacion. Pero la unica forma de listar las asignaturas de
-    un alumno es a traves de listarAlumnosAsignatura y para ello necesitamos el codigo de la asignatura, lo dejo comentado
+        if sesion.getTipo() == "TecnicoCalidad":
+            return self.getAlmacen().listarAlumnosGrado(Grado(codigo,None,None))
+        return None
 
-    '''
-    def obtenerMedia(self, dni, sesion):
-        almacen = self.getAlmacen()
-
+    def obtenerMedia(self, dni, codigo, sesion):
         apto = False
-        if sesion.getTipo() == "tecnico":
+        alumno = Alumno(dni, None, None)
+        if sesion.getTipo() == "TecnicoCalidad":
             apto = True
-
-        else:
-            print("No tiene permiso para obtener la media del expediente de este alumno")
-        #Iria antes del else
-        '''
-        elif sesion.getTipo() == "docente":
-            asignatura = Asignatura(codigo,None)
-            listaDocente = almacen.listarAsignaturasDocente(Docente(None,None,sesion.getDni(),None,None))
-            listaAlumno = almacen.listarAlumnosAsignatura(asignatura)
-            if asignatura in listaDocente and asignatura in listaAlumno:
+        elif sesion.getTipo() == "Docente":
+            alumnos = self.listar(sesion)
+            if alumno in alumnos:
                 apto = True
-        '''
-        if apto:
-            expediente = almacen.listarExpedientesAlumno(Alumno(dni,None,None))
-            return UtilExpedientes.getMediaExpediente(expediente)
-        else:
-            return None
+        return UtilExpedientes().getMediaExpediente(self.getAlmacen().obtenerExpediente(Alumno(dni,None,None), Asignatura(codigo, None))) if apto else None
+
+
+    def obtenerMediaCentro(self, dni, sesion):
+        apto = False
+        alumno = Alumno(dni, None, None)
+        if sesion.getTipo() == "TecnicoCalidad":
+            apto = True
+        return UtilExpedientes().getMediaExpedientes(self.getAlmacen().listarExpedientesAlumno(Alumno(dni,None,None))) if apto else None
 
     def obtenerRango(self, dni, sesion):
-        almacen = self.getAlmacen()
-
         apto = False
-        if sesion.getTipo() == "tecnico":
+        alumno = Alumno(dni, None, None)
+        if sesion.getTipo() == "TecnicoCalidad":
             apto = True
-
-        else:
-            print("No tiene permiso para obtener el rango de notas de este alumno")
-        #Iria antes del else
-        '''
-        elif sesion.getTipo() == "docente":
-            asignatura = Asignatura(codigo,None)
-            listaDocente = almacen.listarAsignaturasDocente(Docente(None,None,sesion.getDni(),None,None))
-            listaAlumno = almacen.listarAlumnosAsignatura(asignatura)
-            if asignatura in listaDocente and asignatura in listaAlumno:
-                apto = True
-        '''
-        if apto:
-            expediente = almacen.listarExpedientesAlumno(Alumno(dni,None,None))
-            return UtilExpedientes.getRangosExpediente(expediente)
-        else:
-            return None
+        return UtilExpedientes().getRangosExpedientes(self.getAlmacen().listarExpedientesAlumno(Alumno(dni, None, None))) if apto else None
 
     def listar(self, sesion):
-        almacen = self.getAlmacen()
-        if sesion.getTipo() == "tecnico":
-            return almacen.listarAlumnosCentro()
-        else:
-            print("No tiene permiso para ver la lista de alumnos del centro")
-            return None
+        if sesion.getTipo() == "TecnicoCalidad":
+            return self.getAlmacen().listarAlumnosCentro()
+        elif sesion.getTipo() == "Docente":
+            return self.getAlmacen().listarAlumnosDocente(Docente(None,None,sesion.getDNI(),None,None))
+        return None
 
 
 

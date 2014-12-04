@@ -72,7 +72,7 @@ def main():
         print e
 
     print "\nProfesores:"
-    print "%s \t %9s \t %15s \t%s " % ('Usuario', 'DNI', 'Nombre', 'Apellidos')
+    print "%10s \t %9s \t %15s \t%s " % ('Usuario', 'DNI', 'Nombre', 'Apellidos')
     for i in range(0, 50):
         dni = newDNI(fake,dnis)
         doc = Docente('u' + dni, 'docente' + str(i + 1), dni, fake.first_name().encode('utf8'), fake.last_name().encode('utf8'))
@@ -86,13 +86,14 @@ def main():
         print e
 
     dni = newDNI(fake,dnis)
-    tecns.append(TecnicoCalidad('u'+dni,'tecnico2', dni,
+    tecns.append(TecnicoCalidad('u'+dni,'tecnico', dni,
                                 fake.first_name().encode('utf8'),fake.last_name().encode('utf8')))
     dni = newDNI(fake,dnis)
-    tecns.append(TecnicoCalidad('u'+dni,'tecnico2', dni,
+    tecns.append(TecnicoCalidad('u'+dni,'tecnico', dni,
                                 fake.first_name().encode('utf8'),fake.last_name().encode('utf8')))
 
     print "\nTecnicos de calidad:"
+    print "%10s \t %9s \t %15s \t%s " % ('Usuario', 'DNI', 'Nombre', 'Apellidos')
     for t in tecns:
         print t
 
@@ -174,6 +175,16 @@ class Almacen(object):
 
     def listarAlumnosCentro(self):
         return self.__getAlumnos()
+
+    def listarAlumnosDocente(self,docente):
+        alus = []
+        asigD = self.listarAsignaturasDocente(docente)
+        if asigD is not None:
+            for a in asigD:
+                alusA = self.listarAlumnosAsignatura(a)
+                if alusA is not None:
+                    alus.extend(alusA)
+        return None if (len(alus)==0) else alus
 
     def listarAlumnosGrado(self,grado):
         alus = None
@@ -321,7 +332,7 @@ class Almacen(object):
 
 if __name__ == '__main__':
     #main()
-    almacen = Almacen.getInstance()
+    #almacen = Almacen.getInstance()
     #for i in almacen.listarDocentesCentro():
     #    print i
     #print len(almacen.listarAlumnosAsignatura(almacen.obtenerAsignatura(Asignatura(1,None))))

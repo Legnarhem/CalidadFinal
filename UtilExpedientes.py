@@ -1,6 +1,8 @@
-__author__ = 'Greg'
+# encoding=UTF-8
+__author__ = 'Gregorio y Ángel'
 from Entidades.Resumen import *
 from Entidades.Rango import *
+from Entidades.MatriculasYMenciones import *
 
 class UtilExpedientes:
 
@@ -21,13 +23,13 @@ class UtilExpedientes:
                 men += 1
             elif m == self.NOTA_MATRICULAS:
                 mat += 1
-        return mat, men
+        return MatriculasYMenciones(mat, men)
 
     def getMediaExpediente(self, expediente):
         notaAcumulada = 0
         nNotas = 0
         for n in expediente.getNotas():
-            notaAcumulada += n
+            notaAcumulada += float(n)
             nNotas += 1
         return float(notaAcumulada/nNotas)
 
@@ -36,9 +38,10 @@ class UtilExpedientes:
         nExpedientes = 0
         for e in expedientes:
             mediaAcumulada+=self.getMediaExpediente(e)
+            nExpedientes += 1
         return float(mediaAcumulada/nExpedientes)
 
-    def getRangosExpediente(self, expedientes):
+    def getRangosExpedientes(self, expedientes):
         suspensos = 0
         aprobados = 0
         notables = 0

@@ -12,10 +12,7 @@ class Asignatura(Comparable):
         return self.getCodigo()
 
     def setCodigo(self, codigo):
-        if type(codigo) is int:
-            self.__codigo = codigo
-        else:
-            raise TypeError("Codigo de asignatura debe ser numerico")
+        self.__codigo = int(codigo)
 
     def getCodigo(self):
         return int(self.__codigo)

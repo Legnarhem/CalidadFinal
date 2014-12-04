@@ -1,5 +1,5 @@
-__author__ = 'Ángel'
-
+# encoding=UTF-8
+__author__ = 'Gregorio y Ángel'
 from Entidades.Sesion import *
 from Almacen import *
 from Entidades.Docente import *
@@ -11,23 +11,17 @@ class SesionController:
         self.__terminales = terminales
 
 
-    def obtenerSesion(self, user, passw):
-        dni = user[1:]
-        doc = Docente(None,None,dni,None, None)
-        tec = TecnicoCalidad(None, None, dni, None, None)
-        almacen = self.getAlmacen()
-        if almacen.obtenerDocente(doc) is not None:
-            if doc.getPassword() is passw:
-                sesion = Sesion.__init__(dni, "docente")
-        elif almacen.obtenerTecnicoCalidad(tec) is not None:
-            if tec.getPassword() is passw:
-                sesion = Sesion.__init__(dni, "tecnico")
-        else:
-            print("Sesión nula")
-            sesion = Sesion.__init__(None, None)
-
-        return sesion
-
     def getAlmacen(self):
         return Almacen.getInstance()
 
+    def obtenerSesion(self, user, passw):
+        dni = user[1:]
+        sesion = None
+        doc = self.getAlmacen().obtenerDocente(Docente(None,None,dni,None, None))
+        if doc is not None and doc.getPassword() == passw:
+            sesion = Sesion(dni, doc.__class__.__name__)
+        else:
+            tec = self.getAlmacen().obtenerTecnicoCalidad(TecnicoCalidad(None, None, dni, None, None))
+            if tec is not None and tec.getPassword() == passw:
+                sesion = Sesion(dni, tec.__class__.__name__)
+        return sesion

@@ -1,5 +1,5 @@
-__author__ = 'Ángel'
-
+# encoding=UTF-8
+__author__ = 'Gregorio y Ángel'
 from Almacen import *
 from UtilExpedientes import *
 
@@ -12,11 +12,8 @@ class CentroController:
         return Almacen.getInstance()
 
     def obtenerResumen(self, sesion):
-        if sesion.getTipo() is "tecnico":
-            almacen = self.getAlmacen()
-            expedientes = almacen.listarExpedientesCentro()
-            resumen = UtilExpedientes.getResumen(expedientes)
-            return resumen
+        if sesion.getTipo() == "TecnicoCalidad":
+            return UtilExpedientes().getResumen(self.getAlmacen().listarExpedientesCentro())
         else:
             print("No tienes permiso para obtener esta información")
             return None
