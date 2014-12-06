@@ -14,6 +14,4 @@ class CentroController:
     def obtenerResumen(self, sesion):
         if sesion.getTipo() == "TecnicoCalidad":
             return UtilExpedientes().getResumen(self.getAlmacen().listarExpedientesCentro())
-        else:
-            print("No tienes permiso para obtener esta información")
-            return None
+        return None

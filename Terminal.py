@@ -1,5 +1,4 @@
 # encoding=UTF-8
-from jinja2.filters import do_center
 
 __author__ = 'Gregorio y Ángel'
 import os
@@ -318,8 +317,19 @@ class Terminal:
                 print "Usted no tiene acceso a las matriculas y menciones del grado"
             raw_input(" Presione cualquier tecla... ")
 
+    def __subMenuResumenCentro(self):
+        resumen = self.getCentroController().obtenerResumen(self.getSesion())
+        if resumen is not None:
+            print "Estado del centro."
+            print "------------------"
+            print "Nota promedio de alumno     \t%f" % resumen.getNotaPromedioAlumno()
+            print "Nota promedio de asignatura \t%f" % resumen.getNotaPromedioAsignatura()
+            print
+
     def __menuTecnico(self):
         self.__welcome()
+
+        self.__subMenuResumenCentro()
 
         print " Elija opcion:"
         print "\t 1) Gestionar alumnos"

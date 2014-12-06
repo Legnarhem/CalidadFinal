@@ -3,17 +3,15 @@ __author__ = 'Gregorio y Ángel'
 
 class Resumen:
 
-    def __init__(self, notaPromedio, notaAsignaturaPromedio):
-        self.__notaPromedio = notaPromedio
-        self.__notaAsignaturaPromedio = notaAsignaturaPromedio
+    def __init__(self, notaPromedioAlumno, notaPromedioAsignatura):
+        self.__notaPromedioAlumno = notaPromedioAlumno
+        self.__notaPromedioAsignatura = notaPromedioAsignatura
 
-    def getNotaPromedio(self):
-        return self.__notaPromedio
+    def getNotaPromedioAlumno(self):
+        return self.__notaPromedioAlumno
 
-    def getNotaAsignaturaPromedio(self):
-        return self.__notaAsignaturaPromedio
+    def getNotaPromedioAsignatura(self):
+        return self.__notaPromedioAsignatura
 
     def __str__(self):
-        return "Nota promedio: $f \r Nota promedio asignatura: $f" % (self.getNotaPromedio(), self.getNotaAsignaturaPromedio())
-    """ No añado los setters porque supongo que solo cambiamos las nota promedios a través de la
-    funcion getResumen de UtilExpediente"""
+        return "Nota promedio alumno: %f \r Nota promedio asignatura: %f" % (self.getNotaPromedioAlumno(), self.getNotaPromedioAsignatura())

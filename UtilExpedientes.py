@@ -60,15 +60,18 @@ class UtilExpedientes:
 
     def getResumen(self, expedientes):
         asignaturas = dict()
+        notaAlumnoAcumulada = 0
         notaAsignaturaAcumulada = 0
         nExpedientes = 0
         for e in expedientes:
             asig = e.getAsignatura().getCodigo()
             if asig not in asignaturas:
-                asignaturas[asig] = list()
-            list(asignaturas[asig]).append(e)
+                asignaturas[asig]=[]
+            asignaturas[asig].append(e)
         for asig in asignaturas.keys():
             l = list(asignaturas.get(asig))
+            for exp in l:
+                notaAlumnoAcumulada += self.getMediaExpediente(exp)
             notaAsignaturaAcumulada += self.getMediaExpedientes(l)
             nExpedientes += len(l)
-        return Resumen(float(notaAsignaturaAcumulada/nExpedientes),float(notaAsignaturaAcumulada/len(asignaturas.keys())))
+        return Resumen(float(notaAlumnoAcumulada/nExpedientes),float(notaAsignaturaAcumulada/len(asignaturas.keys())))
