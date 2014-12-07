@@ -1,10 +1,18 @@
 # encoding=UTF-8
+""" Modulo Alumno
+"""
 from Comparable import *
 
 __author__ = 'Gregorio y Ángel'
 
 
 class Alumno(Comparable):
+    """Esta clase representa a un alumno del centro académico.
+    Args:
+        dni (str): DNI del alumno
+        nombre (str): Nombre del alumno
+        apellidos (str): Apellidos del alumno
+    """
     def __init__(self, dni, nombre, apellidos):
         self.__dni = dni
         self.__nombre = nombre
@@ -14,12 +22,21 @@ class Alumno(Comparable):
         return self.get_dni()
 
     def get_dni(self):
+        """Obtiene el DNI del alumno.
+        :return:DNI del alumno (str)
+        """
         return self.__dni
 
     def get_nombre(self):
+        """Obtiene el nombre del alumno.
+        :return:Nombre del alumno (str)
+        """
         return self.__nombre
 
     def get_apellidos(self):
+        """Obtiene los apellidos del alumno.
+        :return:Apellidos del alumno (str)
+        """
         return self.__apellidos
 
     def __eq__(self, other):

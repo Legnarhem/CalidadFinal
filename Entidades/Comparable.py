@@ -1,8 +1,12 @@
 # encoding=UTF-8
+"""Módulo Comparable
+"""
 __author__ = 'Gregorio y Ángel'
 
 
 class Comparable(object):
+    """Esta clase es heredada por todas las entidades susceptibles a ser comparadas.
+    """
     def _compare(self, other, method):
         try:
             return method(self._cmpkey(), other._cmpkey())
