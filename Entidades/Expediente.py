@@ -1,21 +1,21 @@
 # encoding=UTF-8
 __author__ = 'Gregorio y Ángel'
 
-class Expediente:
 
-    def __init__(self,alumno,asignatura,notas):
+class Expediente:
+    def __init__(self, alumno, asignatura, notas):
         self.__alumno = alumno
         self.__asignatura = asignatura
         self.__notas = notas
 
-    def getAlumno(self):
+    def get_alumno(self):
         return self.__alumno
 
-    def getAsignatura(self):
+    def get_asignatura(self):
         return self.__asignatura
 
-    def getNotas(self):
+    def get_notas(self):
         return self.__notas
 
     def __str__(self):
-        return "%s \t %s \n%s" % (self.getAlumno().getDNI(), self.getAsignatura().getCodigo(), self.getNotas())
+        return "%s \t %s \n%s" % (self.get_alumno().get_dni(), self.get_asignatura().get_codigo(), self.get_notas())

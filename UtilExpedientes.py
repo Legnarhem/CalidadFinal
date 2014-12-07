@@ -28,7 +28,7 @@ class UtilExpedientes:
     def getMediaExpediente(self, expediente):
         notaAcumulada = 0
         nNotas = 0
-        for n in expediente.getNotas():
+        for n in expediente.get_notas():
             notaAcumulada += float(n)
             nNotas += 1
         return float(notaAcumulada/nNotas)
@@ -64,7 +64,7 @@ class UtilExpedientes:
         notaAsignaturaAcumulada = 0
         nExpedientes = 0
         for e in expedientes:
-            asig = e.getAsignatura().getCodigo()
+            asig = e.get_asignatura().get_codigo()
             if asig not in asignaturas:
                 asignaturas[asig]=[]
             asignaturas[asig].append(e)

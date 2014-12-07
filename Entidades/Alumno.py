@@ -1,28 +1,29 @@
 # encoding=UTF-8
 from Comparable import *
+
 __author__ = 'Gregorio y Ángel'
 
-class Alumno(Comparable):
 
+class Alumno(Comparable):
     def __init__(self, dni, nombre, apellidos):
         self.__dni = dni
         self.__nombre = nombre
         self.__apellidos = apellidos
 
     def _cmpkey(self):
-        return self.getDNI()
+        return self.get_dni()
 
-    def getDNI(self):
+    def get_dni(self):
         return self.__dni
 
-    def getNombre(self):
+    def get_nombre(self):
         return self.__nombre
 
-    def getApellidos(self):
+    def get_apellidos(self):
         return self.__apellidos
 
     def __eq__(self, other):
-        return self.getDNI() == other.getDNI()
+        return self.get_dni() == other.get_dni()
 
     def __str__(self):
-        return "%9s \t %15s \t%s " % (self.getDNI(),self.getNombre(),self.getApellidos())
+        return "%9s \t %15s \t%s " % (self.get_dni(), self.get_nombre(), self.get_apellidos())

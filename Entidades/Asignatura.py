@@ -2,23 +2,23 @@
 __author__ = 'Gregorio y Ángel'
 from Comparable import *
 
-class Asignatura(Comparable):
 
+class Asignatura(Comparable):
     def __init__(self, codigo, nombre):
-        self.setCodigo(codigo)
         self.__nombre = nombre
+        self.set_codigo(codigo)
 
     def _cmpkey(self):
-        return self.getCodigo()
+        return self.get_codigo()
 
-    def setCodigo(self, codigo):
+    def set_codigo(self, codigo):
         self.__codigo = int(codigo)
 
-    def getCodigo(self):
+    def get_codigo(self):
         return int(self.__codigo)
 
-    def getNombre(self):
+    def get_nombre(self):
         return str(self.__nombre)
 
     def __str__(self):
-        return "%s \t\t %s" % (self.getCodigo(), self.getNombre())
+        return "%s \t\t %s" % (self.get_codigo(), self.get_nombre())

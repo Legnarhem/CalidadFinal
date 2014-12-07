@@ -102,7 +102,7 @@ def main():
     print "\nGrados:"
     for g in grads:
         print g
-        for a in g.getAsignaturas():
+        for a in g.get_asignaturas():
             print "\t" + str(a)
 
     saveData(doces,tecns,alums,asigs,grads,expes,enses)
@@ -169,8 +169,8 @@ class Almacen(object):
     def listarAlumnosAsignatura(self,asignatura):
         alus = []
         for e in self.listarExpedientesCentro():
-            if e.getAsignatura() == asignatura:
-                alus.append(e.getAlumno())
+            if e.get_asignatura() == asignatura:
+                alus.append(e.get_alumno())
         return None if(len(alus)==0) else alus
 
     def listarAlumnosCentro(self):
@@ -191,7 +191,7 @@ class Almacen(object):
         for g in self.listarGradosCentro():
             if g == grado:
                 alus = []
-                for a in g.getAsignaturas():
+                for a in g.get_asignaturas():
                     alusA = self.listarAlumnosAsignatura(a)
                     if alusA is not None:
                         alus.extend(alusA)
@@ -214,8 +214,8 @@ class Almacen(object):
     def listarAsignaturasDocente(self,docente):
         asigs = []
         for e in self.listarEnsenyanzasCentro():
-            if e.getDocente() == docente:
-                asigs.append(e.getAsignatura())
+            if e.get_docente() == docente:
+                asigs.append(e.get_asignatura())
                 break
         return None if (len(asigs)==0) else asigs
 
@@ -223,7 +223,7 @@ class Almacen(object):
         asigs = None
         for g in self.listarGradosCentro():
             if g == grado:
-                asigs = g.getAsignaturas()
+                asigs = g.get_asignaturas()
                 break
         return asigs
 
@@ -260,7 +260,7 @@ class Almacen(object):
         if asigD is not None:
             for a in asigD:
                 for g in self.listarGradosCentro():
-                    if g.getAsignaturas().count(a)>0:
+                    if g.get_asignaturas().count(a)>0:
                         if grads.count(g)==0:
                             grads.append(g)
         return None if (len(grads)==0) else grads
@@ -273,7 +273,7 @@ class Almacen(object):
     def obtenerExpediente(self, alumno, asignatura):
         exp = None
         for e in self.listarExpedientesCentro():
-            if e.getAlumno() == alumno and e.getAsignatura() == asignatura:
+            if e.get_alumno() == alumno and e.get_asignatura() == asignatura:
                 exp = e
                 break
         return exp
@@ -281,7 +281,7 @@ class Almacen(object):
     def listarExpedientesAlumno(self,alumno):
         exps = []
         for e in self.listarExpedientesCentro():
-            if e.getAlumno() == alumno:
+            if e.get_alumno() == alumno:
                 exps.append(e)
         return None if(len(exps)==0) else exps
 
@@ -291,7 +291,7 @@ class Almacen(object):
     def listarExpedientesAsignatura(self,asignatura):
         exps = []
         for e in self.listarExpedientesCentro():
-            if e.getAsignatura() == asignatura:
+            if e.get_asignatura() == asignatura:
                 exps.append(e)
         return None if(len(exps)==0) else exps
 
@@ -322,7 +322,7 @@ class Almacen(object):
     def obtenerEnsenyanza(self, docente, asignatura):
         ens = None
         for e in self.listarEnsenyanzasCentro():
-            if e.getDocente() == docente and e.getAsignatura() == asignatura:
+            if e.get_docente() == docente and e.get_asignatura() == asignatura:
                 ens = e
                 break
         return ens
