@@ -3,44 +3,49 @@ __author__ = 'Gregorio y Ángel'
 from Almacen import *
 from UtilExpedientes import *
 
-class AsignaturaController:
 
+class AsignaturaController:
     def __init__(self, terminales):
         self.__terminales = terminales
 
-    def getAlmacen(self):
+    @staticmethod
+    def get_almacen():
         return Almacen.getInstance()
 
-    def obtenerAsigsGrado(self,codigo,sesion):
+    def obtener_asigs_grado(self, codigo, sesion):
         if sesion.getTipo() == "TecnicoCalidad":
-            return self.getAlmacen().listarAsignaturasGrado(Grado(codigo,None,None))
+            return self.get_almacen().listarAsignaturasGrado(Grado(codigo, None, None))
         return None
 
-    def obtenerMedia(self,codigo,sesion):
+    def obtener_media(self, codigo, sesion):
         apto = False
-        asignatura = Asignatura(codigo,None)
+        asignatura = Asignatura(codigo, None)
         if sesion.getTipo() == "TecnicoCalidad":
             apto = True
         elif sesion.getTipo() == "Docente":
-            if asignatura in self.getAlmacen().listarAsignaturasDocente(Docente(None, None, sesion.getDNI(), None, None)):
+            if asignatura in self.get_almacen().listarAsignaturasDocente(
+                    Docente(None, None, sesion.getDNI(), None, None)):
                 apto = True
-        return UtilExpedientes().getMediaExpedientes(self.getAlmacen().listarExpedientesAsignatura(asignatura)) if apto else None
+        return UtilExpedientes().getMediaExpedientes(
+            self.get_almacen().listarExpedientesAsignatura(asignatura)) if apto else None
 
-    def obtenerRango(self,codigo,sesion):
+    def obtener_rango(self, codigo, sesion):
         apto = False
-        asignatura = Asignatura(codigo,None)
+        asignatura = Asignatura(codigo, None)
         if sesion.getTipo() == "TecnicoCalidad":
             apto = True
         elif sesion.getTipo() == "Docente":
-            if asignatura in self.getAlmacen().listarAsignaturasDocente(Docente(None, None, sesion.getDNI(), None, None)):
+            if asignatura in self.get_almacen().listarAsignaturasDocente(
+                    Docente(None, None, sesion.getDNI(), None, None)):
                 apto = True
-        return UtilExpedientes().getRangosExpedientes(self.getAlmacen().listarExpedientesAsignatura(asignatura)) if apto else None
+        return UtilExpedientes().getRangosExpedientes(
+            self.get_almacen().listarExpedientesAsignatura(asignatura)) if apto else None
 
-    def listar(self,sesion):
+    def listar(self, sesion):
         if sesion.getTipo() == "TecnicoCalidad":
-            return self.getAlmacen().listarAsignaturasCentro()
+            return self.get_almacen().listarAsignaturasCentro()
         elif sesion.getTipo() == "Docente":
-            return self.getAlmacen().listarAsignaturasDocente(Docente(None, None, sesion.getDNI(), None, None))
+            return self.get_almacen().listarAsignaturasDocente(Docente(None, None, sesion.getDNI(), None, None))
         return None
 
 
