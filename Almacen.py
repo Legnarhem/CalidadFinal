@@ -1,111 +1,7 @@
 # encoding=UTF-8
 __author__ = 'Gregorio y Ángel'
 import shelve
-import random
-from faker import Factory
-from Entidades.Asignatura import *
-from Entidades.Docente import *
-from Entidades.Ensenyanza import *
-from Entidades.Alumno import *
-from Entidades.Expediente import *
-from Entidades.TecnicoCalidad import *
-from Entidades.Grado import *
 
-def newDNI(fake,dnis):
-    exists = True
-    while True:
-        dni = str(fake.random_int(min=10000000, max=99999999)) + fake.random_letter().upper()
-        if dnis.count(dni) == 0:
-            break
-    return dni
-
-def saveData(doces, tecns, alums, asigs, grads, expes, enses):
-    shelf = shelve.open("data")
-    shelf["docentes"] = doces
-    shelf["tecnicosCalidad"] = tecns
-    shelf["alumnos"] =  alums
-    shelf["asignaturas"] = asigs
-    shelf["grados"] = grads
-    shelf["expedientes"] = expes
-    shelf["ensenyanzas"] = enses
-
-def main():
-    asigs = list()
-    grads = list()
-    doces = list()
-    enses = list()
-    alums = list()
-    expes = list()
-    tecns = list()
-    dnis = list()
-
-    fake = Factory.create('es_ES')
-
-    asigs.append(Asignatura(1, 'Quimica general'))
-    asigs.append(Asignatura(2, 'Fisica'))
-    asigs.append(Asignatura(3, 'Algebra y fundamentos de analisis'))
-    asigs.append(Asignatura(4, 'Informatica'))
-    asigs.append(Asignatura(5, 'Biologia celular'))
-    asigs.append(Asignatura(6, 'Bioquimica: biomoleculas'))
-    asigs.append(Asignatura(7, 'Biologia animal y vegetal'))
-    asigs.append(Asignatura(8, 'Quimica organica'))
-    asigs.append(Asignatura(9, 'Genetica'))
-    asigs.append(Asignatura(10, 'Analisis matematico'))
-
-    print "\nAsignaturas:"
-    for a in asigs:
-        print a
-
-    print "\nAlumnos:"
-    print "%9s \t %15s \t%s " % ('DNI', 'Nombre', 'Apellidos')
-    for i in range(0, 200):
-        alu = Alumno(newDNI(fake,dnis),
-                      fake.first_name().encode('utf8'), fake.last_name().encode('utf8'))
-        alums.append(alu)
-        for a in asigs:
-            exp = Expediente(alu,a,["%.2f" % float(int(10*random.random()/0.05)*0.05) for i in range(10)])
-            expes.append(exp)
-        print alu
-
-    print "\nExpedientes:"
-    for e in expes:
-        print e
-
-    print "\nProfesores:"
-    print "%10s \t %9s \t %15s \t%s " % ('Usuario', 'DNI', 'Nombre', 'Apellidos')
-    for i in range(0, 50):
-        dni = newDNI(fake,dnis)
-        doc = Docente('u' + dni, 'docente' + str(i + 1), dni, fake.first_name().encode('utf8'), fake.last_name().encode('utf8'))
-        doces.append(doc)
-        ens = Ensenyanza(doc, asigs[random.randint(0,len(asigs)-1)])
-        enses.append(ens)
-        print doc
-
-    print "\nEnseñanzas:"
-    for e in enses:
-        print e
-
-    dni = newDNI(fake,dnis)
-    tecns.append(TecnicoCalidad('u'+dni,'tecnico', dni,
-                                fake.first_name().encode('utf8'),fake.last_name().encode('utf8')))
-    dni = newDNI(fake,dnis)
-    tecns.append(TecnicoCalidad('u'+dni,'tecnico', dni,
-                                fake.first_name().encode('utf8'),fake.last_name().encode('utf8')))
-
-    print "\nTecnicos de calidad:"
-    print "%10s \t %9s \t %15s \t%s " % ('Usuario', 'DNI', 'Nombre', 'Apellidos')
-    for t in tecns:
-        print t
-
-    grads.append(Grado(1,"Grado en Biotecnologia",asigs))
-
-    print "\nGrados:"
-    for g in grads:
-        print g
-        for a in g.getAsignaturas():
-            print "\t" + str(a)
-
-    saveData(doces,tecns,alums,asigs,grads,expes,enses)
 
 class Almacen(object):
     __filename = "data"
@@ -115,8 +11,7 @@ class Almacen(object):
         if self.__store is not None:
             raise Exception("Ya existe una instancia de Almacen.")
 
-
-    def __cargarDatos(self):
+    def __cargar_datos(self):
         shelf = shelve.open(self.__filename)
 
         self.__docentes = shelf["docentes"]
@@ -127,215 +22,200 @@ class Almacen(object):
         self.__expedientes = shelf["expedientes"]
         self.__ensenyanzas = shelf["ensenyanzas"]
 
-    def __getDocentes(self):
+    def __get_docentes(self):
         return self.__docentes
 
-    def __getTecnicosCalidad(self):
+    def __get_tecnicos_calidad(self):
         return self.__tecnicosCalidad
 
-    def __getAlumnos(self):
+    def __get_alumnos(self):
         return self.__alumnos
 
-    def __getAsignaturas(self):
+    def __get_asignaturas(self):
         return self.__asignaturas
 
-    def __getGrados(self):
+    def __get_grados(self):
         return self.__grados
 
-    def __getExpedientes(self):
+    def __get_expedientes(self):
         return self.__expedientes
 
-    def __getEnsenyanzas(self):
+    def __get_ensenyanzas(self):
         return self.__ensenyanzas
 
     @staticmethod
-    def getInstance():
+    def get_instance():
         if Almacen.__store is None:
             Almacen.__store = Almacen()
-            Almacen.__store.__cargarDatos()
+            Almacen.__store.__cargar_datos()
         return Almacen.__store
 
-
-#ALUMNOS
-
-    def obtenerAlumno(self,alumno):
+    # ALUMNOS
+    def obtener_alumno(self, alumno):
         alu = None
-        for a in self.listarAlumnosCentro():
-            if a==alumno:
+        for a in self.listar_alumnos_centro():
+            if a == alumno:
                 alu = a
                 break
         return alu
 
-    def listarAlumnosAsignatura(self,asignatura):
+    def listar_alumnos_asignatura(self, asignatura):
         alus = []
-        for e in self.listarExpedientesCentro():
+        for e in self.listar_expedientes_centro():
             if e.getAsignatura() == asignatura:
                 alus.append(e.getAlumno())
-        return None if(len(alus)==0) else alus
+        return None if (len(alus) == 0) else alus
 
-    def listarAlumnosCentro(self):
-        return self.__getAlumnos()
+    def listar_alumnos_centro(self):
+        return self.__get_alumnos()
 
-    def listarAlumnosDocente(self,docente):
+    def listar_alumnos_docente(self, docente):
         alus = []
-        asigD = self.listarAsignaturasDocente(docente)
-        if asigD is not None:
-            for a in asigD:
-                alusA = self.listarAlumnosAsignatura(a)
-                if alusA is not None:
-                    alus.extend(alusA)
-        return None if (len(alus)==0) else alus
+        asig_doc = self.listar_asignaturas_docente(docente)
+        if asig_doc is not None:
+            for a in asig_doc:
+                alumnos_asig = self.listar_alumnos_asignatura(a)
+                if alumnos_asig is not None:
+                    alus.extend(alumnos_asig)
+        return None if (len(alus) == 0) else alus
 
-    def listarAlumnosGrado(self,grado):
+    def listar_alumnos_grado(self, grado):
         alus = None
-        for g in self.listarGradosCentro():
+        for g in self.listar_grados_centro():
             if g == grado:
                 alus = []
                 for a in g.getAsignaturas():
-                    alusA = self.listarAlumnosAsignatura(a)
-                    if alusA is not None:
-                        alus.extend(alusA)
+                    alumnos_asig = self.listar_alumnos_asignatura(a)
+                    if alumnos_asig is not None:
+                        alus.extend(alumnos_asig)
                 break
         return alus
 
-# ASIGNATURAS
+    # ASIGNATURAS
 
-    def obtenerAsignatura(self,asignatura):
+    def obtener_asignatura(self, asignatura):
         asig = None
-        for a in self.listarAsignaturasCentro():
-            if a==asignatura:
+        for a in self.listar_asignaturas_centro():
+            if a == asignatura:
                 asig = a
                 break
         return asig
 
-    def listarAsignaturasCentro(self):
-        return self.__getAsignaturas()
+    def listar_asignaturas_centro(self):
+        return self.__get_asignaturas()
 
-    def listarAsignaturasDocente(self,docente):
+    def listar_asignaturas_docente(self, docente):
         asigs = []
-        for e in self.listarEnsenyanzasCentro():
+        for e in self.listar_ensenyanzas_centro():
             if e.getDocente() == docente:
                 asigs.append(e.getAsignatura())
                 break
-        return None if (len(asigs)==0) else asigs
+        return None if (len(asigs) == 0) else asigs
 
-    def listarAsignaturasGrado(self,grado):
+    def listar_asignaturas_grado(self, grado):
         asigs = None
-        for g in self.listarGradosCentro():
+        for g in self.listar_grados_centro():
             if g == grado:
                 asigs = g.getAsignaturas()
                 break
         return asigs
 
-# DOCENTE
+    # DOCENTE
 
-    def obtenerDocente(self,docente):
+    def obtener_docente(self, docente):
         doc = None
-        for d in self.listarDocentesCentro():
-            if d==docente:
+        for d in self.listar_docentes_centro():
+            if d == docente:
                 doc = d
                 break
         return doc
 
-    def listarDocentesCentro(self):
-        return self.__getDocentes()
+    def listar_docentes_centro(self):
+        return self.__get_docentes()
 
-
-# GRADO
-
-    def obtenerGrado(self,grado):
+    # GRADO
+    def obtener_grado(self, grado):
         gra = None
-        for g in self.listarGradosCentro():
+        for g in self.listar_grados_centro():
             if g == grado:
                 gra = g
                 break
         return gra
 
-    def listarGradosCentro(self):
-        return self.__getGrados()
+    def listar_grados_centro(self):
+        return self.__get_grados()
 
-    def listarGradosDocente(self,docente):
+    def listar_grados_docente(self, docente):
         grads = []
-        asigD = self.listarAsignaturasDocente(docente)
-        if asigD is not None:
-            for a in asigD:
-                for g in self.listarGradosCentro():
-                    if g.getAsignaturas().count(a)>0:
-                        if grads.count(g)==0:
+        asignaturas_doc = self.listar_asignaturas_docente(docente)
+        if asignaturas_doc is not None:
+            for a in asignaturas_doc:
+                for g in self.listar_grados_centro():
+                    if g.getAsignaturas().count(a) > 0:
+                        if grads.count(g) == 0:
                             grads.append(g)
-        return None if (len(grads)==0) else grads
+        return None if (len(grads) == 0) else grads
 
-    def listarGradosTecnicoCalidad(self):
-        return self.listarGradosCentro()
+    def listar_grados_tecnico_calidad(self):
+        return self.listar_grados_centro()
 
-# EXPEDIENTES
+    # EXPEDIENTES
 
-    def obtenerExpediente(self, alumno, asignatura):
+    def obtener_expediente(self, alumno, asignatura):
         exp = None
-        for e in self.listarExpedientesCentro():
+        for e in self.listar_expedientes_centro():
             if e.getAlumno() == alumno and e.getAsignatura() == asignatura:
                 exp = e
                 break
         return exp
 
-    def listarExpedientesAlumno(self,alumno):
+    def listar_expedientes_alumno(self, alumno):
         exps = []
-        for e in self.listarExpedientesCentro():
+        for e in self.listar_expedientes_centro():
             if e.getAlumno() == alumno:
                 exps.append(e)
-        return None if(len(exps)==0) else exps
+        return None if (len(exps) == 0) else exps
 
-    def listarExpedientesCentro(self):
-        return self.__getExpedientes()
+    def listar_expedientes_centro(self):
+        return self.__get_expedientes()
 
-    def listarExpedientesAsignatura(self,asignatura):
+    def listar_expedientes_asignatura(self, asignatura):
         exps = []
-        for e in self.listarExpedientesCentro():
+        for e in self.listar_expedientes_centro():
             if e.getAsignatura() == asignatura:
                 exps.append(e)
-        return None if(len(exps)==0) else exps
+        return None if (len(exps) == 0) else exps
 
-
-    def listarExpedientesGrado(self,grado):
+    def listar_expedientes_grado(self, grado):
         exps = []
-        for a in self.listarAsignaturasGrado(grado):
-            expsA = self.listarExpedientesAsignatura(a)
-            if expsA is not None:
-                exps.extend(expsA)
-        return None if(len(exps)==0) else exps
+        for a in self.listar_asignaturas_grado(grado):
+            exps_alumno = self.listar_expedientes_asignatura(a)
+            if exps_alumno is not None:
+                exps.extend(exps_alumno)
+        return None if (len(exps) == 0) else exps
 
-#TecnicoCalidad
+    # TecnicoCalidad
 
-    def obtenerTecnicoCalidad(self,tecnico):
+    def obtener_tecnico_calidad(self, tecnico):
         tecn = None
-        for t in self.listarTecnicosCalidad():
+        for t in self.listar_tecnicos_calidad():
             if t == tecnico:
                 tecn = t
                 break
         return tecn
 
-    def listarTecnicosCalidad(self):
-        return self.__getTecnicosCalidad()
+    def listar_tecnicos_calidad(self):
+        return self.__get_tecnicos_calidad()
 
-#Ensenyanzas
+    #Ensenyanzas
 
-    def obtenerEnsenyanza(self, docente, asignatura):
+    def obtener_ensenyanza(self, docente, asignatura):
         ens = None
-        for e in self.listarEnsenyanzasCentro():
+        for e in self.listar_ensenyanzas_centro():
             if e.getDocente() == docente and e.getAsignatura() == asignatura:
                 ens = e
                 break
         return ens
 
-    def listarEnsenyanzasCentro(self):
-        return self.__getEnsenyanzas()
-
-if __name__ == '__main__':
-    #main()
-    #almacen = Almacen.getInstance()
-    #for i in almacen.listarDocentesCentro():
-    #    print i
-    #print len(almacen.listarAlumnosAsignatura(almacen.obtenerAsignatura(Asignatura(1,None))))
-    #for i in almacen.listarAsignaturasDocente(Docente(None,None,"18690951L",None, None)):
-    #    print i
-    pass
+    def listar_ensenyanzas_centro(self):
+        return self.__get_ensenyanzas()

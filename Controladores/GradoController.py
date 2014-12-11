@@ -9,27 +9,27 @@ class GradoController:
         self.__terminales = terminales
 
     def getAlmacen(self):
-        return Almacen.getInstance()
+        return Almacen.get_instance()
 
     def obtenerMatriculasYMenciones(self,codigo,sesion):
         grado = Grado(codigo,None,None)
         if sesion.getTipo() == "TecnicoCalidad":
-            return UtilExpedientes().getMatriculasYMenciones(self.getAlmacen().listarExpedientesGrado(grado))
+            return UtilExpedientes().getMatriculasYMenciones(self.getAlmacen().listar_expedientes_grado(grado))
         return None
 
     def obtenerMedia(self,codigo,sesion):
         grado = Grado(codigo,None,None)
         if sesion.getTipo() == "TecnicoCalidad":
-            return UtilExpedientes().getMediaExpedientes(self.getAlmacen().listarExpedientesGrado(grado))
+            return UtilExpedientes().getMediaExpedientes(self.getAlmacen().listar_expedientes_grado(grado))
         return None
 
     def obtenerRango(self,codigo,sesion):
         grado = Grado(codigo,None,None)
         if sesion.getTipo() == "TecnicoCalidad":
-            return UtilExpedientes().getRangosExpedientes(self.getAlmacen().listarExpedientesGrado(grado))
+            return UtilExpedientes().getRangosExpedientes(self.getAlmacen().listar_expedientes_grado(grado))
         return None
 
     def listar(self,sesion):
         if sesion.getTipo() == "TecnicoCalidad":
-            return self.getAlmacen().listarGradosCentro()
+            return self.getAlmacen().listar_grados_centro()
         return None

@@ -9,9 +9,9 @@ class CentroController:
         self.__terminales = terminales
 
     def getAlmacen(self):
-        return Almacen.getInstance()
+        return Almacen.get_instance()
 
     def obtenerResumen(self, sesion):
         if sesion.getTipo() == "TecnicoCalidad":
-            return UtilExpedientes().getResumen(self.getAlmacen().listarExpedientesCentro())
+            return UtilExpedientes().getResumen(self.getAlmacen().listar_expedientes_centro())
         return None

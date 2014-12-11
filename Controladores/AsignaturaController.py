@@ -9,11 +9,11 @@ class AsignaturaController:
         self.__terminales = terminales
 
     def getAlmacen(self):
-        return Almacen.getInstance()
+        return Almacen.get_instance()
 
     def obtenerAsigsGrado(self,codigo,sesion):
         if sesion.getTipo() == "TecnicoCalidad":
-            return self.getAlmacen().listarAsignaturasGrado(Grado(codigo,None,None))
+            return self.getAlmacen().listar_asignaturas_grado(Grado(codigo,None,None))
         return None
 
     def obtenerMedia(self,codigo,sesion):
@@ -22,9 +22,9 @@ class AsignaturaController:
         if sesion.getTipo() == "TecnicoCalidad":
             apto = True
         elif sesion.getTipo() == "Docente":
-            if asignatura in self.getAlmacen().listarAsignaturasDocente(Docente(None, None, sesion.getDNI(), None, None)):
+            if asignatura in self.getAlmacen().listar_asignaturas_docente(Docente(None, None, sesion.getDNI(), None, None)):
                 apto = True
-        return UtilExpedientes().getMediaExpedientes(self.getAlmacen().listarExpedientesAsignatura(asignatura)) if apto else None
+        return UtilExpedientes().getMediaExpedientes(self.getAlmacen().listar_expedientes_asignatura(asignatura)) if apto else None
 
     def obtenerRango(self,codigo,sesion):
         apto = False
@@ -32,15 +32,15 @@ class AsignaturaController:
         if sesion.getTipo() == "TecnicoCalidad":
             apto = True
         elif sesion.getTipo() == "Docente":
-            if asignatura in self.getAlmacen().listarAsignaturasDocente(Docente(None, None, sesion.getDNI(), None, None)):
+            if asignatura in self.getAlmacen().listar_asignaturas_docente(Docente(None, None, sesion.getDNI(), None, None)):
                 apto = True
-        return UtilExpedientes().getRangosExpedientes(self.getAlmacen().listarExpedientesAsignatura(asignatura)) if apto else None
+        return UtilExpedientes().getRangosExpedientes(self.getAlmacen().listar_expedientes_asignatura(asignatura)) if apto else None
 
     def listar(self,sesion):
         if sesion.getTipo() == "TecnicoCalidad":
-            return self.getAlmacen().listarAsignaturasCentro()
+            return self.getAlmacen().listar_asignaturas_centro()
         elif sesion.getTipo() == "Docente":
-            return self.getAlmacen().listarAsignaturasDocente(Docente(None, None, sesion.getDNI(), None, None))
+            return self.getAlmacen().listar_asignaturas_docente(Docente(None, None, sesion.getDNI(), None, None))
         return None
 
 
