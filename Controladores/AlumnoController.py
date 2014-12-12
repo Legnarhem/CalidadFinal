@@ -67,7 +67,7 @@ class AlumnoController:
             alumnos = self.listar(sesion)
             if alumno in alumnos:
                 apto = True
-        return UtilExpedientes().getMediaExpediente(
+        return UtilExpedientes().get_media_expediente(
             self.get_almacen().obtenerExpediente(Alumno(dni, None, None), Asignatura(codigo, None))) if apto else None
 
     def obtener_media_centro(self, dni, sesion):
@@ -80,7 +80,7 @@ class AlumnoController:
         apto = False
         if sesion.get_tipo() == "TecnicoCalidad":
             apto = True
-        return UtilExpedientes().getMediaExpedientes(
+        return UtilExpedientes().get_media_expedientes(
             self.get_almacen().listarExpedientesAlumno(Alumno(dni, None, None))) if apto else None
 
     def obtener_rango(self, dni, sesion):
@@ -93,7 +93,7 @@ class AlumnoController:
         apto = False
         if sesion.get_tipo() == "TecnicoCalidad":
             apto = True
-        return UtilExpedientes().getRangosExpedientes(
+        return UtilExpedientes().get_rangos_expedientes(
             self.get_almacen().listarExpedientesAlumno(Alumno(dni, None, None))) if apto else None
 
     def listar(self, sesion):

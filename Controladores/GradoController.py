@@ -30,7 +30,7 @@ class GradoController:
         """
         grado = Grado(codigo, None, None)
         if sesion.get_tipo() == "TecnicoCalidad":
-            return UtilExpedientes().getMatriculasYMenciones(self.get_almacen.listarExpedientesGrado(grado))
+            return UtilExpedientes().get_matriculas_y_menciones(self.get_almacen.listarExpedientesGrado(grado))
         return None
 
     def obtener_media(self, codigo, sesion):
@@ -41,7 +41,7 @@ class GradoController:
         """
         grado = Grado(codigo, None, None)
         if sesion.get_tipo() == "TecnicoCalidad":
-            return UtilExpedientes().getMediaExpedientes(self.get_almacen.listarExpedientesGrado(grado))
+            return UtilExpedientes().get_media_expedientes(self.get_almacen.listarExpedientesGrado(grado))
         return None
 
     def obtener_rango(self, codigo, sesion):
@@ -53,7 +53,7 @@ class GradoController:
         """
         grado = Grado(codigo, None, None)
         if sesion.get_tipo() == "TecnicoCalidad":
-            return UtilExpedientes().getRangosExpedientes(self.get_almacen.listarExpedientesGrado(grado))
+            return UtilExpedientes().get_rangos_expedientes(self.get_almacen.listarExpedientesGrado(grado))
         return None
 
     def listar(self, sesion):

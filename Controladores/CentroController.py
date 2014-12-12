@@ -29,5 +29,5 @@ class CentroController:
         o None en caso contrario o de carencia de privilegios
         """
         if sesion.get_tipo() == "TecnicoCalidad":
-            return UtilExpedientes().getResumen(self.get_almacen().listarExpedientesCentro())
+            return UtilExpedientes().get_resumen(self.get_almacen().listarExpedientesCentro())
         return None

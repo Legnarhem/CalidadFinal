@@ -46,7 +46,7 @@ class AsignaturaController:
             if asignatura in self.get_almacen().listarAsignaturasDocente(
                     Docente(None, None, sesion.get_dni(), None, None)):
                 apto = True
-        return UtilExpedientes().getMediaExpedientes(
+        return UtilExpedientes().get_media_expedientes(
             self.get_almacen().listarExpedientesAsignatura(asignatura)) if apto else None
 
     def obtener_rango(self, codigo, sesion):
@@ -64,7 +64,7 @@ class AsignaturaController:
             if asignatura in self.get_almacen().listarAsignaturasDocente(
                     Docente(None, None, sesion.get_dni(), None, None)):
                 apto = True
-        return UtilExpedientes().getRangosExpedientes(
+        return UtilExpedientes().get_rangos_expedientes(
             self.get_almacen().listarExpedientesAsignatura(asignatura)) if apto else None
 
     def listar(self, sesion):
