@@ -1,4 +1,6 @@
 # encoding=UTF-8
+"""Módulo UtilExpedientes
+"""
 __author__ = 'Gregorio y Ángel'
 from Entidades.Resumen import *
 from Entidades.Rango import *
@@ -6,6 +8,8 @@ from Entidades.MatriculasYMenciones import *
 
 
 class UtilExpedientes:
+    """En esta clase se gestionan los expedientes de los alumnos
+    """
     NOTA_MATRICULAS = 10
     NOTA_MENCION = 9.5
 
@@ -15,6 +19,10 @@ class UtilExpedientes:
     NOTA_LIMITE = 10
 
     def get_matriculas_y_menciones(self, expedientes):
+        """Obtiene el número de matrículas y menciones
+        :param expedientes: Listas de expedientes
+        :return: Las matrículas y menciones (MatriculasYMenciones)
+        """
         mat = 0
         men = 0
         for e in expedientes:
@@ -26,6 +34,10 @@ class UtilExpedientes:
         return MatriculasYMenciones(mat, men)
 
     def get_media_expediente(self, expediente):
+        """Obtiene la nota media de un expediente
+        :param expediente: El expediente de un alumno (Expediente)
+        :return: media de las notas del expediente (float)
+        """
         nota_acumulada = 0
         n_notas = 0
         for n in expediente.getNotas():
@@ -34,6 +46,10 @@ class UtilExpedientes:
         return float(nota_acumulada / n_notas)
 
     def get_media_expedientes(self, expedientes):
+        """Obtiene la nota media de varios expedientes
+        :param expedientes: Lista de expedientes (list)
+        :return: media de las notas de los expedientes (float)
+        """
         media_acumulada = 0
         n_expedientes = 0
         for e in expedientes:
@@ -42,6 +58,10 @@ class UtilExpedientes:
         return float(media_acumulada / n_expedientes)
 
     def get_rangos_expedientes(self, expedientes):
+        """Clasifica las notas de varios expedientes en los diferentes rangos de notas
+        :param expedientes: Lista de expedientes (list)
+        :return: Rango de notas (Rango)
+        """
         suspensos = 0
         aprobados = 0
         notables = 0
@@ -59,6 +79,10 @@ class UtilExpedientes:
         return Rango(suspensos, aprobados, notables, sobresalientes)
 
     def get_resumen(self, expedientes):
+        """Obtiene un resumen estadístico de un conjunto de expedientes
+        :param expedientes: Lista de expedientes (list)
+        :return: Resumen estadístico de los expedientes (Resumen)
+        """
         asignaturas = dict()
         nota_alumno_acumulada = 0
         nota_asignatura_acumulada = 0
