@@ -19,7 +19,7 @@ class CentroController:
         """Obtiene una instancia de Almacen.
         :return:Instancia de Almacen (Almacen)
         """
-        return Almacen.getInstance()
+        return Almacen.get_instance()
 
     def obtener_resumen(self, sesion):
         """Obtiene un resumen estadístico del estado de la calidad del centro académico, si el usuario
@@ -29,5 +29,5 @@ class CentroController:
         o None en caso contrario o de carencia de privilegios
         """
         if sesion.get_tipo() == "TecnicoCalidad":
-            return UtilExpedientes().get_resumen(self.get_almacen().listarExpedientesCentro())
+            return UtilExpedientes().get_resumen(self.get_almacen().listar_expedientes_centro())
         return None

@@ -21,7 +21,7 @@ class SesionController:
         """Obtiene una instancia de Almacen.
         :return:Instancia de Almacen (Almacen)
         """
-        return Almacen.getInstance()
+        return Almacen.get_instance()
 
     def obtener_sesion(self, user, passw):
         """Obtiene una sesion en el gestor académico.
@@ -31,11 +31,11 @@ class SesionController:
         """
         dni = user[1:]
         sesion = None
-        doc = self.get_almacen().obtenerDocente(Docente(None, None, dni, None, None))
+        doc = self.get_almacen().obtener_docente(Docente(None, None, dni, None, None))
         if doc is not None and doc.get_password() == passw:
             sesion = Sesion(dni, doc.__class__.__name__)
         else:
-            tec = self.get_almacen().obtenerTecnicoCalidad(TecnicoCalidad(None, None, dni, None, None))
+            tec = self.get_almacen().obtener_tecnico_calidad(TecnicoCalidad(None, None, dni, None, None))
             if tec is not None and tec.get_password() == passw:
                 sesion = Sesion(dni, tec.__class__.__name__)
         return sesion

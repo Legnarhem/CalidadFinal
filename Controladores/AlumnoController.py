@@ -5,6 +5,7 @@ __author__ = 'Gregorio y Ángel'
 
 from Almacen import *
 from UtilExpedientes import *
+from Entidades.Asignatura import *
 
 
 class AlumnoController:
@@ -20,7 +21,7 @@ class AlumnoController:
         """Obtiene una instancia de Almacen.
         :return:Instancia de Almacen (Almacen)
         """
-        return Almacen.getInstance()
+        return Almacen.get_instance()
 
     def obtener_alus_asignatura(self, codigo, sesion):
         """Obtiene una lista de los alumnos expedientados en la asignatura indicada, si el usuario
@@ -34,11 +35,11 @@ class AlumnoController:
         if sesion.get_tipo() == "TecnicoCalidad":
             apto = True
         elif sesion.get_tipo() == "Docente":
-            lista = self.get_almacen().listarAsignaturasDocente(Docente(None, None, sesion.get_dni(), None, None))
+            lista = self.get_almacen().listar_asignaturas_docente(Docente(None, None, sesion.get_dni(), None, None))
             if asignatura in lista:
                 apto = True
-        return self.get_almacen().listarAlumnosAsignatura(
-            self.get_almacen().obtenerAsignatura(Asignatura(codigo, None))) if apto else None
+        return self.get_almacen().listar_alumnos_asignatura(
+            self.get_almacen().obtener_asignatura(Asignatura(codigo, None))) if apto else None
 
     def obtener_alus_grado(self, codigo, sesion):
         """Obtiene una lista de los alumnos involucrados en un grado/curso indicado, si el usuario
@@ -48,7 +49,7 @@ class AlumnoController:
         :return:Lista de alumnos (list) si existen o None en caso contrario o de carencia de privilegios
         """
         if sesion.get_tipo() == "TecnicoCalidad":
-            return self.get_almacen().listarAlumnosGrado(Grado(codigo, None, None))
+            return self.get_almacen().listar_alumnos_grado(Grado(codigo, None, None))
         return None
 
     def obtener_media(self, dni, codigo, sesion):
@@ -68,7 +69,7 @@ class AlumnoController:
             if alumno in alumnos:
                 apto = True
         return UtilExpedientes().get_media_expediente(
-            self.get_almacen().obtenerExpediente(Alumno(dni, None, None), Asignatura(codigo, None))) if apto else None
+            self.get_almacen().obtener_expediente(Alumno(dni, None, None), Asignatura(codigo, None))) if apto else None
 
     def obtener_media_centro(self, dni, sesion):
         """Obtiene la media global de un alumno en el centro académico, si el usuario
@@ -81,7 +82,7 @@ class AlumnoController:
         if sesion.get_tipo() == "TecnicoCalidad":
             apto = True
         return UtilExpedientes().get_media_expedientes(
-            self.get_almacen().listarExpedientesAlumno(Alumno(dni, None, None))) if apto else None
+            self.get_almacen().listar_expedientes_alumno(Alumno(dni, None, None))) if apto else None
 
     def obtener_rango(self, dni, sesion):
         """Obtiene el rango de notas de los distintos expedientes asociados al alumno indicado
@@ -94,7 +95,7 @@ class AlumnoController:
         if sesion.get_tipo() == "TecnicoCalidad":
             apto = True
         return UtilExpedientes().get_rangos_expedientes(
-            self.get_almacen().listarExpedientesAlumno(Alumno(dni, None, None))) if apto else None
+            self.get_almacen().listar_expedientes_alumno(Alumno(dni, None, None))) if apto else None
 
     def listar(self, sesion):
         """Obtiene una lista de todos los alumnos a los que el usuario conectado al gestor académico tiene acceso.
@@ -102,7 +103,7 @@ class AlumnoController:
         :return:Lista de alumnos (list) si existen o None en caso contrario o de carencia de privilegios
         """
         if sesion.get_tipo() == "TecnicoCalidad":
-            return self.get_almacen().listarAlumnosCentro()
+            return self.get_almacen().listar_alumnos_centro()
         elif sesion.get_tipo() == "Docente":
-            return self.get_almacen().listarAlumnosDocente(Docente(None, None, sesion.get_dni(), None, None))
+            return self.get_almacen().listar_alumnos_docente(Docente(None, None, sesion.get_dni(), None, None))
         return None

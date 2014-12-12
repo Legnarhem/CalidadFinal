@@ -4,6 +4,9 @@
 __author__ = 'Gregorio y Ángel'
 from Almacen import *
 from UtilExpedientes import *
+from Entidades.Grado import *
+from Entidades.Asignatura import *
+from Entidades.Docente import *
 
 
 class AsignaturaController:
@@ -19,7 +22,7 @@ class AsignaturaController:
         """Obtiene una instancia de Almacen.
         :return:Instancia de Almacen (Almacen)
         """
-        return Almacen.getInstance()
+        return Almacen.get_instance()
 
     def obtener_asigs_grado(self, codigo, sesion):
         """Obtiene una lista de las asignaturas asociadas al grado/curso indicado, si el usuario
@@ -29,7 +32,7 @@ class AsignaturaController:
         :return:Lista de asignaturas asociadas (list) si existen o None en caso contrario o de carencia de privilegios
         """
         if sesion.get_tipo() == "TecnicoCalidad":
-            return self.get_almacen().listarAsignaturasGrado(Grado(codigo, None, None))
+            return self.get_almacen().listar_asignaturas_grado(Grado(codigo, None, None))
         return None
 
     def obtener_media(self, codigo, sesion):
@@ -43,11 +46,11 @@ class AsignaturaController:
         if sesion.get_tipo() == "TecnicoCalidad":
             apto = True
         elif sesion.get_tipo() == "Docente":
-            if asignatura in self.get_almacen().listarAsignaturasDocente(
+            if asignatura in self.get_almacen().listar_asignaturas_docente(
                     Docente(None, None, sesion.get_dni(), None, None)):
                 apto = True
         return UtilExpedientes().get_media_expedientes(
-            self.get_almacen().listarExpedientesAsignatura(asignatura)) if apto else None
+            self.get_almacen().listar_expedientes_asignatura(asignatura)) if apto else None
 
     def obtener_rango(self, codigo, sesion):
         """Obtiene el rango de notas de los distintos expedientes asociados a la asignatura indicada
@@ -61,11 +64,11 @@ class AsignaturaController:
         if sesion.get_tipo() == "TecnicoCalidad":
             apto = True
         elif sesion.get_tipo() == "Docente":
-            if asignatura in self.get_almacen().listarAsignaturasDocente(
+            if asignatura in self.get_almacen().listar_asignaturas_docente(
                     Docente(None, None, sesion.get_dni(), None, None)):
                 apto = True
         return UtilExpedientes().get_rangos_expedientes(
-            self.get_almacen().listarExpedientesAsignatura(asignatura)) if apto else None
+            self.get_almacen().listar_expedientes_asignatura(asignatura)) if apto else None
 
     def listar(self, sesion):
         """Obtiene una lista de todos las asignaturas a las que el usuario conectado al gestor académico tiene acceso.
@@ -73,9 +76,9 @@ class AsignaturaController:
         :return:Lista de asignaturas (list) si existen o None en caso contrario o de carencia de privilegios
         """
         if sesion.get_tipo() == "TecnicoCalidad":
-            return self.get_almacen().listarAsignaturasCentro()
+            return self.get_almacen().listar_asignaturas_centro()
         elif sesion.get_tipo() == "Docente":
-            return self.get_almacen().listarAsignaturasDocente(Docente(None, None, sesion.get_dni(), None, None))
+            return self.get_almacen().listar_asignaturas_docente(Docente(None, None, sesion.get_dni(), None, None))
         return None
 
 

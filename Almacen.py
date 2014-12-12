@@ -1,113 +1,15 @@
 # encoding=UTF-8
+"""Módulo Almacen del Gestor Académico
+"""
 __author__ = 'Gregorio y Ángel'
 import shelve
-import random
-from faker import Factory
-from Entidades.Asignatura import *
-from Entidades.Docente import *
-from Entidades.Ensenyanza import *
-from Entidades.Alumno import *
-from Entidades.Expediente import *
-from Entidades.TecnicoCalidad import *
-from Entidades.Grado import *
 
-def newDNI(fake,dnis):
-    exists = True
-    while True:
-        dni = str(fake.random_int(min=10000000, max=99999999)) + fake.random_letter().upper()
-        if dnis.count(dni) == 0:
-            break
-    return dni
-
-def saveData(doces, tecns, alums, asigs, grads, expes, enses):
-    shelf = shelve.open("data")
-    shelf["docentes"] = doces
-    shelf["tecnicosCalidad"] = tecns
-    shelf["alumnos"] =  alums
-    shelf["asignaturas"] = asigs
-    shelf["grados"] = grads
-    shelf["expedientes"] = expes
-    shelf["ensenyanzas"] = enses
-
-def main():
-    asigs = list()
-    grads = list()
-    doces = list()
-    enses = list()
-    alums = list()
-    expes = list()
-    tecns = list()
-    dnis = list()
-
-    fake = Factory.create('es_ES')
-
-    asigs.append(Asignatura(1, 'Quimica general'))
-    asigs.append(Asignatura(2, 'Fisica'))
-    asigs.append(Asignatura(3, 'Algebra y fundamentos de analisis'))
-    asigs.append(Asignatura(4, 'Informatica'))
-    asigs.append(Asignatura(5, 'Biologia celular'))
-    asigs.append(Asignatura(6, 'Bioquimica: biomoleculas'))
-    asigs.append(Asignatura(7, 'Biologia animal y vegetal'))
-    asigs.append(Asignatura(8, 'Quimica organica'))
-    asigs.append(Asignatura(9, 'Genetica'))
-    asigs.append(Asignatura(10, 'Analisis matematico'))
-
-    print "\nAsignaturas:"
-    for a in asigs:
-        print a
-
-    print "\nAlumnos:"
-    print "%9s \t %15s \t%s " % ('DNI', 'Nombre', 'Apellidos')
-    for i in range(0, 200):
-        alu = Alumno(newDNI(fake,dnis),
-                      fake.first_name().encode('utf8'), fake.last_name().encode('utf8'))
-        alums.append(alu)
-        for a in asigs:
-            exp = Expediente(alu,a,["%.2f" % float(int(10*random.random()/0.05)*0.05) for i in range(10)])
-            expes.append(exp)
-        print alu
-
-    print "\nExpedientes:"
-    for e in expes:
-        print e
-
-    print "\nProfesores:"
-    print "%10s \t %9s \t %15s \t%s " % ('Usuario', 'DNI', 'Nombre', 'Apellidos')
-    for i in range(0, 50):
-        dni = newDNI(fake,dnis)
-        doc = Docente('u' + dni, 'docente' + str(i + 1), dni, fake.first_name().encode('utf8'), fake.last_name().encode('utf8'))
-        doces.append(doc)
-        ens = Ensenyanza(doc, asigs[random.randint(0,len(asigs)-1)])
-        enses.append(ens)
-        print doc
-
-    print "\nEnseñanzas:"
-    for e in enses:
-        print e
-
-    dni = newDNI(fake,dnis)
-    tecns.append(TecnicoCalidad('u'+dni,'tecnico', dni,
-                                fake.first_name().encode('utf8'),fake.last_name().encode('utf8')))
-    dni = newDNI(fake,dnis)
-    tecns.append(TecnicoCalidad('u'+dni,'tecnico', dni,
-                                fake.first_name().encode('utf8'),fake.last_name().encode('utf8')))
-
-    print "\nTecnicos de calidad:"
-    print "%10s \t %9s \t %15s \t%s " % ('Usuario', 'DNI', 'Nombre', 'Apellidos')
-    for t in tecns:
-        print t
-
-    grads.append(Grado(1,"Grado en Biotecnologia",asigs))
-
-    print "\nGrados:"
-    for g in grads:
-        print g
-        for a in g.get_asignaturas():
-            print "\t" + str(a)
-
-    saveData(doces,tecns,alums,asigs,grads,expes,enses)
 
 class Almacen(object):
+    """Esta clase es un almacen de datos del Gestor Académico.
+        Es una clase estática y para obtener una instancia debe de llamarse al método Almacen.get_instance()
+    """
+
     __filename = "data"
     __store = None
 
@@ -115,10 +17,8 @@ class Almacen(object):
         if self.__store is not None:
             raise Exception("Ya existe una instancia de Almacen.")
 
-
-    def __cargarDatos(self):
+    def __cargar_datos(self):
         shelf = shelve.open(self.__filename)
-
         self.__docentes = shelf["docentes"]
         self.__tecnicosCalidad = shelf["tecnicosCalidad"]
         self.__alumnos = shelf["alumnos"]
@@ -127,215 +27,298 @@ class Almacen(object):
         self.__expedientes = shelf["expedientes"]
         self.__ensenyanzas = shelf["ensenyanzas"]
 
-    def __getDocentes(self):
+    def __get_docentes(self):
         return self.__docentes
 
-    def __getTecnicosCalidad(self):
+    def __get_tecnicos_calidad(self):
         return self.__tecnicosCalidad
 
-    def __getAlumnos(self):
+    def __get_alumnos(self):
         return self.__alumnos
 
-    def __getAsignaturas(self):
+    def __get_asignaturas(self):
         return self.__asignaturas
 
-    def __getGrados(self):
+    def __get_grados(self):
         return self.__grados
 
-    def __getExpedientes(self):
+    def __get_expedientes(self):
         return self.__expedientes
 
-    def __getEnsenyanzas(self):
+    def __get_ensenyanzas(self):
         return self.__ensenyanzas
 
     @staticmethod
-    def getInstance():
+    def get_instance():
+        """Obtiene una instancia de Almacen con datos precargados.
+        :return:Instancia de Almacen (Almacen)
+        """
         if Almacen.__store is None:
             Almacen.__store = Almacen()
-            Almacen.__store.__cargarDatos()
+            Almacen.__store.__cargar_datos()
         return Almacen.__store
 
-
-#ALUMNOS
-
-    def obtenerAlumno(self,alumno):
+    # ALUMNOS
+    def obtener_alumno(self, alumno):
+        """Obtiene un alumno indicado.
+        :param alumno:Instancia de alumno (Alumno)
+        :return:Alumno (Alumno) si existe o None en caso contrario
+        """
         alu = None
-        for a in self.listarAlumnosCentro():
-            if a==alumno:
+        for a in self.listar_alumnos_centro():
+            if a == alumno:
                 alu = a
                 break
         return alu
 
-    def listarAlumnosAsignatura(self,asignatura):
+    def listar_alumnos_asignatura(self, asignatura):
+        """Obtiene una lista de los alumnos expedientados en la asignatura indicada.
+        :param asignatura:Instancia de asignatura (Asignatura)
+        :return:Lista de Alumnos (list) si existe asignatura y alumnos en ella o None en caso contrario
+        """
         alus = []
-        for e in self.listarExpedientesCentro():
+        for e in self.listar_expedientes_centro():
             if e.get_asignatura() == asignatura:
                 alus.append(e.get_alumno())
-        return None if(len(alus)==0) else alus
+        return None if (len(alus) == 0) else alus
 
-    def listarAlumnosCentro(self):
-        return self.__getAlumnos()
+    def listar_alumnos_centro(self):
+        """Obtiene una lista de los alumnos involucrados en el centro académico.
+        :return:Lista de Alumnos (list)
+        """
+        return self.__get_alumnos()
 
-    def listarAlumnosDocente(self,docente):
+    def listar_alumnos_docente(self, docente):
+        """Obtiene una lista de los alumnos expedientados en alguna asignatura que involucre al docente indicado.
+        :param docente:Instancia de docente (Docente)
+        :return:Lista de Alumnos (list) si existe docente con asignatura(s) y alumnos en ella(s)
+        o None en caso contrario
+        """
         alus = []
-        asigD = self.listarAsignaturasDocente(docente)
-        if asigD is not None:
-            for a in asigD:
-                alusA = self.listarAlumnosAsignatura(a)
-                if alusA is not None:
-                    alus.extend(alusA)
-        return None if (len(alus)==0) else alus
+        asig_doc = self.listar_asignaturas_docente(docente)
+        if asig_doc is not None:
+            for a in asig_doc:
+                alumnos_asig = self.listar_alumnos_asignatura(a)
+                if alumnos_asig is not None:
+                    alus.extend(alumnos_asig)
+        return None if (len(alus) == 0) else alus
 
-    def listarAlumnosGrado(self,grado):
+    def listar_alumnos_grado(self, grado):
+        """Obtiene una lista de los alumnos involucrados en un grado/curso indicado.
+        :param grado:Instancia de grado/curso (Grado)
+        :return:Lista de alumnos (list) si existen o None en caso contrario
+        """
         alus = None
-        for g in self.listarGradosCentro():
+        for g in self.listar_grados_centro():
             if g == grado:
                 alus = []
                 for a in g.get_asignaturas():
-                    alusA = self.listarAlumnosAsignatura(a)
-                    if alusA is not None:
-                        alus.extend(alusA)
+                    alumnos_asig = self.listar_alumnos_asignatura(a)
+                    if alumnos_asig is not None:
+                        alus.extend(alumnos_asig)
                 break
         return alus
 
-# ASIGNATURAS
+    # ASIGNATURAS
 
-    def obtenerAsignatura(self,asignatura):
+    def obtener_asignatura(self, asignatura):
+        """Obtiene una asignatura indicada.
+        :param asignatura:Instancia de asignatura (Asignatura)
+        :return:Asignatura (Asignatura) si existe o None en caso contrario
+        """
         asig = None
-        for a in self.listarAsignaturasCentro():
-            if a==asignatura:
+        for a in self.listar_asignaturas_centro():
+            if a == asignatura:
                 asig = a
                 break
         return asig
 
-    def listarAsignaturasCentro(self):
-        return self.__getAsignaturas()
+    def listar_asignaturas_centro(self):
+        """Obtiene una lista de los asignaturas impartidas en el centro académico.
+        :return:Lista de asignaturas (list)
+        """
+        return self.__get_asignaturas()
 
-    def listarAsignaturasDocente(self,docente):
+    def listar_asignaturas_docente(self, docente):
+        """Obtiene una lista de las asignaturas que involucra al docente indicado.
+        :param docente:Instancia de docente (Docente)
+        :return:Lista de asignaturas (list) si existe docente con asignatura(s) o None en caso contrario
+        """
         asigs = []
-        for e in self.listarEnsenyanzasCentro():
+        for e in self.listar_ensenyanzas_centro():
             if e.get_docente() == docente:
                 asigs.append(e.get_asignatura())
                 break
-        return None if (len(asigs)==0) else asigs
+        return None if (len(asigs) == 0) else asigs
 
-    def listarAsignaturasGrado(self,grado):
+    def listar_asignaturas_grado(self, grado):
+        """Obtiene una lista de las asignaturas que estan asociadas al grado/curso indicado.
+        :param grado:Instancia de grado/curso (Grado)
+        :return:Lista de asignaturas (list) si existe grado/curso con asignatura(s) o None en caso contrario
+        """
         asigs = None
-        for g in self.listarGradosCentro():
+        for g in self.listar_grados_centro():
             if g == grado:
                 asigs = g.get_asignaturas()
                 break
         return asigs
 
-# DOCENTE
+    # DOCENTE
 
-    def obtenerDocente(self,docente):
+    def obtener_docente(self, docente):
+        """Obtiene un docente indicado.
+        :param docente:Instancia de docente (Docente)
+        :return:Docente (Docente) si existe o None en caso contrario
+        """
         doc = None
-        for d in self.listarDocentesCentro():
-            if d==docente:
+        for d in self.listar_docentes_centro():
+            if d == docente:
                 doc = d
                 break
         return doc
 
-    def listarDocentesCentro(self):
-        return self.__getDocentes()
+    def listar_docentes_centro(self):
+        """Obtiene una lista de los docentes involucrados en el centro académico.
+        :return:Lista de docentes (list)
+        """
+        return self.__get_docentes()
 
-
-# GRADO
-
-    def obtenerGrado(self,grado):
+    # GRADO
+    def obtener_grado(self, grado):
+        """Obtiene un grado/curso indicado.
+        :param grado:Instancia de grado/curso (Grado)
+        :return:Grado/curso (Grado) si existe o None en caso contrario
+        """
         gra = None
-        for g in self.listarGradosCentro():
+        for g in self.listar_grados_centro():
             if g == grado:
                 gra = g
                 break
         return gra
 
-    def listarGradosCentro(self):
-        return self.__getGrados()
+    def listar_grados_centro(self):
+        """Obtiene una lista de los grados/cursos involucrados en el centro académico.
+        :return:Lista de grados/cursos (list)
+        """
+        return self.__get_grados()
 
-    def listarGradosDocente(self,docente):
+    def listar_grados_docente(self, docente):
+        """Obtiene una lista de las grados/cursos que involucra al docente indicado.
+        :param docente:Instancia de docente (Docente)
+        :return:Lista de grados/crusos (list) si existe docente con grados(s)/curso(s) o None en caso contrario
+        """
         grads = []
-        asigD = self.listarAsignaturasDocente(docente)
-        if asigD is not None:
-            for a in asigD:
-                for g in self.listarGradosCentro():
-                    if g.get_asignaturas().count(a)>0:
-                        if grads.count(g)==0:
+        asignaturas_doc = self.listar_asignaturas_docente(docente)
+        if asignaturas_doc is not None:
+            for a in asignaturas_doc:
+                for g in self.listar_grados_centro():
+                    if g.get_asignaturas().count(a) > 0:
+                        if grads.count(g) == 0:
                             grads.append(g)
-        return None if (len(grads)==0) else grads
+        return None if (len(grads) == 0) else grads
 
-    def listarGradosTecnicoCalidad(self):
-        return self.listarGradosCentro()
+    def listar_grados_tecnico_calidad(self):
+        """Obtiene una lista de los tecnicos de calidad involucrados en el centro académico.
+        :return:Lista de tecnicos de calidad (list)
+        """
+        return self.listar_grados_centro()
 
-# EXPEDIENTES
+    # EXPEDIENTES
 
-    def obtenerExpediente(self, alumno, asignatura):
+    def obtener_expediente(self, alumno, asignatura):
+        """Obtiene el expediente de un alumno indicado en una asignatura indicada.
+        :param alumno:Instancia de alumno (Alumno)
+        :param asignatura:Instancia de asignatura (Asignatura)
+        :return:Expediente (Expediente) si existe alumno y asignatura y este primero se encuentra
+        expedientado en la asignatura o None en caso contrario
+        """
         exp = None
-        for e in self.listarExpedientesCentro():
+        for e in self.listar_expedientes_centro():
             if e.get_alumno() == alumno and e.get_asignatura() == asignatura:
                 exp = e
                 break
         return exp
 
-    def listarExpedientesAlumno(self,alumno):
+    def listar_expedientes_alumno(self, alumno):
+        """Obtiene una lista de las expedientes que involucran al alumno indicado.
+        :param alumno:Instancia de alumno (Alumno)
+        :return:Lista de expedientes (list) si existe alumno y se encuentra expedientado en alguna asignatura o None en
+        caso contrario
+        """
         exps = []
-        for e in self.listarExpedientesCentro():
+        for e in self.listar_expedientes_centro():
             if e.get_alumno() == alumno:
                 exps.append(e)
-        return None if(len(exps)==0) else exps
+        return None if (len(exps) == 0) else exps
 
-    def listarExpedientesCentro(self):
-        return self.__getExpedientes()
+    def listar_expedientes_centro(self):
+        """Obtiene una lista de los expedientes existentes en el centro académico.
+        :return:Lista de expedientes (list)
+        """
+        return self.__get_expedientes()
 
-    def listarExpedientesAsignatura(self,asignatura):
+    def listar_expedientes_asignatura(self, asignatura):
+        """Obtiene una lista de los expedientes asociados a la asignatura indicada.
+        :param asignatura:Instancia de asignatura (Asignatura)
+        :return:Lista de expedientes (list) si existe asignatura y tiene asociados expedientes o None en caso contrario
+        """
         exps = []
-        for e in self.listarExpedientesCentro():
+        for e in self.listar_expedientes_centro():
             if e.get_asignatura() == asignatura:
                 exps.append(e)
-        return None if(len(exps)==0) else exps
+        return None if (len(exps) == 0) else exps
 
-
-    def listarExpedientesGrado(self,grado):
+    def listar_expedientes_grado(self, grado):
+        """Obtiene una lista de los expedientes existentes asociados a alguna asignatura del grado/curso indicado.
+        :param grado:Instancia de grado/curso (Grado)
+        :return:Lista de expedientes (list) si existe grado/curso y tiene asignatura(s) con expediente(s) o None en
+        caso contrario
+        """
         exps = []
-        for a in self.listarAsignaturasGrado(grado):
-            expsA = self.listarExpedientesAsignatura(a)
-            if expsA is not None:
-                exps.extend(expsA)
-        return None if(len(exps)==0) else exps
+        for a in self.listar_asignaturas_grado(grado):
+            exps_alumno = self.listar_expedientes_asignatura(a)
+            if exps_alumno is not None:
+                exps.extend(exps_alumno)
+        return None if (len(exps) == 0) else exps
 
-#TecnicoCalidad
+    # TecnicoCalidad
 
-    def obtenerTecnicoCalidad(self,tecnico):
+    def obtener_tecnico_calidad(self, tecnico):
+        """Obtiene un tecnico indicado.
+        :param tecnico:Instancia de tecnico (Tecnico)
+        :return:Tecnico (Tecnico) si existe o None en caso contrario
+        """
         tecn = None
-        for t in self.listarTecnicosCalidad():
+        for t in self.listar_tecnicos_calidad():
             if t == tecnico:
                 tecn = t
                 break
         return tecn
 
-    def listarTecnicosCalidad(self):
-        return self.__getTecnicosCalidad()
+    def listar_tecnicos_calidad(self):
+        """Obtiene una lista de los tecnicos de calidad existentes en el centro académico.
+        :return:Lista de tecnicos de calidad (list)
+        """
+        return self.__get_tecnicos_calidad()
 
-#Ensenyanzas
+    #Ensenyanzas
 
-    def obtenerEnsenyanza(self, docente, asignatura):
+    def obtener_ensenyanza(self, docente, asignatura):
+        """Obtiene la ensenyanza de un docente en una asignatura.
+        :param docente:Instancia de docente (Docente)
+        :param asignatura:Instancia de asignatura (Asignatura)
+        :return:Ensenyanza (Ensenyanza) si existe docente y asignatura y este primero imparte
+        en la asignatura o None en caso contrario
+        """
         ens = None
-        for e in self.listarEnsenyanzasCentro():
+        for e in self.listar_ensenyanzas_centro():
             if e.get_docente() == docente and e.get_asignatura() == asignatura:
                 ens = e
                 break
         return ens
 
-    def listarEnsenyanzasCentro(self):
-        return self.__getEnsenyanzas()
-
-if __name__ == '__main__':
-    #main()
-    #almacen = Almacen.getInstance()
-    #for i in almacen.listarDocentesCentro():
-    #    print i
-    #print len(almacen.listarAlumnosAsignatura(almacen.obtenerAsignatura(Asignatura(1,None))))
-    #for i in almacen.listarAsignaturasDocente(Docente(None,None,"18690951L",None, None)):
-    #    print i
-    pass
+    def listar_ensenyanzas_centro(self):
+        """Obtiene una lista de las enseñanzas impartidas en el centro académico.
+        :return:Lista de enseñanzas (list)
+        """
+        return self.__get_ensenyanzas()
