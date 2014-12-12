@@ -7,25 +7,25 @@ from Controladores.CentroController import *
 from Controladores.GradoController import *
 from Controladores.SesionController import *
 
+
 def main():
-
-
     terminales = list()
     terminales.append(Terminal())
 
-    alumnoController = AlumnoController(terminales)
-    asignaturaController = AsignaturaController(terminales)
-    centroController = CentroController(terminales)
-    gradoController = GradoController(terminales)
-    sesionController = SesionController(terminales)
+    alumno_controller = AlumnoController(terminales)
+    asignatura_controller = AsignaturaController(terminales)
+    centro_controller = CentroController(terminales)
+    grado_controller = GradoController(terminales)
+    sesion_controller = SesionController(terminales)
 
     for terminal in terminales:
-        terminal.setAlumnoController(alumnoController)
-        terminal.setAsignaturaController(asignaturaController)
-        terminal.setCentroController(centroController)
-        terminal.setGradoController(gradoController)
-        terminal.setSesionController(sesionController)
+        terminal.setAlumnoController(alumno_controller)
+        terminal.setAsignaturaController(asignatura_controller)
+        terminal.setCentroController(centro_controller)
+        terminal.setGradoController(grado_controller)
+        terminal.setSesionController(sesion_controller)
         terminal.iniciar()
+
 
 if __name__ == "__main__":
     main()
