@@ -1,56 +1,107 @@
 # encoding=UTF-8
+"""Módulo Terminal
+"""
 
 __author__ = 'Gregorio y Ángel'
 import os
+
+
 class Terminal:
+    """Esta clase es la vista del programa
+    """
 
     def __init__(self):
-        self.setAlumnoController(None)
-        self.setAsignaturaController(None)
-        self.setCentroController(None)
-        self.setGradoController(None)
-        self.setSesionController(None)
-        self.setSesion(None)
+        self.set_alumno_controller(None)
+        self.set_asignatura_controller(None)
+        self.set_centro_controller(None)
+        self.set_grado_controller(None)
+        self.set_sesion_controller(None)
+        self.set_sesion(None)
 
-    def getAlumnoController(self):
+    def get_alumno_controller(self):
+        """Obtiene el controlador de la entidad alumno
+        :return: Controlador alumno (AlumnoController)
+        """
         return self.__alumnoController
 
-    def getAsignaturaController(self):
+    def get_asignatura_controller(self):
+        """Obtiene el controlador de la entidad asignatura
+        :return: Controlador asignatura (AsignaturaController)
+        """
         return self.__asignaturaController
 
-    def getCentroController(self):
+    def get_centro_controller(self):
+        """Obtiene el controlador de la entidad centro
+        :return: Controlador centro (CentroController)
+        """
         return self.__centroController
 
-    def getGradoController(self):
+    def get_grado_controller(self):
+        """Obtiene el controlador de la entidad grado
+        :return: Controlador grado (GradoController)
+        """
         return self.__gradoController
 
-    def getSesionController(self):
+    def get_sesion_controller(self):
+        """Obtiene el controlador de la entidad sesion
+        :return: Controlador sesion (SesionController)
+        """
         return self.__sesionController
 
-    def getSesion(self):
+    def get_sesion(self):
+        """Obtiene la sesión activa asignada a este terminal
+        :return: Sesión (Sesion)
+        """
         return self.__sesion
 
-    def setAlumnoController(self, alumnoController):
-        self.__alumnoController = alumnoController
+    def set_alumno_controller(self, alumno_controller):
+        """Actualiza el controlador de la entidad alumno
+        :param alumno_controller: Controlador de alumno (AlumnoController)
+        :return: None
+        """
+        self.__alumnoController = alumno_controller
 
-    def setAsignaturaController(self, asignaturaController):
-        self.__asignaturaController = asignaturaController
+    def set_asignatura_controller(self, asignatura_controller):
+        """Actualiza el controlador de la entidad asignatura
+        :param asignatura_controller: Controlador de asignatura (AsignaturaController)
+        :return: None
+        """
+        self.__asignaturaController = asignatura_controller
 
-    def setCentroController(self, centroController):
-        self.__centroController = centroController
+    def set_centro_controller(self, centro_controller):
+        """Actualiza el controlador de la entidad centro
+        :param centro_controller: Controlador de centro (CentroController)
+        :return: None
+        """
+        self.__centroController = centro_controller
 
-    def setGradoController(self, gradoController):
-        self.__gradoController = gradoController
+    def set_grado_controller(self, grado_controller):
+        """Actualiza el controlador de la entidad grado
+        :param grado_controller: Controlador de grado (GradoController)
+        :return: None
+        """
+        self.__gradoController = grado_controller
 
-    def setSesionController(self, sesionController):
-        self.__sesionController = sesionController
+    def set_sesion_controller(self, sesion_controller):
+        """Actualiza el controlador de la entidad sesión
+        :param sesion_controller: Controlador de sesión (SesionController)
+        :return: None
+        """
+        self.__sesionController = sesion_controller
 
-    def setSesion(self,sesion):
+    def set_sesion(self, sesion):
+        """Actualiza la sesión activa del terminal
+        :param sesion: Sesión activa (Sesion)
+        :return: None
+        """
         self.__sesion = sesion
 
     def iniciar(self):
+        """Este método en la primera pantalla que nos aparece al iniciar el programa
+        :return: None
+        """
 
-        strLogo1 = """
+        str_logo1 = """
    _____           _
   / ____|         | |
  | |  __  ___  ___| |_ ___  _ __
@@ -58,7 +109,7 @@ class Terminal:
  | |__| |  __/\__ \ || (_) | |
   \_____|\___||___/\__\___/|_|
 """
-        strLogo2 = """
+        str_logo2 = """
                         _                _
      /\                | |              (_)
     /  \   ___ __ _  __| | ___ _ __ ___  _  ___ ___
@@ -67,53 +118,64 @@ class Terminal:
  /_/    \_\___\__,_|\__,_|\___|_| |_| |_|_|\___\___/ ®
 
 """
-        strCopy1 =  "\tAngel Crujera & Gregorio L. Mármol"
-        strCopy2 = "\tCopyright 2015 – Todos los derechos reservados"
+        str_copy1 = "\tAngel Crujera & Gregorio L. Mármol"
+        str_copy2 = "\tCopyright 2015 – Todos los derechos reservados"
 
-        print strLogo1
-        print strLogo2
-        print strCopy1
-        print strCopy2
+        print str_logo1
+        print str_logo2
+        print str_copy1
+        print str_copy2
         print
 
         raw_input("Presione una tecla para continuar...")
 
-        while self.getSesion() is None:
+        while self.get_sesion() is None:
             self.__clear()
             self.__login()
 
-        if self.getSesion().getTipo() == "Docente":
+        if self.get_sesion().getTipo() == "Docente":
             while True:
-                self.__menuDocente()
-        elif self.getSesion().getTipo() == "TecnicoCalidad":
+                self.__menu_docente()
+        elif self.get_sesion().getTipo() == "TecnicoCalidad":
             while True:
-                self.__menuTecnico()
-
+                self.__menu_tecnico()
 
     def __clear(self):
+        """Limpia el terminal
+        :return:
+        """
         if os.name == 'nt':
             os.system("cls")
         else:
             os.system("clear")
 
     def __login(self):
-        strLogin = "Por favor, identifiquese."
-        print strLogin
+        """Método que gestiona el log en la aplicación
+        :return: None
+        """
+        str_login = "Por favor, identifiquese."
+        print str_login
         print
         usr = raw_input("Usuario: \t")
         pwd = raw_input("Contraseña: \t")
-        self.setSesion(self.getSesionController().obtener_sesion(usr,pwd))
-        if self.getSesion() is None:
+        self.set_sesion(self.get_sesion_controller().obtener_sesion(usr, pwd))
+        if self.get_sesion() is None:
             print "Credenciales incorrectos."
             raw_input(" Presione cualquier tecla... ")
 
     def __welcome(self):
+        """Imprime la bienvenida al usuario que ha iniciado sesión
+        :return: None
+        """
         self.__clear()
         print "-----------------------o--------------------------"
-        print "         Bienvenido de nuevo, %s" % (self.getSesion().get_dni())
+        print "         Bienvenido de nuevo, %s" % (self.get_sesion().get_dni())
         print "-----------------------o--------------------------"
 
-    def __menuDocente(self):
+    def __menu_docente(self):
+        """Imprime el menú de un usuario registrado como docente y gestiona la siguiente pantalla
+        :return: None
+        """
 
         self.__welcome()
 
@@ -127,12 +189,16 @@ class Terminal:
             opc = int(raw_input(" >> "))
 
         if opc == 1:
-            asignatura = self.__menuAsignaturas()
-            self.__subMenuAsignaturas(asignatura)
+            asignatura = self.__menu_asignaturas()
+            self.__sub_menu_asignaturas(asignatura)
         else:
             exit()
 
-    def __subMenuAlumnos(self, alumno):
+    def __sub_menu_alumnos(self, alumno):
+        """Imprime un menú con diferentes opciones sobre un alumno seleccionado y gestiona el paso a la siguiente pantalla
+        :param alumno: Alumno (Alumno)
+        :return: None
+        """
         if alumno is not None:
             self.__clear()
 
@@ -147,13 +213,17 @@ class Terminal:
                 opc = int(raw_input(" >> "))
 
             if opc == 1:
-                self.__subMenuMediaAlumnoCentro(alumno)
+                self.__sub_menu_media_alumno_centro(alumno)
             elif opc == 2:
-                self.__subMenuRangosAlumnoCentro(alumno)
+                self.__sub_menu_rangos_alumno_centro(alumno)
             else:
                 pass
 
-    def __subMenuAsignaturas(self, asignatura):
+    def __sub_menu_asignaturas(self, asignatura):
+        """Imprime un menú con diferentes opciones sobre una asignatura seleccionada y gestiona el paso a la siguiente pantalla
+        :param asignatura: Asignatura (Asignatura)
+        :return: None
+        """
         if asignatura is not None:
             self.__clear()
 
@@ -169,16 +239,20 @@ class Terminal:
                 opc = int(raw_input(" >> "))
 
             if opc == 1:
-                alumno = self.__subMenuAlumnosAsignatura(asignatura)
-                self.__subMenuMediaAlumnoAsignatura(alumno, asignatura)
+                alumno = self.__sub_menu_alumnos_asignatura(asignatura)
+                self.__sub_menu_media_alumno_asignatura(alumno, asignatura)
             elif opc == 2:
-                self.__subMenuMediaAsignatura(asignatura)
+                self.__sub_menu_media_asignatura(asignatura)
             elif opc == 3:
-                self.__subMenuRangosAsignatura(asignatura)
+                self.__sub_menu_rangos_asignatura(asignatura)
             else:
                 pass
 
-    def __subMenuGrados(self, grado):
+    def __sub_menu_grados(self, grado):
+        """Imprime un menú con diferentes opciones sobre un grado seleccionado y gestiona el paso a la siguiente pantalla
+        :param grado: Grado (Grado)
+        :return: None
+        """
         if grado is not None:
             self.__clear()
 
@@ -194,28 +268,34 @@ class Terminal:
                 opc = int(raw_input(" >> "))
 
             if opc == 1:
-                self.__subMenuMediaGrado(grado)
+                self.__sub_menu_media_grado(grado)
             elif opc == 2:
-                self.__subMenuRangosGrado(grado)
+                self.__sub_menu_rangos_grado(grado)
             elif opc == 3:
-                self.__subMenuMatriculasYMencionesGrado(grado)
+                self.__sub_menu_matriculas_y_menciones_grado(grado)
             else:
                 pass
 
-    def __subMenuAlumnosAsignatura(self, asignatura):
+    def __sub_menu_alumnos_asignatura(self, asignatura):
+        """Imprime un menú con los diferentes alumnos que pertenecen a una asignatura y gestiona el paso a la siguiente
+        pantalla, imprime si el usuario no tiene acceso a dicha información
+        :param asignatura: Asignatura de la que queremos obtener los alumnos (Asignatura)
+        :return: None
+        """
         if asignatura is not None:
             self.__clear()
             i = 0
             opc = -1
-            misAlumnos = self.getAlumnoController().obtener_alus_asignatura(asignatura.get_codigo(), self.getSesion())
-            if len(misAlumnos) > 0:
+            mis_alumnos = self.get_alumno_controller().obtener_alus_asignatura(asignatura.get_codigo(),
+                            self.get_sesion())
+            if len(mis_alumnos) > 0:
                 print " Elija alumno:"
-                while i < len(misAlumnos):
-                    print "\t%d) %s, %s" % (i+1, misAlumnos[i].get_apellidos(), misAlumnos[i].get_nombre())
+                while i < len(mis_alumnos):
+                    print "\t%d) %s, %s" % (i + 1, mis_alumnos[i].get_apellidos(), mis_alumnos[i].get_nombre())
                     i += 1
-                while not (1 <= opc <= len(misAlumnos)):
+                while not (1 <= opc <= len(mis_alumnos)):
                     opc = int(raw_input(" >> "))
-                return misAlumnos[opc-1]
+                return mis_alumnos[opc - 1]
             else:
                 print "Usted no tiene acceso a alumno alguno"
                 raw_input(" Presione cualquier tecla... ")
@@ -223,50 +303,78 @@ class Terminal:
         else:
             return None
 
-    def __subMenuMediaAlumnoAsignatura(self, alumno, asignatura):
+    def __sub_menu_media_alumno_asignatura(self, alumno, asignatura):
+        """Muestra la media de un alumno en una asignatura, en caso de que el usuario no tenga acceso a dicha
+         información se imprimirá en pantalla
+        :param alumno: Alumno del que queremos obtener la media de las notas (Alumno)
+        :param asignatura: Asignatura de la que queremos obtener la nota media (Asignatura)
+        :return: None
+        """
         if alumno is not None:
             self.__clear()
-            media = self.getAlumnoController().obtener_media(alumno.get_dni(), asignatura.get_codigo(), self.getSesion())
-            if  media is not None:
+            media = self.get_alumno_controller().obtener_media(alumno.get_dni(), asignatura.get_codigo(), 
+                                                               self.get_sesion())
+            if media is not None:
                 print " La media de %s %s en la asignatura es %f" % (alumno.get_nombre(), alumno.get_apellidos(), media)
             else:
                 print "Usted no tiene acceso a la media del alumno"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuMediaAlumnoCentro(self, alumno):
+    def __sub_menu_media_alumno_centro(self, alumno):
+        """Muestra la nota media de un alumno en el centro, en caso de que el usuario no tenga acceso a dicha
+        información se mostrará en pantalla
+        :param alumno: Alumno del que queremos obtener la nota media en el centro (Alumno)
+        :return: None
+        """
         if alumno is not None:
             self.__clear()
-            media = self.getAlumnoController().obtener_media_centro(alumno.get_dni(), self.getSesion())
-            if  media is not None:
-                print " La media global de %s %s en el centro es %f" % (alumno.get_nombre(), alumno.get_apellidos(), media)
+            media = self.get_alumno_controller().obtener_media_centro(alumno.get_dni(), self.get_sesion())
+            if media is not None:
+                print " La media global de %s %s en el centro es %f" % (
+                    alumno.get_nombre(), alumno.get_apellidos(), media)
             else:
                 print "Usted no tiene acceso a la media global del alumno"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuMediaGrado(self, grado):
+    def __sub_menu_media_grado(self, grado):
+        """Muestra la nota media de los alumnos de un grado concreto, en caso de que el usuario no tenga acceso a dicha
+        información lo muestra por pantalla
+        :param grado: Grado del que queremos obtener la nota media de sus alumnos (Grado)
+        :return: None
+        """
         if grado is not None:
             self.__clear()
-            media = self.getGradoController().obtener_media(grado.get_codigo(), self.getSesion())
-            if  media is not None:
+            media = self.get_grado_controller().obtener_media(grado.get_codigo(), self.get_sesion())
+            if media is not None:
                 print " La media del grado de \"%s\" es de %f" % (grado.get_nombre(), media)
             else:
                 print "Usted no tiene acceso a la media global del grado"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuMediaAsignatura(self, asignatura):
+    def __sub_menu_media_asignatura(self, asignatura):
+        """Muestra la nota media de los alumnos de una asignatura, en caso de que el usuario no tenga acceso a dicha
+        información se mostrará en pantalla
+        :param asignatura: Asignatura de la que queremos obtener la nota media de sus alumnos (Asignatura)
+        :return: None
+        """
         if asignatura is not None:
             self.__clear()
-            media = self.getAsignaturaController().obtener_media(asignatura.get_codigo(),self.getSesion())
-            if  media is not None:
+            media = self.get_asignatura_controller().obtener_media(asignatura.get_codigo(), self.get_sesion())
+            if media is not None:
                 print " El promedio de nota de la asignatura de %s es %f" % (asignatura.get_nombre(), media)
             else:
                 print "Usted no tiene acceso a la media de la asignatura"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuRangosAlumnoCentro(self, alumno):
+    def __sub_menu_rangos_alumno_centro(self, alumno):
+        """Muestra los rangos de notas de un alumno del centro, en caso de que el usuario no tenga acceso a dicha
+        información se mostrará por pantalla
+        :param alumno: Alumno del que se quiere obtener el rango de sus notas (Alumno)
+        :return: None
+        """
         if alumno is not None:
             self.__clear()
-            rango = self.getAlumnoController().obtener_rango(alumno.get_dni(), self.getSesion())
+            rango = self.get_alumno_controller().obtener_rango(alumno.get_dni(), self.get_sesion())
             if rango is not None:
                 print " Estadisticas del alumno %s %s." % (alumno.get_nombre(), alumno.get_apellidos())
                 print "\tNumero de suspensos totales: %d" % rango.get_suspensos()
@@ -277,10 +385,15 @@ class Terminal:
                 print "Usted no tiene acceso a los rangos del alumno"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuRangosAsignatura(self, asignatura):
+    def __sub_menu_rangos_asignatura(self, asignatura):
+        """Muestra los rangos de notas de una asignatura, en caso de que el usuario no tenga acceso a dicha información
+        se mostrará por pantalla
+        :param asignatura: Asignatura del que se quiere obtener el rango de notas (Asignatura)
+        :return: None
+        """
         if asignatura is not None:
             self.__clear()
-            rango = self.getAsignaturaController().obtener_rango(asignatura.get_codigo(), self.getSesion())
+            rango = self.get_asignatura_controller().obtener_rango(asignatura.get_codigo(), self.get_sesion())
             if rango is not None:
                 print " Estadisticas de la asignatura %s." % asignatura.get_nombre()
                 print "\tNumero de suspensos totales: %d" % rango.get_suspensos()
@@ -291,10 +404,15 @@ class Terminal:
                 print "Usted no tiene acceso a los rangos de la asignatura"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuRangosGrado(self, grado):
+    def __sub_menu_rangos_grado(self, grado):
+        """Muestra los rangos de notas de un grado, en caso de que el usuario no tenga acceso a dicha información
+        se mostrará por pantalla
+        :param grado: Grado del que se quiere obtener el rango de notas (Grado)
+        :return: None
+        """
         if grado is not None:
             self.__clear()
-            rango = self.getGradoController().obtener_rango(grado.get_codigo(), self.getSesion())
+            rango = self.get_grado_controller().obtener_rango(grado.get_codigo(), self.get_sesion())
             if rango is not None:
                 print " Estadisticas del grado de \"%s\"." % grado.get_nombre()
                 print "\tNumero de suspensos totales: %d" % rango.get_suspensos()
@@ -305,21 +423,29 @@ class Terminal:
                 print "Usted no tiene acceso a los rangos del grado"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuMatriculasYMencionesGrado(self, grado):
+    def __sub_menu_matriculas_y_menciones_grado(self, grado):
+        """Muestra el número de matrículas y menciones de un grado, en caso de que el usuario no tenga acceso a dicha
+        información se mostrará por pantalla
+        :param grado: Grado del que se quiere obtener las matrículas y menciones (Grado)
+        :return: None
+        """
         if grado is not None:
             self.__clear()
-            matriculasYMenciones = self.getGradoController().obtener_matriculas_y_menciones(grado.get_codigo(),
-                self.getSesion())
-            if matriculasYMenciones is not None:
+            matriculas_y_menciones = self.get_grado_controller().obtener_matriculas_y_menciones(grado.getCodigo(),
+                                                                                                self.get_sesion())
+            if matriculas_y_menciones is not None:
                 print " Estadisticas del grado de \"%s\"." % grado.get_nombre()
-                print "\tNumero de menciones totales: %d" % matriculasYMenciones.get_menciones()
-                print "\tNumero de matriculas totales: %d" % matriculasYMenciones.get_matriculas()
+                print "\tNumero de menciones totales: %d" % matriculas_y_menciones.get_menciones()
+                print "\tNumero de matriculas totales: %d" % matriculas_y_menciones.get_matriculas()
             else:
                 print "Usted no tiene acceso a las matriculas y menciones del grado"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuResumenCentro(self):
-        resumen = self.getCentroController().obtener_resumen(self.getSesion())
+    def __sub_menu_resumen_centro(self):
+        """Muestra el resumen estadístico del centro
+        :return: None
+        """
+        resumen = self.get_centro_controller().obtener_resumen(self.get_sesion())
         if resumen is not None:
             print "Estado del centro."
             print "------------------"
@@ -327,10 +453,13 @@ class Terminal:
             print "Nota promedio de asignatura \t%f" % resumen.get_nota_promedio_asignatura()
             print
 
-    def __menuTecnico(self):
+    def __menu_tecnico(self):
+        """Imprime el menú de un usuario registrado como técnico y gestiona la siguiente pantalla
+        :return: None
+        """
         self.__welcome()
 
-        self.__subMenuResumenCentro()
+        self.__sub_menu_resumen_centro()
 
         print " Elija opcion:"
         print "\t 1) Gestionar alumnos"
@@ -344,89 +473,104 @@ class Terminal:
             opc = int(raw_input(" >> "))
 
         if opc == 1:
-            alumno = self.__menuAlumnos()
-            self.__subMenuAlumnos(alumno)
+            alumno = self.__menu_alumnos()
+            self.__sub_menu_alumnos(alumno)
         elif opc == 2:
-            asignatura = self.__menuAsignaturas()
-            self.__subMenuAsignaturas(asignatura)
+            asignatura = self.__menu_asignaturas()
+            self.__sub_menu_asignaturas(asignatura)
         elif opc == 3:
-            grado = self.__menuGrados()
-            self.__subMenuGrados(grado)
+            grado = self.__menu_grados()
+            self.__sub_menu_grados(grado)
         else:
             exit()
 
-    def __menuAlumnos(self):
+    def __menu_alumnos(self):
+        """Imprime la lista de alumnos del centro, en caso de que el usuario no tenga acceso a esta información
+        se mostrará por pantalla
+        :return: None
+        """
         self.__clear()
         i = 0
         opc = -1
-        misAlumnos = self.getAlumnoController().listar(self.getSesion())
-        if len(misAlumnos) > 0:
+        mis_alumnos = self.get_alumno_controller().listar(self.get_sesion())
+        if len(mis_alumnos) > 0:
             print " Elija alumno:"
-            while i < len(misAlumnos):
-                print "\t%d) %s\t%s, %s" % (i+1, misAlumnos[i].get_dni(), misAlumnos[i].get_apellidos(), misAlumnos[i].get_nombre())
+            while i < len(mis_alumnos):
+                print "\t%d) %s\t%s, %s" % (
+                    i + 1, mis_alumnos[i].get_dni(), mis_alumnos[i].get_apellidos(), mis_alumnos[i].get_nombre())
                 i += 1
-            while not (1 <= opc <= len(misAlumnos)):
+            while not (1 <= opc <= len(mis_alumnos)):
                 opc = int(raw_input(" >> "))
-            return misAlumnos[opc-1]
+            return mis_alumnos[opc - 1]
         else:
             print " Usted no tiene acceso a alumno alguno."
             raw_input(" Presione cualquier tecla... ")
             return None
 
-    def __menuAsignaturas(self):
+    def __menu_asignaturas(self):
+        """Imprime las asignaturas a la que el usuario tiene acceso, en caso de que el usuario no tenga acceso
+         a esta ninguna se mostrará por pantalla
+        :return: None
+        """
         self.__clear()
         i = 0
         opc = -1
-        misAsignaturas = self.getAsignaturaController().listar(self.getSesion())
-        if len(misAsignaturas) > 0:
+        mis_asignaturas = self.get_asignatura_controller().listar(self.get_sesion())
+        if len(mis_asignaturas) > 0:
             print " Elija asignatura:"
-            while i < len(misAsignaturas):
-                print "\t%d) %s" % (i+1, misAsignaturas[i].get_nombre())
+            while i < len(mis_asignaturas):
+                print "\t%d) %s" % (i + 1, mis_asignaturas[i].get_nombre())
                 i += 1
-            while not (1 <= opc <= len(misAsignaturas)):
+            while not (1 <= opc <= len(mis_asignaturas)):
                 opc = int(raw_input(" >> "))
-            return misAsignaturas[opc-1]
+            return mis_asignaturas[opc - 1]
         else:
             print " Usted no tiene acceso a asignatura alguna."
             raw_input(" Presione cualquier tecla... ")
             return None
 
-    def __menuGrados(self):
+    def __menu_grados(self):
+        """Imprime los grados a los que tiene acceso, en caso de que el usuario no tenga acceso a ninguno se mostrará
+         por pantalla
+        :return: None
+        """
         self.__clear()
         i = 0
         opc = -1
-        misGrados = self.getGradoController().listar(self.getSesion())
-        if len(misGrados) > 0:
+        mis_grados = self.get_grado_controller().listar(self.get_sesion())
+        if len(mis_grados) > 0:
             print " Elija grado:"
-            while i < len(misGrados):
-                print "\t%d) %s" % (i+1, misGrados[i].get_nombre())
+            while i < len(mis_grados):
+                print "\t%d) %s" % (i + 1, mis_grados[i].get_nombre())
                 i += 1
-            while not (1 <= opc <= len(misGrados)):
+            while not (1 <= opc <= len(mis_grados)):
                 opc = int(raw_input(" >> "))
-            return misGrados[opc-1]
+            return mis_grados[opc - 1]
         else:
             print " Usted no tiene acceso a grado alguno."
             raw_input(" Presione cualquier tecla... ")
             return None
 
-    def __menuMisAlumnos(self):
+    def __menu_mis_alumnos(self):
+        """Imprime la lista de alumnos a los que tiene acceso el usuario, en caso de no tener acceso a ninguno
+        se mostrará por pantalla
+        :return: None
+        """
         i = 0
         opc = -1
-        misAlumnos = self.getAlumnoController().listar(self.getSesion())
-        if len(misAlumnos) > 0:
+        mis_alumnos = self.get_alumno_controller().listar(self.get_sesion())
+        if len(mis_alumnos) > 0:
             print " Elija alumno:"
-            while i < len(misAlumnos):
-                print "\t%d) %s, %s" % (i+1, misAlumnos[i].get_apellidos(), misAlumnos[i].get_nombre())
+            while i < len(mis_alumnos):
+                print "\t%d) %s, %s" % (i + 1, mis_alumnos[i].get_apellidos(), mis_alumnos[i].get_nombre())
                 i += 1
-            while not (1 <= opc <= len(misAlumnos)):
+            while not (1 <= opc <= len(mis_alumnos)):
                 opc = int(raw_input(" >> "))
-            return misAlumnos[opc-1]
+            return mis_alumnos[opc - 1]
         else:
             print "Usted no tiene acceso a alumno alguno"
             raw_input(" Presione cualquier tecla... ")
             return None
-
-
 
     def __menu(self):
         pass
