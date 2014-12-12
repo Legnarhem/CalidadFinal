@@ -2,55 +2,56 @@
 
 __author__ = 'Gregorio y Ángel'
 import os
+
+
 class Terminal:
-
     def __init__(self):
-        self.setAlumnoController(None)
-        self.setAsignaturaController(None)
-        self.setCentroController(None)
-        self.setGradoController(None)
-        self.setSesionController(None)
-        self.setSesion(None)
+        self.set_alumno_controller(None)
+        self.set_asignatura_controller(None)
+        self.set_centro_controller(None)
+        self.set_grado_controller(None)
+        self.set_sesion_controller(None)
+        self.set_sesion(None)
 
-    def getAlumnoController(self):
+    def get_alumno_controller(self):
         return self.__alumnoController
 
-    def getAsignaturaController(self):
+    def get_asignatura_controller(self):
         return self.__asignaturaController
 
-    def getCentroController(self):
+    def get_centro_controller(self):
         return self.__centroController
 
-    def getGradoController(self):
+    def get_grado_controller(self):
         return self.__gradoController
 
-    def getSesionController(self):
+    def get_sesion_controller(self):
         return self.__sesionController
 
-    def getSesion(self):
+    def get_sesion(self):
         return self.__sesion
 
-    def setAlumnoController(self, alumnoController):
-        self.__alumnoController = alumnoController
+    def set_alumno_controller(self, alumno_controller):
+        self.__alumnoController = alumno_controller
 
-    def setAsignaturaController(self, asignaturaController):
-        self.__asignaturaController = asignaturaController
+    def set_asignatura_controller(self, asignatura_controller):
+        self.__asignaturaController = asignatura_controller
 
-    def setCentroController(self, centroController):
-        self.__centroController = centroController
+    def set_centro_controller(self, centro_controller):
+        self.__centroController = centro_controller
 
-    def setGradoController(self, gradoController):
-        self.__gradoController = gradoController
+    def set_grado_controller(self, grado_controller):
+        self.__gradoController = grado_controller
 
-    def setSesionController(self, sesionController):
-        self.__sesionController = sesionController
+    def set_sesion_controller(self, sesion_controller):
+        self.__sesionController = sesion_controller
 
-    def setSesion(self,sesion):
+    def set_sesion(self, sesion):
         self.__sesion = sesion
 
     def iniciar(self):
 
-        strLogo1 = """
+        str_logo1 = """
    _____           _
   / ____|         | |
  | |  __  ___  ___| |_ ___  _ __
@@ -58,7 +59,7 @@ class Terminal:
  | |__| |  __/\__ \ || (_) | |
   \_____|\___||___/\__\___/|_|
 """
-        strLogo2 = """
+        str_logo2 = """
                         _                _
      /\                | |              (_)
     /  \   ___ __ _  __| | ___ _ __ ___  _  ___ ___
@@ -67,28 +68,27 @@ class Terminal:
  /_/    \_\___\__,_|\__,_|\___|_| |_| |_|_|\___\___/ ®
 
 """
-        strCopy1 =  "\tAngel Crujera & Gregorio L. Mármol"
-        strCopy2 = "\tCopyright 2015 – Todos los derechos reservados"
+        str_copy1 = "\tAngel Crujera & Gregorio L. Mármol"
+        str_copy2 = "\tCopyright 2015 – Todos los derechos reservados"
 
-        print strLogo1
-        print strLogo2
-        print strCopy1
-        print strCopy2
+        print str_logo1
+        print str_logo2
+        print str_copy1
+        print str_copy2
         print
 
         raw_input("Presione una tecla para continuar...")
 
-        while self.getSesion() is None:
+        while self.get_sesion() is None:
             self.__clear()
             self.__login()
 
-        if self.getSesion().getTipo() == "Docente":
+        if self.get_sesion().getTipo() == "Docente":
             while True:
-                self.__menuDocente()
-        elif self.getSesion().getTipo() == "TecnicoCalidad":
+                self.__menu_docente()
+        elif self.get_sesion().getTipo() == "TecnicoCalidad":
             while True:
-                self.__menuTecnico()
-
+                self.__menu_tecnico()
 
     def __clear(self):
         if os.name == 'nt':
@@ -97,23 +97,23 @@ class Terminal:
             os.system("clear")
 
     def __login(self):
-        strLogin = "Por favor, identifiquese."
-        print strLogin
+        str_login = "Por favor, identifiquese."
+        print str_login
         print
         usr = raw_input("Usuario: \t")
         pwd = raw_input("Contraseña: \t")
-        self.setSesion(self.getSesionController().obtenerSesion(usr,pwd))
-        if self.getSesion() is None:
+        self.set_sesion(self.get_sesion_controller().obtenerSesion(usr, pwd))
+        if self.get_sesion() is None:
             print "Credenciales incorrectos."
             raw_input(" Presione cualquier tecla... ")
 
     def __welcome(self):
         self.__clear()
         print "-----------------------o--------------------------"
-        print "         Bienvenido de nuevo, %s" % (self.getSesion().getDNI())
+        print "         Bienvenido de nuevo, %s" % (self.get_sesion().getDNI())
         print "-----------------------o--------------------------"
 
-    def __menuDocente(self):
+    def __menu_docente(self):
 
         self.__welcome()
 
@@ -127,12 +127,12 @@ class Terminal:
             opc = int(raw_input(" >> "))
 
         if opc == 1:
-            asignatura = self.__menuAsignaturas()
-            self.__subMenuAsignaturas(asignatura)
+            asignatura = self.__menu_asignaturas()
+            self.__sub_menu_asignaturas(asignatura)
         else:
             exit()
 
-    def __subMenuAlumnos(self, alumno):
+    def __sub_menu_alumnos(self, alumno):
         if alumno is not None:
             self.__clear()
 
@@ -147,13 +147,13 @@ class Terminal:
                 opc = int(raw_input(" >> "))
 
             if opc == 1:
-                self.__subMenuMediaAlumnoCentro(alumno)
+                self.__sub_menu_media_alumno_centro(alumno)
             elif opc == 2:
-                self.__subMenuRangosAlumnoCentro(alumno)
+                self.__sub_menu_rangos_alumno_centro(alumno)
             else:
                 pass
 
-    def __subMenuAsignaturas(self, asignatura):
+    def __sub_menu_asignaturas(self, asignatura):
         if asignatura is not None:
             self.__clear()
 
@@ -169,16 +169,16 @@ class Terminal:
                 opc = int(raw_input(" >> "))
 
             if opc == 1:
-                alumno = self.__subMenuAlumnosAsignatura(asignatura)
-                self.__subMenuMediaAlumnoAsignatura(alumno, asignatura)
+                alumno = self.__sub_menu_alumnos_asignatura(asignatura)
+                self.__sub_menu_media_alumno_asignatura(alumno, asignatura)
             elif opc == 2:
-                self.__subMenuMediaAsignatura(asignatura)
+                self.__sub_menu_media_asignatura(asignatura)
             elif opc == 3:
-                self.__subMenuRangosAsignatura(asignatura)
+                self.__sub_menu_rangos_asignatura(asignatura)
             else:
                 pass
 
-    def __subMenuGrados(self, grado):
+    def __sub_menu_grados(self, grado):
         if grado is not None:
             self.__clear()
 
@@ -194,28 +194,28 @@ class Terminal:
                 opc = int(raw_input(" >> "))
 
             if opc == 1:
-                self.__subMenuMediaGrado(grado)
+                self.__sub_menu_media_grado(grado)
             elif opc == 2:
-                self.__subMenuRangosGrado(grado)
+                self.__sub_menu_rangos_grado(grado)
             elif opc == 3:
-                self.__subMenuMatriculasYMencionesGrado(grado)
+                self.__sub_menu_matriculas_y_menciones_grado(grado)
             else:
                 pass
 
-    def __subMenuAlumnosAsignatura(self, asignatura):
+    def __sub_menu_alumnos_asignatura(self, asignatura):
         if asignatura is not None:
             self.__clear()
             i = 0
             opc = -1
-            misAlumnos = self.getAlumnoController().obtenerAlusAsignatura(asignatura.getCodigo(), self.getSesion())
-            if len(misAlumnos) > 0:
+            mis_alumnos = self.get_alumno_controller().obtenerAlusAsignatura(asignatura.getCodigo(), self.get_sesion())
+            if len(mis_alumnos) > 0:
                 print " Elija alumno:"
-                while i < len(misAlumnos):
-                    print "\t%d) %s, %s" % (i+1, misAlumnos[i].getApellidos(), misAlumnos[i].getNombre())
+                while i < len(mis_alumnos):
+                    print "\t%d) %s, %s" % (i + 1, mis_alumnos[i].getApellidos(), mis_alumnos[i].getNombre())
                     i += 1
-                while not (1 <= opc <= len(misAlumnos)):
+                while not (1 <= opc <= len(mis_alumnos)):
                     opc = int(raw_input(" >> "))
-                return misAlumnos[opc-1]
+                return mis_alumnos[opc - 1]
             else:
                 print "Usted no tiene acceso a alumno alguno"
                 raw_input(" Presione cualquier tecla... ")
@@ -223,50 +223,52 @@ class Terminal:
         else:
             return None
 
-    def __subMenuMediaAlumnoAsignatura(self, alumno, asignatura):
+    def __sub_menu_media_alumno_asignatura(self, alumno, asignatura):
         if alumno is not None:
             self.__clear()
-            media = self.getAlumnoController().obtenerMedia(alumno.getDNI(), asignatura.getCodigo(), self.getSesion())
-            if  media is not None:
+            media = self.get_alumno_controller().obtenerMedia(alumno.getDNI(), asignatura.getCodigo(),
+                                                              self.get_sesion())
+            if media is not None:
                 print " La media de %s %s en la asignatura es %f" % (alumno.getNombre(), alumno.getApellidos(), media)
             else:
                 print "Usted no tiene acceso a la media del alumno"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuMediaAlumnoCentro(self, alumno):
+    def __sub_menu_media_alumno_centro(self, alumno):
         if alumno is not None:
             self.__clear()
-            media = self.getAlumnoController().obtenerMediaCentro(alumno.getDNI(), self.getSesion())
-            if  media is not None:
-                print " La media global de %s %s en el centro es %f" % (alumno.getNombre(), alumno.getApellidos(), media)
+            media = self.get_alumno_controller().obtenerMediaCentro(alumno.getDNI(), self.get_sesion())
+            if media is not None:
+                print " La media global de %s %s en el centro es %f" % (
+                    alumno.getNombre(), alumno.getApellidos(), media)
             else:
                 print "Usted no tiene acceso a la media global del alumno"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuMediaGrado(self, grado):
+    def __sub_menu_media_grado(self, grado):
         if grado is not None:
             self.__clear()
-            media = self.getGradoController().obtenerMedia(grado.getCodigo(), self.getSesion())
-            if  media is not None:
+            media = self.get_grado_controller().obtenerMedia(grado.getCodigo(), self.get_sesion())
+            if media is not None:
                 print " La media del grado de \"%s\" es de %f" % (grado.getNombre(), media)
             else:
                 print "Usted no tiene acceso a la media global del grado"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuMediaAsignatura(self, asignatura):
+    def __sub_menu_media_asignatura(self, asignatura):
         if asignatura is not None:
             self.__clear()
-            media = self.getAsignaturaController().obtenerMedia(asignatura.getCodigo(),self.getSesion())
-            if  media is not None:
+            media = self.get_asignatura_controller().obtenerMedia(asignatura.getCodigo(), self.get_sesion())
+            if media is not None:
                 print " El promedio de nota de la asignatura de %s es %f" % (asignatura.getNombre(), media)
             else:
                 print "Usted no tiene acceso a la media de la asignatura"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuRangosAlumnoCentro(self, alumno):
+    def __sub_menu_rangos_alumno_centro(self, alumno):
         if alumno is not None:
             self.__clear()
-            rango = self.getAlumnoController().obtenerRango(alumno.getDNI(), self.getSesion())
+            rango = self.get_alumno_controller().obtenerRango(alumno.getDNI(), self.get_sesion())
             if rango is not None:
                 print " Estadisticas del alumno %s %s." % (alumno.getNombre(), alumno.getApellidos())
                 print "\tNumero de suspensos totales: %d" % rango.getSuspensos()
@@ -277,10 +279,10 @@ class Terminal:
                 print "Usted no tiene acceso a los rangos del alumno"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuRangosAsignatura(self, asignatura):
+    def __sub_menu_rangos_asignatura(self, asignatura):
         if asignatura is not None:
             self.__clear()
-            rango = self.getAsignaturaController().obtenerRango(asignatura.getCodigo(), self.getSesion())
+            rango = self.get_asignatura_controller().obtenerRango(asignatura.getCodigo(), self.get_sesion())
             if rango is not None:
                 print " Estadisticas de la asignatura %s." % asignatura.getNombre()
                 print "\tNumero de suspensos totales: %d" % rango.getSuspensos()
@@ -291,10 +293,10 @@ class Terminal:
                 print "Usted no tiene acceso a los rangos de la asignatura"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuRangosGrado(self, grado):
+    def __sub_menu_rangos_grado(self, grado):
         if grado is not None:
             self.__clear()
-            rango = self.getGradoController().obtenerRango(grado.getCodigo(), self.getSesion())
+            rango = self.get_grado_controller().obtenerRango(grado.getCodigo(), self.get_sesion())
             if rango is not None:
                 print " Estadisticas del grado de \"%s\"." % grado.getNombre()
                 print "\tNumero de suspensos totales: %d" % rango.getSuspensos()
@@ -305,20 +307,21 @@ class Terminal:
                 print "Usted no tiene acceso a los rangos del grado"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuMatriculasYMencionesGrado(self, grado):
+    def __sub_menu_matriculas_y_menciones_grado(self, grado):
         if grado is not None:
             self.__clear()
-            matriculasYMenciones = self.getGradoController().obtenerMatriculasYMenciones(grado.getCodigo(), self.getSesion())
-            if matriculasYMenciones is not None:
+            matriculas_y_menciones = self.get_grado_controller().obtenerMatriculasYMenciones(grado.getCodigo(),
+                                                                                             self.get_sesion())
+            if matriculas_y_menciones is not None:
                 print " Estadisticas del grado de \"%s\"." % grado.getNombre()
-                print "\tNumero de menciones totales: %d" % matriculasYMenciones.getMenciones()
-                print "\tNumero de matriculas totales: %d" % matriculasYMenciones.getMatriculas()
+                print "\tNumero de menciones totales: %d" % matriculas_y_menciones.getMenciones()
+                print "\tNumero de matriculas totales: %d" % matriculas_y_menciones.getMatriculas()
             else:
                 print "Usted no tiene acceso a las matriculas y menciones del grado"
             raw_input(" Presione cualquier tecla... ")
 
-    def __subMenuResumenCentro(self):
-        resumen = self.getCentroController().obtenerResumen(self.getSesion())
+    def __sub_menu_resumen_centro(self):
+        resumen = self.get_centro_controller().obtenerResumen(self.get_sesion())
         if resumen is not None:
             print "Estado del centro."
             print "------------------"
@@ -326,10 +329,10 @@ class Terminal:
             print "Nota promedio de asignatura \t%f" % resumen.getNotaPromedioAsignatura()
             print
 
-    def __menuTecnico(self):
+    def __menu_tecnico(self):
         self.__welcome()
 
-        self.__subMenuResumenCentro()
+        self.__sub_menu_resumen_centro()
 
         print " Elija opcion:"
         print "\t 1) Gestionar alumnos"
@@ -343,89 +346,88 @@ class Terminal:
             opc = int(raw_input(" >> "))
 
         if opc == 1:
-            alumno = self.__menuAlumnos()
-            self.__subMenuAlumnos(alumno)
+            alumno = self.__menu_alumnos()
+            self.__sub_menu_alumnos(alumno)
         elif opc == 2:
-            asignatura = self.__menuAsignaturas()
-            self.__subMenuAsignaturas(asignatura)
+            asignatura = self.__menu_asignaturas()
+            self.__sub_menu_asignaturas(asignatura)
         elif opc == 3:
-            grado = self.__menuGrados()
-            self.__subMenuGrados(grado)
+            grado = self.__menu_grados()
+            self.__sub_menu_grados(grado)
         else:
             exit()
 
-    def __menuAlumnos(self):
+    def __menu_alumnos(self):
         self.__clear()
         i = 0
         opc = -1
-        misAlumnos = self.getAlumnoController().listar(self.getSesion())
-        if len(misAlumnos) > 0:
+        mis_alumnos = self.get_alumno_controller().listar(self.get_sesion())
+        if len(mis_alumnos) > 0:
             print " Elija alumno:"
-            while i < len(misAlumnos):
-                print "\t%d) %s\t%s, %s" % (i+1, misAlumnos[i].getDNI(), misAlumnos[i].getApellidos(), misAlumnos[i].getNombre())
+            while i < len(mis_alumnos):
+                print "\t%d) %s\t%s, %s" % (
+                    i + 1, mis_alumnos[i].getDNI(), mis_alumnos[i].getApellidos(), mis_alumnos[i].getNombre())
                 i += 1
-            while not (1 <= opc <= len(misAlumnos)):
+            while not (1 <= opc <= len(mis_alumnos)):
                 opc = int(raw_input(" >> "))
-            return misAlumnos[opc-1]
+            return mis_alumnos[opc - 1]
         else:
             print " Usted no tiene acceso a alumno alguno."
             raw_input(" Presione cualquier tecla... ")
             return None
 
-    def __menuAsignaturas(self):
+    def __menu_asignaturas(self):
         self.__clear()
         i = 0
         opc = -1
-        misAsignaturas = self.getAsignaturaController().listar(self.getSesion())
-        if len(misAsignaturas) > 0:
+        mis_asignaturas = self.get_asignatura_controller().listar(self.get_sesion())
+        if len(mis_asignaturas) > 0:
             print " Elija asignatura:"
-            while i < len(misAsignaturas):
-                print "\t%d) %s" % (i+1, misAsignaturas[i].getNombre())
+            while i < len(mis_asignaturas):
+                print "\t%d) %s" % (i + 1, mis_asignaturas[i].getNombre())
                 i += 1
-            while not (1 <= opc <= len(misAsignaturas)):
+            while not (1 <= opc <= len(mis_asignaturas)):
                 opc = int(raw_input(" >> "))
-            return misAsignaturas[opc-1]
+            return mis_asignaturas[opc - 1]
         else:
             print " Usted no tiene acceso a asignatura alguna."
             raw_input(" Presione cualquier tecla... ")
             return None
 
-    def __menuGrados(self):
+    def __menu_grados(self):
         self.__clear()
         i = 0
         opc = -1
-        misGrados = self.getGradoController().listar(self.getSesion())
-        if len(misGrados) > 0:
+        mis_grados = self.get_grado_controller().listar(self.get_sesion())
+        if len(mis_grados) > 0:
             print " Elija grado:"
-            while i < len(misGrados):
-                print "\t%d) %s" % (i+1, misGrados[i].getNombre())
+            while i < len(mis_grados):
+                print "\t%d) %s" % (i + 1, mis_grados[i].getNombre())
                 i += 1
-            while not (1 <= opc <= len(misGrados)):
+            while not (1 <= opc <= len(mis_grados)):
                 opc = int(raw_input(" >> "))
-            return misGrados[opc-1]
+            return mis_grados[opc - 1]
         else:
             print " Usted no tiene acceso a grado alguno."
             raw_input(" Presione cualquier tecla... ")
             return None
 
-    def __menuMisAlumnos(self):
+    def __menu_mis_alumnos(self):
         i = 0
         opc = -1
-        misAlumnos = self.getAlumnoController().listar(self.getSesion())
-        if len(misAlumnos) > 0:
+        mis_alumnos = self.get_alumno_controller().listar(self.get_sesion())
+        if len(mis_alumnos) > 0:
             print " Elija alumno:"
-            while i < len(misAlumnos):
-                print "\t%d) %s, %s" % (i+1, misAlumnos[i].getApellidos(), misAlumnos[i].getNombre())
+            while i < len(mis_alumnos):
+                print "\t%d) %s, %s" % (i + 1, mis_alumnos[i].getApellidos(), mis_alumnos[i].getNombre())
                 i += 1
-            while not (1 <= opc <= len(misAlumnos)):
+            while not (1 <= opc <= len(mis_alumnos)):
                 opc = int(raw_input(" >> "))
-            return misAlumnos[opc-1]
+            return mis_alumnos[opc - 1]
         else:
             print "Usted no tiene acceso a alumno alguno"
             raw_input(" Presione cualquier tecla... ")
             return None
-
-
 
     def __menu(self):
         pass

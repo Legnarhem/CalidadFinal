@@ -20,11 +20,11 @@ def main():
     sesionController = SesionController(terminales)
 
     for terminal in terminales:
-        terminal.setAlumnoController(alumnoController)
-        terminal.setAsignaturaController(asignaturaController)
-        terminal.setCentroController(centroController)
-        terminal.setGradoController(gradoController)
-        terminal.setSesionController(sesionController)
+        terminal.set_alumno_controller(alumnoController)
+        terminal.set_asignatura_controller(asignaturaController)
+        terminal.set_centro_controller(centroController)
+        terminal.set_grado_controller(gradoController)
+        terminal.set_sesion_controller(sesionController)
         terminal.iniciar()
 
 if __name__ == "__main__":
