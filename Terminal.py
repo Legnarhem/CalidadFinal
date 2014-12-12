@@ -82,10 +82,10 @@ class Terminal:
             self.__clear()
             self.__login()
 
-        if self.getSesion().get_tipo() == "Docente":
+        if self.getSesion().getTipo() == "Docente":
             while True:
                 self.__menuDocente()
-        elif self.getSesion().get_tipo() == "TecnicoCalidad":
+        elif self.getSesion().getTipo() == "TecnicoCalidad":
             while True:
                 self.__menuTecnico()
 
@@ -102,7 +102,7 @@ class Terminal:
         print
         usr = raw_input("Usuario: \t")
         pwd = raw_input("Contraseña: \t")
-        self.setSesion(self.getSesionController().obtenerSesion(usr,pwd))
+        self.setSesion(self.getSesionController().obtener_sesion(usr,pwd))
         if self.getSesion() is None:
             print "Credenciales incorrectos."
             raw_input(" Presione cualquier tecla... ")
@@ -207,7 +207,7 @@ class Terminal:
             self.__clear()
             i = 0
             opc = -1
-            misAlumnos = self.getAlumnoController().obtenerAlusAsignatura(asignatura.get_codigo(), self.getSesion())
+            misAlumnos = self.getAlumnoController().obtener_alus_asignatura(asignatura.get_codigo(), self.getSesion())
             if len(misAlumnos) > 0:
                 print " Elija alumno:"
                 while i < len(misAlumnos):
@@ -226,7 +226,7 @@ class Terminal:
     def __subMenuMediaAlumnoAsignatura(self, alumno, asignatura):
         if alumno is not None:
             self.__clear()
-            media = self.getAlumnoController().obtenerMedia(alumno.get_dni(), asignatura.get_codigo(), self.getSesion())
+            media = self.getAlumnoController().obtener_media(alumno.get_dni(), asignatura.get_codigo(), self.getSesion())
             if  media is not None:
                 print " La media de %s %s en la asignatura es %f" % (alumno.get_nombre(), alumno.get_apellidos(), media)
             else:
@@ -236,7 +236,7 @@ class Terminal:
     def __subMenuMediaAlumnoCentro(self, alumno):
         if alumno is not None:
             self.__clear()
-            media = self.getAlumnoController().obtenerMediaCentro(alumno.get_dni(), self.getSesion())
+            media = self.getAlumnoController().obtener_media_centro(alumno.get_dni(), self.getSesion())
             if  media is not None:
                 print " La media global de %s %s en el centro es %f" % (alumno.get_nombre(), alumno.get_apellidos(), media)
             else:
@@ -246,7 +246,7 @@ class Terminal:
     def __subMenuMediaGrado(self, grado):
         if grado is not None:
             self.__clear()
-            media = self.getGradoController().obtenerMedia(grado.get_codigo(), self.getSesion())
+            media = self.getGradoController().obtener_media(grado.get_codigo(), self.getSesion())
             if  media is not None:
                 print " La media del grado de \"%s\" es de %f" % (grado.get_nombre(), media)
             else:
@@ -256,7 +256,7 @@ class Terminal:
     def __subMenuMediaAsignatura(self, asignatura):
         if asignatura is not None:
             self.__clear()
-            media = self.getAsignaturaController().obtenerMedia(asignatura.get_codigo(),self.getSesion())
+            media = self.getAsignaturaController().obtener_media(asignatura.get_codigo(),self.getSesion())
             if  media is not None:
                 print " El promedio de nota de la asignatura de %s es %f" % (asignatura.get_nombre(), media)
             else:
@@ -266,7 +266,7 @@ class Terminal:
     def __subMenuRangosAlumnoCentro(self, alumno):
         if alumno is not None:
             self.__clear()
-            rango = self.getAlumnoController().obtenerRango(alumno.get_dni(), self.getSesion())
+            rango = self.getAlumnoController().obtener_rango(alumno.get_dni(), self.getSesion())
             if rango is not None:
                 print " Estadisticas del alumno %s %s." % (alumno.get_nombre(), alumno.get_apellidos())
                 print "\tNumero de suspensos totales: %d" % rango.get_suspensos()
@@ -280,7 +280,7 @@ class Terminal:
     def __subMenuRangosAsignatura(self, asignatura):
         if asignatura is not None:
             self.__clear()
-            rango = self.getAsignaturaController().obtenerRango(asignatura.get_codigo(), self.getSesion())
+            rango = self.getAsignaturaController().obtener_rango(asignatura.get_codigo(), self.getSesion())
             if rango is not None:
                 print " Estadisticas de la asignatura %s." % asignatura.get_nombre()
                 print "\tNumero de suspensos totales: %d" % rango.get_suspensos()
@@ -294,7 +294,7 @@ class Terminal:
     def __subMenuRangosGrado(self, grado):
         if grado is not None:
             self.__clear()
-            rango = self.getGradoController().obtenerRango(grado.get_codigo(), self.getSesion())
+            rango = self.getGradoController().obtener_rango(grado.get_codigo(), self.getSesion())
             if rango is not None:
                 print " Estadisticas del grado de \"%s\"." % grado.get_nombre()
                 print "\tNumero de suspensos totales: %d" % rango.get_suspensos()
@@ -308,7 +308,8 @@ class Terminal:
     def __subMenuMatriculasYMencionesGrado(self, grado):
         if grado is not None:
             self.__clear()
-            matriculasYMenciones = self.getGradoController().obtenerMatriculasYMenciones(grado.get_codigo(), self.getSesion())
+            matriculasYMenciones = self.getGradoController().obtener_matriculas_y_menciones(grado.get_codigo(),
+                self.getSesion())
             if matriculasYMenciones is not None:
                 print " Estadisticas del grado de \"%s\"." % grado.get_nombre()
                 print "\tNumero de menciones totales: %d" % matriculasYMenciones.get_menciones()
@@ -318,7 +319,7 @@ class Terminal:
             raw_input(" Presione cualquier tecla... ")
 
     def __subMenuResumenCentro(self):
-        resumen = self.getCentroController().obtenerResumen(self.getSesion())
+        resumen = self.getCentroController().obtener_resumen(self.getSesion())
         if resumen is not None:
             print "Estado del centro."
             print "------------------"
