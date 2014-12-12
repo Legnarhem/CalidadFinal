@@ -36,7 +36,7 @@ class AlumnoController:
             alumnos = self.listar(sesion)
             if alumno in alumnos:
                 apto = True
-        return UtilExpedientes().getMediaExpediente(self.getAlmacen().obtenerExpediente(Alumno(dni,None,None), Asignatura(codigo, None))) if apto else None
+        return UtilExpedientes().get_media_expediente(self.getAlmacen().obtenerExpediente(Alumno(dni,None,None), Asignatura(codigo, None))) if apto else None
 
 
     def obtenerMediaCentro(self, dni, sesion):
@@ -44,14 +44,14 @@ class AlumnoController:
         alumno = Alumno(dni, None, None)
         if sesion.getTipo() == "TecnicoCalidad":
             apto = True
-        return UtilExpedientes().getMediaExpedientes(self.getAlmacen().listarExpedientesAlumno(Alumno(dni,None,None))) if apto else None
+        return UtilExpedientes().get_media_expedientes(self.getAlmacen().listarExpedientesAlumno(Alumno(dni,None,None))) if apto else None
 
     def obtenerRango(self, dni, sesion):
         apto = False
         alumno = Alumno(dni, None, None)
         if sesion.getTipo() == "TecnicoCalidad":
             apto = True
-        return UtilExpedientes().getRangosExpedientes(self.getAlmacen().listarExpedientesAlumno(Alumno(dni, None, None))) if apto else None
+        return UtilExpedientes().get_rangos_expedientes(self.getAlmacen().listarExpedientesAlumno(Alumno(dni, None, None))) if apto else None
 
     def listar(self, sesion):
         if sesion.getTipo() == "TecnicoCalidad":

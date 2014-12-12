@@ -14,19 +14,19 @@ class GradoController:
     def obtenerMatriculasYMenciones(self,codigo,sesion):
         grado = Grado(codigo,None,None)
         if sesion.getTipo() == "TecnicoCalidad":
-            return UtilExpedientes().getMatriculasYMenciones(self.getAlmacen().listarExpedientesGrado(grado))
+            return UtilExpedientes().get_matriculas_y_menciones(self.getAlmacen().listarExpedientesGrado(grado))
         return None
 
     def obtenerMedia(self,codigo,sesion):
         grado = Grado(codigo,None,None)
         if sesion.getTipo() == "TecnicoCalidad":
-            return UtilExpedientes().getMediaExpedientes(self.getAlmacen().listarExpedientesGrado(grado))
+            return UtilExpedientes().get_media_expedientes(self.getAlmacen().listarExpedientesGrado(grado))
         return None
 
     def obtenerRango(self,codigo,sesion):
         grado = Grado(codigo,None,None)
         if sesion.getTipo() == "TecnicoCalidad":
-            return UtilExpedientes().getRangosExpedientes(self.getAlmacen().listarExpedientesGrado(grado))
+            return UtilExpedientes().get_rangos_expedientes(self.getAlmacen().listarExpedientesGrado(grado))
         return None
 
     def listar(self,sesion):

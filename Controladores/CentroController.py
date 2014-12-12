@@ -13,5 +13,5 @@ class CentroController:
 
     def obtenerResumen(self, sesion):
         if sesion.getTipo() == "TecnicoCalidad":
-            return UtilExpedientes().getResumen(self.getAlmacen().listarExpedientesCentro())
+            return UtilExpedientes().get_resumen(self.getAlmacen().listarExpedientesCentro())
         return None

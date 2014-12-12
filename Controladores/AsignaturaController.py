@@ -24,7 +24,7 @@ class AsignaturaController:
         elif sesion.getTipo() == "Docente":
             if asignatura in self.getAlmacen().listarAsignaturasDocente(Docente(None, None, sesion.getDNI(), None, None)):
                 apto = True
-        return UtilExpedientes().getMediaExpedientes(self.getAlmacen().listarExpedientesAsignatura(asignatura)) if apto else None
+        return UtilExpedientes().get_media_expedientes(self.getAlmacen().listarExpedientesAsignatura(asignatura)) if apto else None
 
     def obtenerRango(self,codigo,sesion):
         apto = False
@@ -34,7 +34,7 @@ class AsignaturaController:
         elif sesion.getTipo() == "Docente":
             if asignatura in self.getAlmacen().listarAsignaturasDocente(Docente(None, None, sesion.getDNI(), None, None)):
                 apto = True
-        return UtilExpedientes().getRangosExpedientes(self.getAlmacen().listarExpedientesAsignatura(asignatura)) if apto else None
+        return UtilExpedientes().get_rangos_expedientes(self.getAlmacen().listarExpedientesAsignatura(asignatura)) if apto else None
 
     def listar(self,sesion):
         if sesion.getTipo() == "TecnicoCalidad":
