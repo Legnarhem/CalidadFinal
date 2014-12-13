@@ -31,7 +31,7 @@ class GradoController:
         """
         grado = Grado(codigo, None, None)
         if sesion.get_tipo() == "TecnicoCalidad":
-            return UtilExpedientes().get_matriculas_y_menciones(self.get_almacen.listar_expedientes_grado(grado))
+            return UtilExpedientes().get_matriculas_y_menciones(self.get_almacen().listar_expedientes_grado(grado))
         return None
 
     def obtener_media(self, codigo, sesion):
@@ -42,7 +42,7 @@ class GradoController:
         """
         grado = Grado(codigo, None, None)
         if sesion.get_tipo() == "TecnicoCalidad":
-            return UtilExpedientes().get_media_expedientes(self.get_almacen.listar_expedientes_grado(grado))
+            return UtilExpedientes().get_media_expedientes(self.get_almacen().listar_expedientes_grado(grado))
         return None
 
     def obtener_rango(self, codigo, sesion):
@@ -54,7 +54,7 @@ class GradoController:
         """
         grado = Grado(codigo, None, None)
         if sesion.get_tipo() == "TecnicoCalidad":
-            return UtilExpedientes().get_rangos_expedientes(self.get_almacen.listar_expedientes_grado(grado))
+            return UtilExpedientes().get_rangos_expedientes(self.get_almacen().listar_expedientes_grado(grado))
         return None
 
     def listar(self, sesion):
@@ -63,5 +63,5 @@ class GradoController:
         :return:Lista de grados/cursos (list) si existen o None en caso contrario o de carencia de privilegios
         """
         if sesion.get_tipo() == "TecnicoCalidad":
-            return self.get_almacen.listar_grados_centro()
+            return self.get_almacen().listar_grados_centro()
         return None

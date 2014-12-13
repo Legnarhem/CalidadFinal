@@ -14,6 +14,7 @@ class AsignaturaController:
     Args:
         terminales (list<Terminal): Lista de terminales/vistas asociadas al controlador
     """
+
     def __init__(self, terminales):
         self.__terminales = terminales
 
@@ -42,13 +43,12 @@ class AsignaturaController:
         :return:Media global de asignatura (float) si existe o None en caso contrario o de carencia de privilegios
         """
         apto = False
-        asignatura = Asignatura(codigo,None)
+        asignatura = Asignatura(codigo, None)
         if sesion.get_tipo() == "TecnicoCalidad":
             apto = True
-        elif sesion.get_tipo() == "Docente":
-            if asignatura in self.get_almacen().listar_asignaturas_docente(
-                    Docente(None, None, sesion.get_dni(), None, None)):
-                apto = True
+        elif sesion.get_tipo() == "Docente" and asignatura in self.get_almacen().listar_asignaturas_docente(
+                Docente(None, None, sesion.get_dni(), None, None)):
+            apto = True
         return UtilExpedientes().get_media_expedientes(
             self.get_almacen().listar_expedientes_asignatura(asignatura)) if apto else None
 
@@ -63,10 +63,9 @@ class AsignaturaController:
         asignatura = Asignatura(codigo, None)
         if sesion.get_tipo() == "TecnicoCalidad":
             apto = True
-        elif sesion.get_tipo() == "Docente":
-            if asignatura in self.get_almacen().listar_asignaturas_docente(
-                    Docente(None, None, sesion.get_dni(), None, None)):
-                apto = True
+        elif sesion.get_tipo() == "Docente" and asignatura in self.get_almacen().listar_asignaturas_docente(
+                Docente(None, None, sesion.get_dni(), None, None)):
+            apto = True
         return UtilExpedientes().get_rangos_expedientes(
             self.get_almacen().listar_expedientes_asignatura(asignatura)) if apto else None
 

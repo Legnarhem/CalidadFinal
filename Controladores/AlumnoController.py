@@ -6,6 +6,9 @@ __author__ = 'Gregorio y Ángel'
 from Almacen import *
 from UtilExpedientes import *
 from Entidades.Asignatura import *
+from Entidades.Docente import *
+from Entidades.Alumno import *
+from Entidades.Grado import *
 
 
 class AlumnoController:

@@ -86,7 +86,7 @@ def main():
     mostrar_lista(asigs)
 
     print("\nAlumnos:")
-    print "%9s \t %15s \t%s " % ('DNI', 'Nombre', 'Apellidos')
+    print("%9s \t %15s \t%s " % ('DNI', 'Nombre', 'Apellidos'))
     for i in range(0, 200):
         alu = Alumno(new_dni(fake, dnis),
                      fake.first_name().encode('utf8'), fake.last_name().encode('utf8'))
@@ -100,7 +100,7 @@ def main():
     mostrar_lista(expes)
 
     print("\nProfesores:")
-    print "%10s \t %9s \t %15s \t%s " % ('Usuario', 'DNI', 'Nombre', 'Apellidos')
+    print("%10s \t %9s \t %15s \t%s " % ('Usuario', 'DNI', 'Nombre', 'Apellidos'))
     for i in range(0, 50):
         dni = new_dni(fake, dnis)
         doc = Docente('u' + dni, 'docente' + str(i + 1), dni, fake.first_name().encode('utf8'),
@@ -121,7 +121,7 @@ def main():
                                 fake.first_name().encode('utf8'), fake.last_name().encode('utf8')))
 
     print("\nTecnicos de calidad:")
-    print "%10s \t %9s \t %15s \t%s " % ('Usuario', 'DNI', 'Nombre', 'Apellidos')
+    print("%10s \t %9s \t %15s \t%s " % ('Usuario', 'DNI', 'Nombre', 'Apellidos'))
     mostrar_lista(tecns)
 
     grads.append(Grado(1, "Grado en Biotecnologia", asigs))
@@ -137,9 +137,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    # almacen = Almacen.getInstance()
-    #for i in almacen.listarDocentesCentro():
-    #    print i
-    #print len(almacen.listarAlumnosAsignatura(almacen.obtenerAsignatura(Asignatura(1,None))))
-    #for i in almacen.listarAsignaturasDocente(Docente(None,None,"18690951L",None, None)):
-    #    print i

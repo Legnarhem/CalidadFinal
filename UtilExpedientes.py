@@ -18,7 +18,11 @@ class UtilExpedientes:
     NOTA_SOBRESALIENTES = 9
     NOTA_LIMITE = 10
 
-    def get_matriculas_y_menciones(self, expedientes):
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def get_matriculas_y_menciones(expedientes):
         """Obtiene el número de matrículas y menciones
         :param expedientes: Listas de expedientes
         :return: Las matrículas y menciones (MatriculasYMenciones)
@@ -26,14 +30,15 @@ class UtilExpedientes:
         mat = 0
         men = 0
         for e in expedientes:
-            m = self.get_media_expediente(e)
-            if self.NOTA_MENCION <= m <= self.NOTA_MATRICULAS:
+            m = UtilExpedientes.get_media_expediente(e)
+            if UtilExpedientes.NOTA_MENCION <= m <= UtilExpedientes.NOTA_MATRICULAS:
                 men += 1
-            elif m == self.NOTA_MATRICULAS:
+            elif m == UtilExpedientes.NOTA_MATRICULAS:
                 mat += 1
         return MatriculasYMenciones(mat, men)
 
-    def get_media_expediente(self, expediente):
+    @staticmethod
+    def get_media_expediente(expediente):
         """Obtiene la nota media de un expediente
         :param expediente: El expediente de un alumno (Expediente)
         :return: media de las notas del expediente (float)

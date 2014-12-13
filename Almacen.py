@@ -212,9 +212,8 @@ class Almacen(object):
         if asignaturas_doc is not None:
             for a in asignaturas_doc:
                 for g in self.listar_grados_centro():
-                    if g.get_asignaturas().count(a) > 0:
-                        if grads.count(g) == 0:
-                            grads.append(g)
+                    if g.get_asignaturas().count(a) > 0 and grads.count(g) == 0:
+                        grads.append(g)
         return None if (len(grads) == 0) else grads
 
     def listar_grados_tecnico_calidad(self):

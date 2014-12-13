@@ -13,6 +13,7 @@ class Asignatura(Comparable):
     """
     def __init__(self, codigo, nombre):
         self.__nombre = nombre
+        self.__codigo = None
         self.set_codigo(codigo)
 
     def _cmpkey(self):
