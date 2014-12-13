@@ -2,9 +2,9 @@
 """Módulo UtilExpedientes
 """
 __author__ = 'Gregorio y Ángel'
-from Entidades.Resumen import *
-from Entidades.Rango import *
-from Entidades.MatriculasYMenciones import *
+from src.Entidades.Resumen import *
+from src.Entidades.Rango import *
+from src.Entidades.MatriculasYMenciones import *
 
 
 class UtilExpedientes:
@@ -31,7 +31,7 @@ class UtilExpedientes:
         men = 0
         for e in expedientes:
             m = UtilExpedientes.get_media_expediente(e)
-            if UtilExpedientes.NOTA_MENCION <= m <= UtilExpedientes.NOTA_MATRICULAS:
+            if UtilExpedientes.NOTA_MENCION <= m < UtilExpedientes.NOTA_MATRICULAS:
                 men += 1
             elif m == UtilExpedientes.NOTA_MATRICULAS:
                 mat += 1

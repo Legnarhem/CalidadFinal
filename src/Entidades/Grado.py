@@ -2,7 +2,7 @@
 """Modulo Grado
 """
 __author__ = 'Gregorio y Ángel'
-from Comparable import *
+from src.Entidades.Comparable import *
 
 
 class Grado(Comparable):

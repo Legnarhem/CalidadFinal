@@ -2,12 +2,12 @@
 """Modulo principal que inicializa el Gestor Académico
 """
 __author__ = 'Gregorio y Ángel'
-from Terminal import *
-from Controladores.AlumnoController import *
-from Controladores.AsignaturaController import *
-from Controladores.CentroController import *
-from Controladores.GradoController import *
-from Controladores.SesionController import *
+from src.Terminal import *
+from src.Controladores.AlumnoController import *
+from src.Controladores.AsignaturaController import *
+from src.Controladores.CentroController import *
+from src.Controladores.GradoController import *
+from src.Controladores.SesionController import *
 
 
 def main():

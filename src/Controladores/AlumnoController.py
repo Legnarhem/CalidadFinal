@@ -3,12 +3,12 @@
 """
 __author__ = 'Gregorio y Ángel'
 
-from Almacen import *
-from UtilExpedientes import *
-from Entidades.Asignatura import *
-from Entidades.Docente import *
-from Entidades.Alumno import *
-from Entidades.Grado import *
+from src.Almacen import *
+from src.UtilExpedientes import *
+from src.Entidades.Asignatura import *
+from src.Entidades.Docente import *
+from src.Entidades.Alumno import *
+from src.Entidades.Grado import *
 
 
 class AlumnoController:

@@ -2,11 +2,11 @@
 """Módulo AsignaturaController del paquete Controladores
 """
 __author__ = 'Gregorio y Ángel'
-from Almacen import *
-from UtilExpedientes import *
-from Entidades.Grado import *
-from Entidades.Asignatura import *
-from Entidades.Docente import *
+from src.Almacen import *
+from src.UtilExpedientes import *
+from src.Entidades.Grado import *
+from src.Entidades.Asignatura import *
+from src.Entidades.Docente import *
 
 
 class AsignaturaController:

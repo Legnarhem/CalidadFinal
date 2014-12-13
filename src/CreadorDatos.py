@@ -3,16 +3,17 @@
 """
 __author__ = 'Gregorio y Ángel'
 import shelve
-
 import random
+
 from faker import Factory
-from Entidades.Asignatura import *
-from Entidades.Expediente import *
-from Entidades.TecnicoCalidad import *
-from Entidades.Docente import *
-from Entidades.Ensenyanza import *
-from Entidades.Grado import *
-from Entidades.Alumno import *
+
+from src.Entidades.Asignatura import *
+from src.Entidades.Expediente import *
+from src.Entidades.TecnicoCalidad import *
+from src.Entidades.Docente import *
+from src.Entidades.Ensenyanza import *
+from src.Entidades.Grado import *
+from src.Entidades.Alumno import *
 
 
 def new_dni(fake, dnis):

@@ -2,8 +2,8 @@
 """Módulo Docente
 """
 __author__ = 'Gregorio y Ángel'
-from Comparable import *
-from Usuario import *
+from src.Entidades.Comparable import *
+from src.Entidades.Usuario import *
 
 
 class Docente(Usuario, Comparable):

@@ -1,8 +1,8 @@
 # encoding=UTF-8
 """Modulo TecnicoCalidad
 """
-from Usuario import *
-from Comparable import *
+from src.Entidades.Usuario import *
+from src.Entidades.Comparable import *
 
 __author__ = 'Gregorio y Ángel'
 

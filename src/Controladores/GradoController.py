@@ -2,9 +2,9 @@
 """Módulo GradoController del paquete Controladores
 """
 __author__ = 'Gregorio y Ángel'
-from Almacen import *
-from UtilExpedientes import *
-from Entidades.Grado import *
+from src.Almacen import *
+from src.UtilExpedientes import *
+from src.Entidades.Grado import *
 
 
 class GradoController:

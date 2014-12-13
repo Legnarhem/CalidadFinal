@@ -1,7 +1,7 @@
 # encoding=UTF-8
 """ Modulo Alumno
 """
-from Comparable import *
+from src.Entidades.Comparable import *
 
 __author__ = 'Gregorio y Ángel'
 

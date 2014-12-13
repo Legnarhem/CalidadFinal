@@ -2,8 +2,8 @@
 """Módulo CentroController del paquete Controladores
 """
 __author__ = 'Gregorio y Ángel'
-from Almacen import *
-from UtilExpedientes import *
+from src.Almacen import *
+from src.UtilExpedientes import *
 
 
 class CentroController:

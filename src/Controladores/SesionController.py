@@ -2,10 +2,10 @@
 """Módulo SesionController del paquete Controladores
 """
 __author__ = 'Gregorio y Ángel'
-from Entidades.Sesion import *
-from Almacen import *
-from Entidades.Docente import *
-from Entidades.TecnicoCalidad import *
+from src.Entidades.Sesion import *
+from src.Almacen import *
+from src.Entidades.Docente import *
+from src.Entidades.TecnicoCalidad import *
 
 
 class SesionController:
