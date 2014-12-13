@@ -130,7 +130,7 @@ def main():
     print("\nGrados:")
     for g in grads:
         print(g)
-        for a in g.getAsignaturas():
+        for a in g.get_asignaturas():
             print("\t" + str(a))
 
     save_data(doces, tecns, alums, asigs, grads, expes, enses)
