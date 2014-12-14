@@ -30,7 +30,7 @@ def new_dni(fake, dnis):
     return dni
 
 
-def save_data(doces, tecns, alums, asigs, grads, expes, enses):
+def save_data(donde, doces, tecns, alums, asigs, grads, expes, enses):
     """Guarda los datos en un fichero mediante shelve.
     :param doces:Instancia de lista (list)
     :param tecns:Instancia de lista (list)
@@ -40,7 +40,7 @@ def save_data(doces, tecns, alums, asigs, grads, expes, enses):
     :param expes:Instancia de lista (list)
     :param enses:Instancia de lista (list)
     """
-    shelf = shelve.open("data")
+    shelf = shelve.open(donde)
     shelf["docentes"] = doces
     shelf["tecnicosCalidad"] = tecns
     shelf["alumnos"] = alums
@@ -58,8 +58,9 @@ def mostrar_lista(lista):
         print(elemento)
 
 
-def main():
+def main(donde):
     """Crea y guarda las instancias de prueba.
+    :param donde:Nombre del fichero de datos
     """
     asigs = list()
     grads = list()
@@ -133,8 +134,8 @@ def main():
         for a in g.get_asignaturas():
             print("\t" + str(a))
 
-    save_data(doces, tecns, alums, asigs, grads, expes, enses)
+    save_data(donde, doces, tecns, alums, asigs, grads, expes, enses)
 
 
 if __name__ == '__main__':
-    main()
+    main("data")

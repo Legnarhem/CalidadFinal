@@ -29,6 +29,8 @@ class UtilExpedientes:
         """
         mat = 0
         men = 0
+        if expedientes is None:
+            return None
         for e in expedientes:
             m = UtilExpedientes.get_media_expediente(e)
             if UtilExpedientes.NOTA_MENCION <= m < UtilExpedientes.NOTA_MATRICULAS:
@@ -45,10 +47,12 @@ class UtilExpedientes:
         """
         nota_acumulada = 0
         n_notas = 0
+        if expediente is None:
+            return None
         for n in expediente.get_notas():
             nota_acumulada += float(n)
             n_notas += 1
-        return float(nota_acumulada / n_notas)
+        return float(nota_acumulada / n_notas) if n_notas != 0 else 0
 
     def get_media_expedientes(self, expedientes):
         """Obtiene la nota media de varios expedientes
@@ -57,10 +61,12 @@ class UtilExpedientes:
         """
         media_acumulada = 0
         n_expedientes = 0
+        if expedientes is None:
+            return None
         for e in expedientes:
             media_acumulada += self.get_media_expediente(e)
             n_expedientes += 1
-        return float(media_acumulada / n_expedientes)
+        return float(media_acumulada / n_expedientes) if n_expedientes != 0 else 0
 
     def get_rangos_expedientes(self, expedientes):
         """Clasifica las notas de varios expedientes en los diferentes rangos de notas
@@ -71,6 +77,8 @@ class UtilExpedientes:
         aprobados = 0
         notables = 0
         sobresalientes = 0
+        if expedientes is None:
+            return None
         for e in expedientes:
             media = self.get_media_expediente(e)
             if media <= self.NOTA_APROBADOS:
@@ -92,6 +100,8 @@ class UtilExpedientes:
         nota_alumno_acumulada = 0
         nota_asignatura_acumulada = 0
         n_expedientes = 0
+        if expedientes is None:
+            return None
         for e in expedientes:
             asig = e.get_asignatura().get_codigo()
             if asig not in asignaturas:
@@ -104,4 +114,5 @@ class UtilExpedientes:
             nota_asignatura_acumulada += self.get_media_expedientes(l)
             n_expedientes += len(l)
         return Resumen(float(nota_alumno_acumulada / n_expedientes),
-                       float(nota_asignatura_acumulada / len(asignaturas.keys())))
+                       float(nota_asignatura_acumulada / len(asignaturas.keys())))  if (n_expedientes != 0 and
+                        len(asignaturas.keys()) != 0) else Resumen(0,0)
