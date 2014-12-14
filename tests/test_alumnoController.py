@@ -10,7 +10,7 @@ from src.Entidades.Sesion import *
 
 
 class TestAlumnoController(TestCase):
-    """Esta clase corresponde al caso de prueba de src.Controladores.AlumnoController.T
+    """Esta clase corresponde al caso de prueba de src.Controladores.AlumnoController.
     """
 
     def setUp(self):
@@ -34,6 +34,10 @@ class TestAlumnoController(TestCase):
         del self.sesion_tec
         del self.sesion_doc
         del self.sesion_tipo_invalido
+        del self.alumno
+        del self.alumno_invalido
+        del self.grado_invalido
+        del self.asignatura_invalida
 
     def test_get_almacen(self):
         """Comprueba que el controlador puede obtener una instancia de almacen.
@@ -46,6 +50,7 @@ class TestAlumnoController(TestCase):
         asignatura indicada.
         """
         self.assertEquals(self.controlador.obtener_alus_asignatura(self.asignatura_invalida, self.sesion_tec), None)
+        self.assertEquals(self.controlador.obtener_alus_asignatura(self.asignatura_invalida, self.sesion_doc), None)
 
         self.assertEquals(self.controlador.obtener_alus_asignatura(1, self.sesion_tipo_invalido), None)
 
@@ -65,6 +70,7 @@ class TestAlumnoController(TestCase):
         alumno indicado.
         """
         self.assertEquals(self.controlador.obtener_media(self.alumno, self.asignatura_invalida, self.sesion_tec), None)
+        self.assertEquals(self.controlador.obtener_media(self.alumno, self.asignatura_invalida, self.sesion_doc), None)
 
         self.assertEquals(self.controlador.obtener_media(self.alumno, "1", self.sesion_tipo_invalido), None)
 

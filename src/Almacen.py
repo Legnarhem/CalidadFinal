@@ -96,11 +96,12 @@ class Almacen(object):
         """
         alus = []
         asig_doc = self.listar_asignaturas_docente(docente)
-        if asig_doc is not None:
-            for a in asig_doc:
-                alumnos_asig = self.listar_alumnos_asignatura(a)
-                if alumnos_asig is not None:
-                    alus.extend(alumnos_asig)
+        if asig_doc is None:
+            return None
+        for a in asig_doc:
+            alumnos_asig = self.listar_alumnos_asignatura(a)
+            if alumnos_asig is not None:
+                alus.extend(alumnos_asig)
         return None if (len(alus) == 0) else alus
 
     def listar_alumnos_grado(self, grado):
@@ -209,11 +210,12 @@ class Almacen(object):
         """
         grads = []
         asignaturas_doc = self.listar_asignaturas_docente(docente)
-        if asignaturas_doc is not None:
-            for a in asignaturas_doc:
-                for g in self.listar_grados_centro():
-                    if g.get_asignaturas().count(a) > 0 and grads.count(g) == 0:
-                        grads.append(g)
+        if asignaturas_doc is None:
+            return None
+        for a in asignaturas_doc:
+            for g in self.listar_grados_centro():
+                if g.get_asignaturas().count(a) > 0 and grads.count(g) == 0:
+                    grads.append(g)
         return None if (len(grads) == 0) else grads
 
     def listar_grados_tecnico_calidad(self):
@@ -274,7 +276,10 @@ class Almacen(object):
         caso contrario
         """
         exps = []
-        for a in self.listar_asignaturas_grado(grado):
+        asigs_grado = self.listar_asignaturas_grado(grado)
+        if asigs_grado is None:
+            return None
+        for a in asigs_grado:
             exps_alumno = self.listar_expedientes_asignatura(a)
             if exps_alumno is not None:
                 exps.extend(exps_alumno)

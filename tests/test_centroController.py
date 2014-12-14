@@ -10,6 +10,9 @@ __author__ = 'Gregorio y Ángel'
 
 
 class TestCentroController(TestCase):
+    """Esta clase corresponde al caso de prueba de src.Controladores.CentroController.
+    """
+
     def setUp(self):
         """Este método prepara el contexto necesario para las pruebas de TestCentroController
         """

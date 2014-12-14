@@ -187,7 +187,10 @@ class Terminal:
         opc = -1
 
         while not 0 <= opc <= 3:
-            opc = int(raw_input(" >> "))
+            try:
+                opc = int(raw_input(" >> "))
+            except ValueError:
+                opc = -1
 
         if opc == 1:
             asignatura = self.__menu_asignaturas()
@@ -212,7 +215,10 @@ class Terminal:
             opc = -1
 
             while not 0 <= opc <= 2:
-                opc = int(raw_input(" >> "))
+                try:
+                    opc = int(raw_input(" >> "))
+                except ValueError:
+                    opc = -1
 
             if opc == 1:
                 self.__sub_menu_media_alumno_centro(alumno)
@@ -237,7 +243,10 @@ class Terminal:
             opc = -1
 
             while not 0 <= opc <= 3:
-                opc = int(raw_input(" >> "))
+                try:
+                    opc = int(raw_input(" >> "))
+                except ValueError:
+                    opc = -1
 
             if opc == 1:
                 alumno = self.__sub_menu_alumnos_asignatura(asignatura)
@@ -265,7 +274,10 @@ class Terminal:
             opc = -1
 
             while not 0 <= opc <= 3:
-                opc = int(raw_input(" >> "))
+                try:
+                    opc = int(raw_input(" >> "))
+                except ValueError:
+                    opc = -1
 
             if opc == 1:
                 self.__sub_menu_media_grado(grado)
@@ -292,7 +304,10 @@ class Terminal:
                     print("\t%d) %s, %s" % (i + 1, mis_alumnos[i].get_apellidos(), mis_alumnos[i].get_nombre()))
                     i += 1
                 while not 1 <= opc <= len(mis_alumnos):
-                    opc = int(raw_input(" >> "))
+                    try:
+                        opc = int(raw_input(" >> "))
+                    except ValueError:
+                        opc = -1
                 return mis_alumnos[opc - 1]
             else:
                 print("Usted no tiene acceso a alumno alguno")
@@ -469,7 +484,10 @@ class Terminal:
         opc = -1
 
         while not 0 <= opc <= 3:
-            opc = int(raw_input(" >> "))
+            try:
+                opc = int(raw_input(" >> "))
+            except ValueError:
+                opc = -1
 
         if opc == 1:
             alumno = self.__menu_alumnos()
@@ -499,7 +517,10 @@ class Terminal:
                     i + 1, mis_alumnos[i].get_dni(), mis_alumnos[i].get_apellidos(), mis_alumnos[i].get_nombre()))
                 i += 1
             while not 1 <= opc <= len(mis_alumnos):
-                opc = int(raw_input(" >> "))
+                try:
+                    opc = int(raw_input(" >> "))
+                except ValueError:
+                    opc = -1
             return mis_alumnos[opc - 1]
         else:
             print(" Usted no tiene acceso a alumno alguno.")
@@ -521,7 +542,10 @@ class Terminal:
                 print("\t%d) %s" % (i + 1, mis_asignaturas[i].get_nombre()))
                 i += 1
             while not 1 <= opc <= len(mis_asignaturas):
-                opc = int(raw_input(" >> "))
+                try:
+                    opc = int(raw_input(" >> "))
+                except ValueError:
+                    opc = -1
             return mis_asignaturas[opc - 1]
         else:
             print(" Usted no tiene acceso a asignatura alguna.")
@@ -543,7 +567,10 @@ class Terminal:
                 print("\t%d) %s" % (i + 1, mis_grados[i].get_nombre()))
                 i += 1
             while not 1 <= opc <= len(mis_grados):
-                opc = int(raw_input(" >> "))
+                try:
+                    opc = int(raw_input(" >> "))
+                except ValueError:
+                    opc = -1
             return mis_grados[opc - 1]
         else:
             print(" Usted no tiene acceso a grado alguno.")
@@ -564,12 +591,12 @@ class Terminal:
                 print("\t%d) %s, %s" % (i + 1, mis_alumnos[i].get_apellidos(), mis_alumnos[i].get_nombre()))
                 i += 1
             while not 1 <= opc <= len(mis_alumnos):
-                opc = int(raw_input(" >> "))
+                try:
+                    opc = int(raw_input(" >> "))
+                except ValueError:
+                    opc = -1
             return mis_alumnos[opc - 1]
         else:
             print("Usted no tiene acceso a alumno alguno")
             raw_input(" Presione cualquier tecla... ")
             return None
-
-    def __menu(self):
-        pass

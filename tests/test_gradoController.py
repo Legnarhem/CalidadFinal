@@ -10,6 +10,9 @@ __author__ = 'Gregorio y Ángel'
 
 
 class TestGradoController(TestCase):
+    """Esta clase corresponde al caso de prueba de src.Controladores.GradoController.
+    """
+
     def setUp(self):
         """Este método prepara el contexto necesario para las pruebas de TestGradoController
         """
@@ -18,6 +21,7 @@ class TestGradoController(TestCase):
         self.sesion_tec = Sesion("10025580R", "TecnicoCalidad")
         self.sesion_doc = Sesion("49251223B", "Docente")
         self.sesion_tipo_invalido = Sesion("u77328326P", "Absurdo")
+        self.grado_invalido = -1
 
     def tearDown(self):
         """Este método elimina el contexto utilizado para las pruebas de TestGradoController
@@ -27,6 +31,7 @@ class TestGradoController(TestCase):
         del self.sesion_tec
         del self.sesion_doc
         del self.sesion_tipo_invalido
+        del self.grado_invalido
 
     def test_get_almacen(self):
         """Comprueba que el controlador puede obtener una instancia de almacen.
@@ -34,23 +39,32 @@ class TestGradoController(TestCase):
         self.assertNotEqual(self.controlador.get_almacen(), None)
 
     def test_obtener_matriculas_y_menciones(self):
-        """Comprueba que ni un docente ni una sesión extraña puedan obtener las matriculas y menciones del grado/curso,
-        independientemente del grado/curso indicado
+        """Comprueba comportamiento normal ante grado inexistente.
+        Comprueba que ni un docente ni una sesión extraña puedan obtener las matriculas y menciones del grado/curso,
+        independientemente del grado/curso indicado.
         """
+        self.assertEquals(self.controlador.obtener_matriculas_y_menciones(self.grado_invalido, self.sesion_tec), None)
+
         self.assertEquals(self.controlador.obtener_matriculas_y_menciones(1, self.sesion_doc), None)
         self.assertEquals(self.controlador.obtener_matriculas_y_menciones(1, self.sesion_tipo_invalido), None)
 
     def test_obtener_media(self):
-        """Comprueba que ni un docente ni una sesión extraña puedan obtener la media del grado/curso,
-        independientemente del grado/curso indicado
+        """Comprueba comportamiento normal ante grado inexistente.
+        Comprueba que ni un docente ni una sesión extraña puedan obtener la media del grado/curso,
+        independientemente del grado/curso indicado.
         """
+        self.assertEquals(self.controlador.obtener_media(self.grado_invalido, self.sesion_tec), None)
+
         self.assertEquals(self.controlador.obtener_media(1, self.sesion_doc), None)
         self.assertEquals(self.controlador.obtener_media(1, self.sesion_tipo_invalido), None)
 
     def test_obtener_rango(self):
-        """Comprueba que ni un docente ni una sesión extraña puedan obtener los rangos del grado/curso,
-        independientemente del grado/curso indicado
+        """Comprueba comportamiento normal ante grado inexistente.
+        Comprueba que ni un docente ni una sesión extraña puedan obtener los rangos del grado/curso,
+        independientemente del grado/curso indicado.
         """
+        self.assertEquals(self.controlador.obtener_rango(self.grado_invalido, self.sesion_tec), None)
+
         self.assertEquals(self.controlador.obtener_rango(1, self.sesion_doc), None)
         self.assertEquals(self.controlador.obtener_rango(1, self.sesion_tipo_invalido), None)
 

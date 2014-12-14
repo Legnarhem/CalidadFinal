@@ -32,6 +32,7 @@ def new_dni(fake, dnis):
 
 def save_data(donde, doces, tecns, alums, asigs, grads, expes, enses):
     """Guarda los datos en un fichero mediante shelve.
+    :param donde:Nombre del fichero de salida (str)
     :param doces:Instancia de lista (list)
     :param tecns:Instancia de lista (list)
     :param alums:Instancia de lista (list)
