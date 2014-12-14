@@ -5,9 +5,9 @@ __author__ = 'Gregorio y Ángel'
 
 
 class Sesion:
-    """Esta clase almacena y transfiere información relacionada con la sesion del usuario conectado al sistema.
-    Args:
-        dni: DNI del usuario conectado (String)
+    """Esta clase almacena y transfiere información relacionada con la sesion del usuario conectado al sistema.\n
+        Args:\n
+        dni: DNI del usuario conectado (String)\n
         tipo: Tipo de usuario conectado (String)
     """
     def __init__(self, dni, tipo):
@@ -16,12 +16,14 @@ class Sesion:
 
     def get_dni(self):
         """Obtiene el DNI del usurio conectado al gestor académico.
-        :returns:DNI del usuario conectado al gestor académico (str)
+
+        :return: DNI del usuario conectado al gestor académico (str)
         """
         return self.__dni
 
     def get_tipo(self):
         """Obtiene el tipo de usuario conectado al gestor académico.
+
         :return: Tipo de usuario conectado al gestor académico (str)
         """
         return self.__tipo

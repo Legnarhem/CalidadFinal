@@ -12,10 +12,9 @@ from src.Controladores.SesionController import *
 
 def main():
     """
-    1 - Crea un contenedor de las vistas y añade las intancias de éstas.
-    2 - Inicializa los controladores de las entidades del proyecto.
+    1 - Crea un contenedor de las vistas y añade las intancias de éstas.\n
+    2 - Inicializa los controladores de las entidades del proyecto.\n
     3 - Asigna los controladores anteriormente inicializados a cada vista del contenedor, y posteriormente la lanza
-    :return:
     """
     terminales = list()
     terminales.append(Terminal())

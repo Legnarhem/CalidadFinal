@@ -21,85 +21,88 @@ class Terminal:
 
     def get_alumno_controller(self):
         """Obtiene el controlador de la entidad alumno.
+
         :return: Controlador alumno (AlumnoController)
         """
         return self.__alumnoController
 
     def get_asignatura_controller(self):
         """Obtiene el controlador de la entidad asignatura.
+
         :return: Controlador asignatura (AsignaturaController)
         """
         return self.__asignaturaController
 
     def get_centro_controller(self):
         """Obtiene el controlador de la entidad centro.
+
         :return: Controlador centro (CentroController)
         """
         return self.__centroController
 
     def get_grado_controller(self):
         """Obtiene el controlador de la entidad grado.
+
         :return: Controlador grado (GradoController)
         """
         return self.__gradoController
 
     def get_sesion_controller(self):
         """Obtiene el controlador de la entidad sesion.
+
         :return: Controlador sesion (SesionController)
         """
         return self.__sesionController
 
     def get_sesion(self):
         """Obtiene la sesión activa asignada a este terminal.
-        :return: Sesión (Sesion)
         """
         return self.__sesion
 
     def set_alumno_controller(self, alumno_controller):
         """Actualiza el controlador de la entidad alumno.
+
         :param alumno_controller: Controlador de alumno (AlumnoController)
-        :return: None
         """
         self.__alumnoController = alumno_controller
 
     def set_asignatura_controller(self, asignatura_controller):
         """Actualiza el controlador de la entidad asignatura.
+
         :param asignatura_controller: Controlador de asignatura (AsignaturaController)
-        :return: None
         """
         self.__asignaturaController = asignatura_controller
 
     def set_centro_controller(self, centro_controller):
         """Actualiza el controlador de la entidad centro.
+
         :param centro_controller: Controlador de centro (CentroController)
-        :return: None
         """
         self.__centroController = centro_controller
 
     def set_grado_controller(self, grado_controller):
         """Actualiza el controlador de la entidad grado.
+
         :param grado_controller: Controlador de grado (GradoController)
-        :return: None
         """
         self.__gradoController = grado_controller
 
     def set_sesion_controller(self, sesion_controller):
         """Actualiza el controlador de la entidad sesión.
+
         :param sesion_controller: Controlador de sesión (SesionController)
-        :return: None
         """
         self.__sesionController = sesion_controller
 
     def set_sesion(self, sesion):
-        """Actualiza la sesión activa del terminal
+        """Actualiza la sesión activa del terminal.
+
         :param sesion: Sesión activa (Sesion)
-        :return: None
         """
         self.__sesion = sesion
 
     def iniciar(self):
         """Este método en la primera pantalla que nos aparece al iniciar el programa.
-        :return: None
         """
 
         str_logo1 = """
@@ -143,7 +146,6 @@ class Terminal:
 
     def __clear(self):
         """Limpia el terminal.
-        :return:
         """
         if os.name == 'nt':
             os.system("cls")
@@ -152,7 +154,6 @@ class Terminal:
 
     def __login(self):
         """Método que gestiona el log en la aplicación.
-        :return: None
         """
         str_login = "Por favor, identifiquese."
         print(str_login)
@@ -166,7 +167,6 @@ class Terminal:
 
     def __welcome(self):
         """Imprime la bienvenida al usuario que ha iniciado sesión.
-        :return: None
         """
         self.__clear()
         print("-----------------------o--------------------------")
@@ -175,7 +175,6 @@ class Terminal:
 
     def __menu_docente(self):
         """Imprime el menú de un usuario registrado como docente y gestiona la siguiente pantalla.
-        :return: None
         """
 
         self.__welcome()
@@ -201,8 +200,8 @@ class Terminal:
     def __sub_menu_alumnos(self, alumno):
         """Imprime un menú con diferentes opciones sobre un alumno seleccionado y gestiona el paso
         a la siguiente pantalla.
+
         :param alumno: Alumno (Alumno)
-        :return: None
         """
         if alumno is not None:
             self.__clear()
@@ -228,8 +227,8 @@ class Terminal:
     def __sub_menu_asignaturas(self, asignatura):
         """Imprime un menú con diferentes opciones sobre una asignatura seleccionada y gestiona el paso
         a la siguiente pantalla.
+
         :param asignatura: Asignatura (Asignatura)
-        :return: None
         """
         if asignatura is not None:
             self.__clear()
@@ -259,8 +258,8 @@ class Terminal:
     def __sub_menu_grados(self, grado):
         """Imprime un menú con diferentes opciones sobre un grado seleccionado y gestiona el paso
         a la siguiente pantalla.
+
         :param grado: Grado (Grado)
-        :return: None
         """
         if grado is not None:
             self.__clear()
@@ -289,8 +288,8 @@ class Terminal:
     def __sub_menu_alumnos_asignatura(self, asignatura):
         """Imprime un menú con los diferentes alumnos que pertenecen a una asignatura y gestiona el paso a la siguiente
         pantalla, imprime si el usuario no tiene acceso a dicha información.
+
         :param asignatura: Asignatura de la que queremos obtener los alumnos (Asignatura)
-        :return: None
         """
         if asignatura is not None:
             self.__clear()
@@ -319,9 +318,9 @@ class Terminal:
     def __sub_menu_med_alu_asignatura(self, alumno, asignatura):
         """Muestra la media de un alumno en una asignatura, en caso de que el usuario no tenga acceso a dicha
          información se imprimirá en pantalla.
+
         :param alumno: Alumno del que queremos obtener la media de las notas (Alumno)
         :param asignatura: Asignatura de la que queremos obtener la nota media (Asignatura)
-        :return: None
         """
         if alumno is not None:
             self.__clear()
@@ -337,8 +336,8 @@ class Terminal:
     def __sub_menu_media_alumno_centro(self, alumno):
         """Muestra la nota media de un alumno en el centro, en caso de que el usuario no tenga acceso a dicha
         información se mostrará en pantalla.
+
         :param alumno: Alumno del que queremos obtener la nota media en el centro (Alumno)
-        :return: None
         """
         if alumno is not None:
             self.__clear()
@@ -353,8 +352,8 @@ class Terminal:
     def __sub_menu_media_grado(self, grado):
         """Muestra la nota media de los alumnos de un grado concreto, en caso de que el usuario no tenga acceso a dicha
         información lo muestra por pantalla.
+
         :param grado: Grado del que queremos obtener la nota media de sus alumnos (Grado)
-        :return: None
         """
         if grado is not None:
             self.__clear()
@@ -368,8 +367,8 @@ class Terminal:
     def __sub_menu_media_asignatura(self, asignatura):
         """Muestra la nota media de los alumnos de una asignatura, en caso de que el usuario no tenga acceso a dicha
         información se mostrará en pantalla.
+
         :param asignatura: Asignatura de la que queremos obtener la nota media de sus alumnos (Asignatura)
-        :return: None
         """
         if asignatura is not None:
             self.__clear()
@@ -383,8 +382,8 @@ class Terminal:
     def __sub_menu_rangos_alumno_centro(self, alumno):
         """Muestra los rangos de notas de un alumno del centro, en caso de que el usuario no tenga acceso a dicha
         información se mostrará por pantalla.
+
         :param alumno: Alumno del que se quiere obtener el rango de sus notas (Alumno)
-        :return: None
         """
         if alumno is not None:
             self.__clear()
@@ -402,8 +401,8 @@ class Terminal:
     def __sub_menu_rangos_asignatura(self, asignatura):
         """Muestra los rangos de notas de una asignatura, en caso de que el usuario no tenga acceso a dicha información
         se mostrará por pantalla.
+
         :param asignatura: Asignatura del que se quiere obtener el rango de notas (Asignatura)
-        :return: None
         """
         if asignatura is not None:
             self.__clear()
@@ -421,8 +420,8 @@ class Terminal:
     def __sub_menu_rangos_grado(self, grado):
         """Muestra los rangos de notas de un grado, en caso de que el usuario no tenga acceso a dicha información
         se mostrará por pantalla.
+
         :param grado: Grado del que se quiere obtener el rango de notas (Grado)
-        :return: None
         """
         if grado is not None:
             self.__clear()
@@ -440,8 +439,8 @@ class Terminal:
     def __sub_menu_mat_y_men_grado(self, grado):
         """Muestra el número de matrículas y menciones de un grado, en caso de que el usuario no tenga acceso a dicha
         información se mostrará por pantalla.
+
         :param grado: Grado del que se quiere obtener las matrículas y menciones (Grado)
-        :return: None
         """
         if grado is not None:
             self.__clear()
@@ -457,7 +456,6 @@ class Terminal:
 
     def __sub_menu_resumen_centro(self):
         """Muestra el resumen estadístico del centro.
-        :return: None
         """
         resumen = self.get_centro_controller().obtener_resumen(self.get_sesion())
         if resumen is not None:
@@ -469,7 +467,6 @@ class Terminal:
 
     def __menu_tecnico(self):
         """Imprime el menú de un usuario registrado como técnico y gestiona la siguiente pantalla.
-        :return: None
         """
         self.__welcome()
 
@@ -504,7 +501,6 @@ class Terminal:
     def __menu_alumnos(self):
         """Imprime la lista de alumnos del centro, en caso de que el usuario no tenga acceso a esta información
         se mostrará por pantalla.
-        :return: None
         """
         self.__clear()
         i = 0
@@ -530,7 +526,6 @@ class Terminal:
     def __menu_asignaturas(self):
         """Imprime las asignaturas a la que el usuario tiene acceso, en caso de que el usuario no tenga acceso
          a esta ninguna se mostrará por pantalla.
-        :return: None
         """
         self.__clear()
         i = 0
@@ -555,7 +550,6 @@ class Terminal:
     def __menu_grados(self):
         """Imprime los grados a los que tiene acceso, en caso de que el usuario no tenga acceso a ninguno se mostrará
          por pantalla.
-        :return: None
         """
         self.__clear()
         i = 0
@@ -580,7 +574,6 @@ class Terminal:
     def __menu_mis_alumnos(self):
         """Imprime la lista de alumnos a los que tiene acceso el usuario, en caso de no tener acceso a ninguno
         se mostrará por pantalla.
-        :return: None
         """
         i = 0
         opc = -1

@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tests.test_asignaturaController &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>tests.test_asignaturaController</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <h1>Source code for tests.test_asignaturaController</h1><div class="highlight"><pre>
+<span class="c"># encoding=UTF-8</span>
+<span class="sd">&quot;&quot;&quot;Módulo de Test para la clase src.Controladores.AsignaturaController</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">src.Controladores.AsignaturaController</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Sesion</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gregorio y Ángel&#39;</span>
+
+
+<div class="viewcode-block" id="TestAsignaturaController"><a class="viewcode-back" href="../../test_asignaturaController.html#tests.test_asignaturaController.TestAsignaturaController">[docs]</a><span class="k">class</span> <span class="nc">TestAsignaturaController</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Esta clase corresponde al caso de prueba de src.Controladores.AsignaturaController.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TestAsignaturaController.setUp"><a class="viewcode-back" href="../../test_asignaturaController.html#tests.test_asignaturaController.TestAsignaturaController.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Este método prepara el contexto necesario para las pruebas de TestAsignaturaController</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Preparando contexto para &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controlador</span> <span class="o">=</span> <span class="n">AsignaturaController</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alumno</span> <span class="o">=</span> <span class="s">&quot;13936349T&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alumno_invalido</span> <span class="o">=</span> <span class="s">&quot;ABCDEFGHI&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sesion_tec</span> <span class="o">=</span> <span class="n">Sesion</span><span class="p">(</span><span class="s">&quot;10025580R&quot;</span><span class="p">,</span> <span class="s">&quot;TecnicoCalidad&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sesion_doc</span> <span class="o">=</span> <span class="n">Sesion</span><span class="p">(</span><span class="s">&quot;49251223B&quot;</span><span class="p">,</span> <span class="s">&quot;Docente&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sesion_tipo_invalido</span> <span class="o">=</span> <span class="n">Sesion</span><span class="p">(</span><span class="s">&quot;u77328326P&quot;</span><span class="p">,</span> <span class="s">&quot;Absurdo&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grado_invalido</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">asignatura_invalida</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+</div>
+<div class="viewcode-block" id="TestAsignaturaController.tearDown"><a class="viewcode-back" href="../../test_asignaturaController.html#tests.test_asignaturaController.TestAsignaturaController.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Este método elimina el contexto utilizado para las pruebas de TestAsignaturaController</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Destruyendo contexto para &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">controlador</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">sesion_tec</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">sesion_doc</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">sesion_tipo_invalido</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">alumno</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">alumno_invalido</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">grado_invalido</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">asignatura_invalida</span>
+</div>
+<div class="viewcode-block" id="TestAsignaturaController.test_get_almacen"><a class="viewcode-back" href="../../test_asignaturaController.html#tests.test_asignaturaController.TestAsignaturaController.test_get_almacen">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_almacen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba que el controlador puede obtener una instancia de almacen.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestAsignaturaController.test_obtener_asigs_grado"><a class="viewcode-back" href="../../test_asignaturaController.html#tests.test_asignaturaController.TestAsignaturaController.test_obtener_asigs_grado">[docs]</a>    <span class="k">def</span> <span class="nf">test_obtener_asigs_grado</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba comportamiento normal ante grado inexistente.\n</span>
+<span class="sd">        Comprueba que una sesión extraña no pueda obtener la lista de asignaturas de un grado, con independencia del</span>
+<span class="sd">        grado/curso indicado.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">obtener_asigs_grado</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grado_invalido</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sesion_tec</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">obtener_asigs_grado</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sesion_tipo_invalido</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestAsignaturaController.test_obtener_media"><a class="viewcode-back" href="../../test_asignaturaController.html#tests.test_asignaturaController.TestAsignaturaController.test_obtener_media">[docs]</a>    <span class="k">def</span> <span class="nf">test_obtener_media</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba comportamiento normal ante asignatura inexistente.\n</span>
+<span class="sd">        Comprueba que una sesión extraña no pueda obtener la media de una asignatura, con independencia de la</span>
+<span class="sd">        asignatura indicada.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">obtener_media</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">asignatura_invalida</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sesion_tec</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">obtener_media</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sesion_tipo_invalido</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestAsignaturaController.test_obtener_rango"><a class="viewcode-back" href="../../test_asignaturaController.html#tests.test_asignaturaController.TestAsignaturaController.test_obtener_rango">[docs]</a>    <span class="k">def</span> <span class="nf">test_obtener_rango</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba comportamiento normal ante asignatura inexistente.\n</span>
+<span class="sd">        Comprueba que una sesión extraña no pueda obtener el rango de notas de una asignatura,</span>
+<span class="sd">        con independencia de la asignatura indicada.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">obtener_rango</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">asignatura_invalida</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sesion_tec</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">obtener_rango</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sesion_tipo_invalido</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestAsignaturaController.test_listar"><a class="viewcode-back" href="../../test_asignaturaController.html#tests.test_asignaturaController.TestAsignaturaController.test_listar">[docs]</a>    <span class="k">def</span> <span class="nf">test_listar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba que tanto un docente como un técnico pueden obtener sus asignaturas mientras que una</span>
+<span class="sd">        sesión extraña no puede.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">listar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sesion_doc</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">listar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sesion_tec</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">listar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sesion_tipo_invalido</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span></div></div>
+</pre></div>
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

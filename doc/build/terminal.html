@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modulo Terminal &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="index.html" />
+    <link rel="next" title="Modulo Almacen" href="almacen.html" />
+    <link rel="prev" title="Descripción" href="intro.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>Modulo Terminal</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="intro.html">Descripción</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="almacen.html">Modulo Almacen</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="modulo-terminal">
+<h1>Modulo Terminal<a class="headerlink" href="#modulo-terminal" title="Permalink to this headline">¶</a></h1>
+<p><em>Este modulo contiene la implementación de la vista de la aplicación</em></p>
+<span class="target" id="module-src.Terminal"></span><p>Módulo Terminal</p>
+<dl class="class">
+<dt id="src.Terminal.Terminal">
+<em class="property">class </em><tt class="descclassname">src.Terminal.</tt><tt class="descname">Terminal</tt><a class="reference internal" href="_modules/src/Terminal.html#Terminal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Esta clase es la vista del programa.</p>
+<dl class="method">
+<dt id="src.Terminal.Terminal.get_alumno_controller">
+<tt class="descname">get_alumno_controller</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Terminal.html#Terminal.get_alumno_controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal.get_alumno_controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene el controlador de la entidad alumno.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Controlador alumno (AlumnoController)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Terminal.Terminal.get_asignatura_controller">
+<tt class="descname">get_asignatura_controller</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Terminal.html#Terminal.get_asignatura_controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal.get_asignatura_controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene el controlador de la entidad asignatura.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Controlador asignatura (AsignaturaController)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Terminal.Terminal.get_centro_controller">
+<tt class="descname">get_centro_controller</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Terminal.html#Terminal.get_centro_controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal.get_centro_controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene el controlador de la entidad centro.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Controlador centro (CentroController)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Terminal.Terminal.get_grado_controller">
+<tt class="descname">get_grado_controller</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Terminal.html#Terminal.get_grado_controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal.get_grado_controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene el controlador de la entidad grado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Controlador grado (GradoController)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Terminal.Terminal.get_sesion">
+<tt class="descname">get_sesion</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Terminal.html#Terminal.get_sesion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal.get_sesion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene la sesión activa asignada a este terminal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Terminal.Terminal.get_sesion_controller">
+<tt class="descname">get_sesion_controller</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Terminal.html#Terminal.get_sesion_controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal.get_sesion_controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene el controlador de la entidad sesion.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Controlador sesion (SesionController)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Terminal.Terminal.iniciar">
+<tt class="descname">iniciar</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Terminal.html#Terminal.iniciar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal.iniciar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Este método en la primera pantalla que nos aparece al iniciar el programa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Terminal.Terminal.set_alumno_controller">
+<tt class="descname">set_alumno_controller</tt><big>(</big><em>alumno_controller</em><big>)</big><a class="reference internal" href="_modules/src/Terminal.html#Terminal.set_alumno_controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal.set_alumno_controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el controlador de la entidad alumno.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alumno_controller</strong> &#8211; Controlador de alumno (AlumnoController)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Terminal.Terminal.set_asignatura_controller">
+<tt class="descname">set_asignatura_controller</tt><big>(</big><em>asignatura_controller</em><big>)</big><a class="reference internal" href="_modules/src/Terminal.html#Terminal.set_asignatura_controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal.set_asignatura_controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el controlador de la entidad asignatura.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>asignatura_controller</strong> &#8211; Controlador de asignatura (AsignaturaController)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Terminal.Terminal.set_centro_controller">
+<tt class="descname">set_centro_controller</tt><big>(</big><em>centro_controller</em><big>)</big><a class="reference internal" href="_modules/src/Terminal.html#Terminal.set_centro_controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal.set_centro_controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el controlador de la entidad centro.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>centro_controller</strong> &#8211; Controlador de centro (CentroController)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Terminal.Terminal.set_grado_controller">
+<tt class="descname">set_grado_controller</tt><big>(</big><em>grado_controller</em><big>)</big><a class="reference internal" href="_modules/src/Terminal.html#Terminal.set_grado_controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal.set_grado_controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el controlador de la entidad grado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>grado_controller</strong> &#8211; Controlador de grado (GradoController)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Terminal.Terminal.set_sesion">
+<tt class="descname">set_sesion</tt><big>(</big><em>sesion</em><big>)</big><a class="reference internal" href="_modules/src/Terminal.html#Terminal.set_sesion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal.set_sesion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza la sesión activa del terminal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sesion</strong> &#8211; Sesión activa (Sesion)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Terminal.Terminal.set_sesion_controller">
+<tt class="descname">set_sesion_controller</tt><big>(</big><em>sesion_controller</em><big>)</big><a class="reference internal" href="_modules/src/Terminal.html#Terminal.set_sesion_controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Terminal.Terminal.set_sesion_controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el controlador de la entidad sesión.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sesion_controller</strong> &#8211; Controlador de sesión (SesionController)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="intro.html">Descripción</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="almacen.html">Modulo Almacen</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.Controladores.AlumnoController &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../../index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>src.Controladores.AlumnoController</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <h1>Source code for src.Controladores.AlumnoController</h1><div class="highlight"><pre>
+<span class="c"># encoding=UTF-8</span>
+<span class="sd">&quot;&quot;&quot;Módulo AlumnoController del paquete Controladores</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gregorio y Ángel&#39;</span>
+
+<span class="kn">from</span> <span class="nn">src.Almacen</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.UtilExpedientes</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Asignatura</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Docente</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Alumno</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Grado</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="AlumnoController"><a class="viewcode-back" href="../../../alumnoController.html#src.Controladores.AlumnoController.AlumnoController">[docs]</a><span class="k">class</span> <span class="nc">AlumnoController</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Esta clase es un controlador de la entidad Alumno.\n</span>
+<span class="sd">        Args:\n</span>
+<span class="sd">        terminales (list&lt;Terminal): Lista de terminales/vistas asociadas al controlador</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terminales</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__terminales</span> <span class="o">=</span> <span class="n">terminales</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="AlumnoController.get_almacen"><a class="viewcode-back" href="../../../alumnoController.html#src.Controladores.AlumnoController.AlumnoController.get_almacen">[docs]</a>    <span class="k">def</span> <span class="nf">get_almacen</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una instancia de Almacen.</span>
+
+<span class="sd">        :return: Instancia de Almacen (Almacen)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Almacen</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="AlumnoController.obtener_alus_asignatura"><a class="viewcode-back" href="../../../alumnoController.html#src.Controladores.AlumnoController.AlumnoController.obtener_alus_asignatura">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_alus_asignatura</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codigo</span><span class="p">,</span> <span class="n">sesion</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los alumnos expedientados en la asignatura indicada, si el usuario</span>
+<span class="sd">        conectado al gestor académico tiene acceso.</span>
+
+<span class="sd">        :param codigo: Codigo de asignatura (int)</span>
+<span class="sd">        :param sesion: Sesion del usuario conectado al gestor académico (Sesion)</span>
+<span class="sd">        :return: Lista de alumnos (list) si existen o None en caso contrario o de carencia de privilegios</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">apto</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">asignatura</span> <span class="o">=</span> <span class="n">Asignatura</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sesion</span><span class="o">.</span><span class="n">get_tipo</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;TecnicoCalidad&quot;</span><span class="p">:</span>
+            <span class="n">apto</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="n">sesion</span><span class="o">.</span><span class="n">get_tipo</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;Docente&quot;</span><span class="p">:</span>
+            <span class="n">lista</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">()</span><span class="o">.</span><span class="n">listar_asignaturas_docente</span><span class="p">(</span><span class="n">Docente</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">sesion</span><span class="o">.</span><span class="n">get_dni</span><span class="p">(),</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">asignatura</span> <span class="ow">in</span> <span class="n">lista</span><span class="p">:</span>
+                <span class="n">apto</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">()</span><span class="o">.</span><span class="n">listar_alumnos_asignatura</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_asignatura</span><span class="p">(</span><span class="n">Asignatura</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="bp">None</span><span class="p">)))</span> <span class="k">if</span> <span class="n">apto</span> <span class="k">else</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="AlumnoController.obtener_alus_grado"><a class="viewcode-back" href="../../../alumnoController.html#src.Controladores.AlumnoController.AlumnoController.obtener_alus_grado">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_alus_grado</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codigo</span><span class="p">,</span> <span class="n">sesion</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los alumnos involucrados en un grado/curso indicado, si el usuario</span>
+<span class="sd">        conectado al gestor académico tiene acceso.</span>
+
+<span class="sd">        :param codigo: Codigo de grado/curso (int)</span>
+<span class="sd">        :param sesion: Sesion del usuario conectado al gestor académico (Sesion)</span>
+<span class="sd">        :return: Lista de alumnos (list) si existen o None en caso contrario o de carencia de privilegios</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">sesion</span><span class="o">.</span><span class="n">get_tipo</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;TecnicoCalidad&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">()</span><span class="o">.</span><span class="n">listar_alumnos_grado</span><span class="p">(</span><span class="n">Grado</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="AlumnoController.obtener_media"><a class="viewcode-back" href="../../../alumnoController.html#src.Controladores.AlumnoController.AlumnoController.obtener_media">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_media</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="n">codigo</span><span class="p">,</span> <span class="n">sesion</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene la media de un alumno expedientados en la asignatura indicada, si el usuario</span>
+<span class="sd">        conectado al gestor académico tiene acceso.</span>
+
+<span class="sd">        :param dni: DNI de alumno (str)</span>
+<span class="sd">        :param codigo: Codigo de asignatura (int)</span>
+<span class="sd">        :param sesion: Sesion del usuario conectado al gestor académico (Sesion)</span>
+<span class="sd">        :return: Media de alumno (float) si existe o None en caso contrario o de carencia de privilegios</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">apto</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">alumno</span> <span class="o">=</span> <span class="n">Alumno</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sesion</span><span class="o">.</span><span class="n">get_tipo</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;TecnicoCalidad&quot;</span><span class="p">:</span>
+            <span class="n">apto</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="n">sesion</span><span class="o">.</span><span class="n">get_tipo</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;Docente&quot;</span><span class="p">:</span>
+            <span class="n">alumnos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar</span><span class="p">(</span><span class="n">sesion</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">alumno</span> <span class="ow">in</span> <span class="n">alumnos</span><span class="p">:</span>
+                <span class="n">apto</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="n">UtilExpedientes</span><span class="p">()</span><span class="o">.</span><span class="n">get_media_expediente</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_expediente</span><span class="p">(</span><span class="n">Alumno</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span> <span class="n">Asignatura</span><span class="p">(</span><span class="n">codigo</span><span class="p">,</span> <span class="bp">None</span><span class="p">)))</span> <span class="k">if</span> <span class="n">apto</span> <span class="k">else</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="AlumnoController.obtener_media_centro"><a class="viewcode-back" href="../../../alumnoController.html#src.Controladores.AlumnoController.AlumnoController.obtener_media_centro">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_media_centro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="n">sesion</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene la media global de un alumno en el centro académico, si el usuario</span>
+<span class="sd">        conectado al gestor académico tiene acceso.</span>
+
+<span class="sd">        :param dni: DNI de alumno (str)</span>
+<span class="sd">        :param sesion: Sesion del usuario conectado al gestor académico (Sesion)</span>
+<span class="sd">        :return: Media global de alumno (float) si existe o None en caso contrario o de carencia de privilegios</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">apto</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">sesion</span><span class="o">.</span><span class="n">get_tipo</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;TecnicoCalidad&quot;</span><span class="p">:</span>
+            <span class="n">apto</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="n">UtilExpedientes</span><span class="p">()</span><span class="o">.</span><span class="n">get_media_expedientes</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">()</span><span class="o">.</span><span class="n">listar_expedientes_alumno</span><span class="p">(</span><span class="n">Alumno</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)))</span> <span class="k">if</span> <span class="n">apto</span> <span class="k">else</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="AlumnoController.obtener_rango"><a class="viewcode-back" href="../../../alumnoController.html#src.Controladores.AlumnoController.AlumnoController.obtener_rango">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_rango</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="n">sesion</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene el rango de notas de los distintos expedientes asociados al alumno indicado</span>
+<span class="sd">        que son accesibles por el usuario conectado al gestor academico.</span>
+
+<span class="sd">        :param dni: DNI de alumno (str)</span>
+<span class="sd">        :param sesion: Sesion del usuario conectado al gestor académico (Sesion)</span>
+<span class="sd">        :return: Rango de notas (Rango) si existe o None en caso contrario o de carencia de privilegios</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">apto</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">sesion</span><span class="o">.</span><span class="n">get_tipo</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;TecnicoCalidad&quot;</span><span class="p">:</span>
+            <span class="n">apto</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="n">UtilExpedientes</span><span class="p">()</span><span class="o">.</span><span class="n">get_rangos_expedientes</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">()</span><span class="o">.</span><span class="n">listar_expedientes_alumno</span><span class="p">(</span><span class="n">Alumno</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)))</span> <span class="k">if</span> <span class="n">apto</span> <span class="k">else</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="AlumnoController.listar"><a class="viewcode-back" href="../../../alumnoController.html#src.Controladores.AlumnoController.AlumnoController.listar">[docs]</a>    <span class="k">def</span> <span class="nf">listar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sesion</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de todos los alumnos a los que el usuario conectado al gestor académico tiene acceso.</span>
+
+<span class="sd">        :param sesion: Sesion del usuario conectado al gestor académico (Sesion)</span>
+<span class="sd">        :return: Lista de alumnos (list) si existen o None en caso contrario o de carencia de privilegios</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">sesion</span><span class="o">.</span><span class="n">get_tipo</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;TecnicoCalidad&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">()</span><span class="o">.</span><span class="n">listar_alumnos_centro</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">sesion</span><span class="o">.</span><span class="n">get_tipo</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;Docente&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">()</span><span class="o">.</span><span class="n">listar_alumnos_docente</span><span class="p">(</span><span class="n">Docente</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">sesion</span><span class="o">.</span><span class="n">get_dni</span><span class="p">(),</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">None</span></div></div>
+</pre></div>
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

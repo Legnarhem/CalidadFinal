@@ -5,9 +5,9 @@ __author__ = 'Gregorio y Ángel'
 
 
 class Usuario:
-    """Esta clase representa a un usuario del gestor academico.
-    Args:
-        username (str): Nick del usuario
+    """Esta clase representa a un usuario del gestor academico.\n
+        Args:\n
+        username (str): Nick del usuario\n
         password (str): Contraseña del usuario
     """
     def __init__(self, username, password):
@@ -16,12 +16,14 @@ class Usuario:
 
     def get_username(self):
         """Obtiene el nick del usuario.
-        :return:Nick del usuario (str)
+
+        :return: Nick del usuario (str)
         """
         return self.__username
 
     def get_password(self):
         """Obtiene la contraseña del usuario.
-        :return:Contraseña del usuario (str)
+
+        :return: Contraseña del usuario (str)
         """
         return self.__password

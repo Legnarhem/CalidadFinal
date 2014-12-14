@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modulo Almacen &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="index.html" />
+    <link rel="next" title="Modulo Creador Datos" href="creadorDatos.html" />
+    <link rel="prev" title="Modulo Terminal" href="terminal.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>Modulo Almacen</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="terminal.html">Modulo Terminal</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="creadorDatos.html">Modulo Creador Datos</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="modulo-almacen">
+<h1>Modulo Almacen<a class="headerlink" href="#modulo-almacen" title="Permalink to this headline">¶</a></h1>
+<p><em>Este modulo contiene la implementación de la clase Almacen</em></p>
+<span class="target" id="module-src.Almacen"></span><p>Módulo Almacen del Gestor Académico</p>
+<dl class="class">
+<dt id="src.Almacen.Almacen">
+<em class="property">class </em><tt class="descclassname">src.Almacen.</tt><tt class="descname">Almacen</tt><a class="reference internal" href="_modules/src/Almacen.html#Almacen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Esta clase es un almacen de datos del Gestor Académico.</p>
+<p>Es una clase estática y para obtener una instancia debe de llamarse al método Almacen.get_instance()</p>
+<dl class="attribute">
+<dt id="src.Almacen.Almacen.__weakref__">
+<tt class="descname">__weakref__</tt><a class="headerlink" href="#src.Almacen.Almacen.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="src.Almacen.Almacen.get_instance">
+<em class="property">static </em><tt class="descname">get_instance</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.get_instance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.get_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una instancia de Almacen con datos precargados.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Instancia de Almacen (Almacen)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_alumnos_asignatura">
+<tt class="descname">listar_alumnos_asignatura</tt><big>(</big><em>asignatura</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_alumnos_asignatura"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_alumnos_asignatura" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de los alumnos expedientados en la asignatura indicada.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>asignatura</strong> &#8211; Instancia de asignatura (Asignatura)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Lista de Alumnos (list) si existe asignatura y alumnos en ella o None en caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_alumnos_centro">
+<tt class="descname">listar_alumnos_centro</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_alumnos_centro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_alumnos_centro" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de los alumnos involucrados en el centro académico.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Lista de Alumnos (list)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_alumnos_docente">
+<tt class="descname">listar_alumnos_docente</tt><big>(</big><em>docente</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_alumnos_docente"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_alumnos_docente" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de los alumnos expedientados en alguna asignatura que involucre al docente indicado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>docente</strong> &#8211; Instancia de docente (Docente)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Lista de Alumnos (list) si existe docente con asignatura(s) y alumnos en ella(s)
+o None en caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_alumnos_grado">
+<tt class="descname">listar_alumnos_grado</tt><big>(</big><em>grado</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_alumnos_grado"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_alumnos_grado" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de los alumnos involucrados en un grado/curso indicado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>grado</strong> &#8211; Instancia de grado/curso (Grado)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Lista de alumnos (list) si existen o None en caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_asignaturas_centro">
+<tt class="descname">listar_asignaturas_centro</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_asignaturas_centro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_asignaturas_centro" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de los asignaturas impartidas en el centro académico.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Lista de asignaturas (list)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_asignaturas_docente">
+<tt class="descname">listar_asignaturas_docente</tt><big>(</big><em>docente</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_asignaturas_docente"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_asignaturas_docente" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de las asignaturas que involucra al docente indicado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>docente</strong> &#8211; Instancia de docente (Docente)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Lista de asignaturas (list) si existe docente con asignatura(s) o None en caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_asignaturas_grado">
+<tt class="descname">listar_asignaturas_grado</tt><big>(</big><em>grado</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_asignaturas_grado"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_asignaturas_grado" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de las asignaturas que estan asociadas al grado/curso indicado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>grado</strong> &#8211; Instancia de grado/curso (Grado)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Lista de asignaturas (list) si existe grado/curso con asignatura(s) o None en caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_docentes_centro">
+<tt class="descname">listar_docentes_centro</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_docentes_centro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_docentes_centro" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de los docentes involucrados en el centro académico.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Lista de docentes (list)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_ensenyanzas_centro">
+<tt class="descname">listar_ensenyanzas_centro</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_ensenyanzas_centro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_ensenyanzas_centro" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de las enseñanzas impartidas en el centro académico.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Lista de enseñanzas (list)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_expedientes_alumno">
+<tt class="descname">listar_expedientes_alumno</tt><big>(</big><em>alumno</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_expedientes_alumno"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_expedientes_alumno" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de las expedientes que involucran al alumno indicado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alumno</strong> &#8211; Instancia de alumno (Alumno)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Lista de expedientes (list) si existe alumno y se encuentra expedientado en alguna asignatura o None en
+caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_expedientes_asignatura">
+<tt class="descname">listar_expedientes_asignatura</tt><big>(</big><em>asignatura</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_expedientes_asignatura"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_expedientes_asignatura" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de los expedientes asociados a la asignatura indicada.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>asignatura</strong> &#8211; Instancia de asignatura (Asignatura)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Lista de expedientes (list) si existe asignatura y tiene asociados expedientes o None en caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_expedientes_centro">
+<tt class="descname">listar_expedientes_centro</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_expedientes_centro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_expedientes_centro" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de los expedientes existentes en el centro académico.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Lista de expedientes (list)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_expedientes_grado">
+<tt class="descname">listar_expedientes_grado</tt><big>(</big><em>grado</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_expedientes_grado"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_expedientes_grado" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de los expedientes existentes asociados a alguna asignatura del grado/curso indicado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>grado</strong> &#8211; Instancia de grado/curso (Grado)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Lista de expedientes (list) si existe grado/curso y tiene asignatura(s) con expediente(s) o None en
+caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_grados_centro">
+<tt class="descname">listar_grados_centro</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_grados_centro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_grados_centro" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de los grados/cursos involucrados en el centro académico.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Lista de grados/cursos (list)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_grados_docente">
+<tt class="descname">listar_grados_docente</tt><big>(</big><em>docente</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_grados_docente"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_grados_docente" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de las grados/cursos que involucra al docente indicado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>docente</strong> &#8211; Instancia de docente (Docente)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Lista de grados/crusos (list) si existe docente con grados(s)/curso(s) o None en caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_grados_tecnico_calidad">
+<tt class="descname">listar_grados_tecnico_calidad</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_grados_tecnico_calidad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_grados_tecnico_calidad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de los tecnicos de calidad involucrados en el centro académico.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Lista de tecnicos de calidad (list)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.listar_tecnicos_calidad">
+<tt class="descname">listar_tecnicos_calidad</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.listar_tecnicos_calidad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.listar_tecnicos_calidad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de los tecnicos de calidad existentes en el centro académico.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Lista de tecnicos de calidad (list)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.obtener_alumno">
+<tt class="descname">obtener_alumno</tt><big>(</big><em>alumno</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.obtener_alumno"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.obtener_alumno" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene un alumno indicado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alumno</strong> &#8211; Instancia de alumno (Alumno)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Alumno (Alumno) si existe o None en caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.obtener_asignatura">
+<tt class="descname">obtener_asignatura</tt><big>(</big><em>asignatura</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.obtener_asignatura"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.obtener_asignatura" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una asignatura indicada.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>asignatura</strong> &#8211; Instancia de asignatura (Asignatura)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Asignatura (Asignatura) si existe o None en caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.obtener_docente">
+<tt class="descname">obtener_docente</tt><big>(</big><em>docente</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.obtener_docente"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.obtener_docente" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene un docente indicado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>docente</strong> &#8211; Instancia de docente (Docente)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Docente (Docente) si existe o None en caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.obtener_ensenyanza">
+<tt class="descname">obtener_ensenyanza</tt><big>(</big><em>docente</em>, <em>asignatura</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.obtener_ensenyanza"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.obtener_ensenyanza" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene la ensenyanza de un docente en una asignatura.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>docente</strong> &#8211; Instancia de docente (Docente)</li>
+<li><strong>asignatura</strong> &#8211; Instancia de asignatura (Asignatura)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Ensenyanza (Ensenyanza) si existe docente y asignatura y este primero imparte
+en la asignatura o None en caso contrario</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.obtener_expediente">
+<tt class="descname">obtener_expediente</tt><big>(</big><em>alumno</em>, <em>asignatura</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.obtener_expediente"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.obtener_expediente" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene el expediente de un alumno indicado en una asignatura indicada.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>alumno</strong> &#8211; Instancia de alumno (Alumno)</li>
+<li><strong>asignatura</strong> &#8211; Instancia de asignatura (Asignatura)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Expediente (Expediente) si existe alumno y asignatura y este primero se encuentra
+expedientado en la asignatura o None en caso contrario</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.obtener_grado">
+<tt class="descname">obtener_grado</tt><big>(</big><em>grado</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.obtener_grado"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.obtener_grado" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene un grado/curso indicado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>grado</strong> &#8211; Instancia de grado/curso (Grado)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Grado/curso (Grado) si existe o None en caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Almacen.Almacen.obtener_tecnico_calidad">
+<tt class="descname">obtener_tecnico_calidad</tt><big>(</big><em>tecnico</em><big>)</big><a class="reference internal" href="_modules/src/Almacen.html#Almacen.obtener_tecnico_calidad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Almacen.Almacen.obtener_tecnico_calidad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene un tecnico indicado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tecnico</strong> &#8211; Instancia de tecnico (Tecnico)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tecnico (Tecnico) si existe o None en caso contrario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="terminal.html">Modulo Terminal</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="creadorDatos.html">Modulo Creador Datos</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

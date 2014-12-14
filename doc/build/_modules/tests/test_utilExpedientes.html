@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tests.test_utilExpedientes &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>tests.test_utilExpedientes</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <h1>Source code for tests.test_utilExpedientes</h1><div class="highlight"><pre>
+<span class="c"># encoding=UTF-8</span>
+<span class="sd">&quot;&quot;&quot;Módulo de Test para la clase src.UtilExpedientes</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gregorio y Ángel&#39;</span>
+
+<span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Asignatura</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Expediente</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.UtilExpedientes</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="TestUtilExpedientes"><a class="viewcode-back" href="../../test_utilExpedientes.html#tests.test_utilExpedientes.TestUtilExpedientes">[docs]</a><span class="k">class</span> <span class="nc">TestUtilExpedientes</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Esta clase corresponde al caso de prueba de src.UtilExpedientes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TestUtilExpedientes.setUp"><a class="viewcode-back" href="../../test_utilExpedientes.html#tests.test_utilExpedientes.TestUtilExpedientes.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Este método prepara el contexto necesario para las pruebas de TestUtilExpedientes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Preparando contexto para &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">asignatura_1</span> <span class="o">=</span> <span class="n">Asignatura</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;Asignatura 1&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">asignatura_2</span> <span class="o">=</span> <span class="n">Asignatura</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&quot;Asignatura 2&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">expediente_1</span> <span class="o">=</span> <span class="n">Expediente</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">asignatura_1</span><span class="p">,</span> <span class="p">[</span><span class="mf">9.5</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expediente_2</span> <span class="o">=</span> <span class="n">Expediente</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">asignatura_1</span><span class="p">,</span> <span class="p">[</span><span class="mf">9.6</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expediente_3</span> <span class="o">=</span> <span class="n">Expediente</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">asignatura_2</span><span class="p">,</span> <span class="p">[</span><span class="mi">10</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">expedientes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">expedientes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expediente_1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expedientes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expediente_2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expedientes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expediente_3</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestUtilExpedientes.tearDown"><a class="viewcode-back" href="../../test_utilExpedientes.html#tests.test_utilExpedientes.TestUtilExpedientes.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Este método elimina el contexto utilizado para las pruebas de TestUtilExpedientes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Destruyendo contexto para &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">expediente_1</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">expediente_2</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">expediente_3</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">expedientes</span>
+</div>
+<div class="viewcode-block" id="TestUtilExpedientes.test_get_matriculas_y_menciones"><a class="viewcode-back" href="../../test_utilExpedientes.html#tests.test_utilExpedientes.TestUtilExpedientes.test_get_matriculas_y_menciones">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_matriculas_y_menciones</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba que las matriculas y menciones devueltas corresponden con las que deberian</span>
+<span class="sd">        segun el contexto de setUp()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mym</span> <span class="o">=</span> <span class="n">UtilExpedientes</span><span class="o">.</span><span class="n">get_matriculas_y_menciones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expedientes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">mym</span><span class="o">.</span><span class="n">get_matriculas</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">mym</span><span class="o">.</span><span class="n">get_menciones</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestUtilExpedientes.test_get_media_expediente"><a class="viewcode-back" href="../../test_utilExpedientes.html#tests.test_utilExpedientes.TestUtilExpedientes.test_get_media_expediente">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_media_expediente</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba que las medias calculadas de los expedientes corresponden con las que deberian</span>
+<span class="sd">        segun el contexto de setUp()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assert_</span><span class="p">(</span><span class="n">UtilExpedientes</span><span class="o">.</span><span class="n">get_media_expediente</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expediente_1</span><span class="p">)</span> <span class="o">==</span> <span class="mf">9.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assert_</span><span class="p">(</span><span class="n">UtilExpedientes</span><span class="o">.</span><span class="n">get_media_expediente</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expediente_2</span><span class="p">)</span> <span class="o">==</span> <span class="mf">9.6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assert_</span><span class="p">(</span><span class="n">UtilExpedientes</span><span class="o">.</span><span class="n">get_media_expediente</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expediente_3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestUtilExpedientes.test_get_media_expedientes"><a class="viewcode-back" href="../../test_utilExpedientes.html#tests.test_utilExpedientes.TestUtilExpedientes.test_get_media_expedientes">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_media_expedientes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba que la media calculada de una lista de expedientes corresponde con las que deberian</span>
+<span class="sd">        segun el contexto de setUp()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">media_expes</span> <span class="o">=</span> <span class="n">UtilExpedientes</span><span class="p">()</span><span class="o">.</span><span class="n">get_media_expedientes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expedientes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">media_expes</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="mf">9.7</span><span class="p">),</span> <span class="n">places</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestUtilExpedientes.test_get_rangos_expedientes"><a class="viewcode-back" href="../../test_utilExpedientes.html#tests.test_utilExpedientes.TestUtilExpedientes.test_get_rangos_expedientes">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_rangos_expedientes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba que el rangos obtenido de analizar los expedientes corresponde con las que deberian</span>
+<span class="sd">        segun el contexto de setUp()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rango</span> <span class="o">=</span> <span class="n">UtilExpedientes</span><span class="p">()</span><span class="o">.</span><span class="n">get_rangos_expedientes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expedientes</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">rango</span><span class="o">.</span><span class="n">get_sobresalientes</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">rango</span><span class="o">.</span><span class="n">get_aprobados</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">rango</span><span class="o">.</span><span class="n">get_notables</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">rango</span><span class="o">.</span><span class="n">get_suspensos</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestUtilExpedientes.test_get_resumen"><a class="viewcode-back" href="../../test_utilExpedientes.html#tests.test_utilExpedientes.TestUtilExpedientes.test_get_resumen">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_resumen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba que el resumen devuelto de analizar los expedientes, teniendo en cuenta la asignatura a</span>
+<span class="sd">        la que corresponden, corresponde con el que debería ser segun el contexto de setUp()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">resumen</span> <span class="o">=</span> <span class="n">UtilExpedientes</span><span class="p">()</span><span class="o">.</span><span class="n">get_resumen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expedientes</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">resumen</span><span class="o">.</span><span class="n">get_nota_promedio_alumno</span><span class="p">(),</span> <span class="nb">float</span><span class="p">(</span><span class="mf">9.7</span><span class="p">),</span> <span class="n">places</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">resumen</span><span class="o">.</span><span class="n">get_nota_promedio_asignatura</span><span class="p">(),</span> <span class="p">(</span><span class="mf">9.55</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span></div></div>
+</pre></div>
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

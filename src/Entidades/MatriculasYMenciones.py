@@ -5,9 +5,9 @@ __author__ = 'Gregorio y Ángel'
 
 
 class MatriculasYMenciones:
-    """Esta clase transfiere informacion correspondiente a cantidad de matriculas y menciones.
-    Args:
-        matriculas (int): Cantidad de matriculas logradas
+    """Esta clase transfiere informacion correspondiente a cantidad de matriculas y menciones.\n
+        Args:\n
+        matriculas (int): Cantidad de matriculas logradas\n
         menciones (int): Cantidad de menciones logradas
     """
     def __init__(self, matriculas, menciones):
@@ -16,12 +16,14 @@ class MatriculasYMenciones:
 
     def get_matriculas(self):
         """Obtiene la cantidad de matrículas logradas.
+
         :return: Cantidad de mátriculas (int)
         """
         return self.__matriculas
 
     def get_menciones(self):
         """Obtiene la cantidad de menciones logradas.
+
         :return: Cantidad de menciones (int)
         """
         return self.__menciones

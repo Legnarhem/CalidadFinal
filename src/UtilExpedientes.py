@@ -23,7 +23,8 @@ class UtilExpedientes:
 
     @staticmethod
     def get_matriculas_y_menciones(expedientes):
-        """Obtiene el número de matrículas y menciones
+        """Obtiene el número de matrículas y menciones.
+
         :param expedientes: Listas de expedientes
         :return: Las matrículas y menciones (MatriculasYMenciones)
         """
@@ -41,7 +42,8 @@ class UtilExpedientes:
 
     @staticmethod
     def get_media_expediente(expediente):
-        """Obtiene la nota media de un expediente
+        """Obtiene la nota media de un expediente.
+
         :param expediente: El expediente de un alumno (Expediente)
         :return: media de las notas del expediente (float)
         """
@@ -55,7 +57,8 @@ class UtilExpedientes:
         return float(nota_acumulada / n_notas) if n_notas != 0 else 0
 
     def get_media_expedientes(self, expedientes):
-        """Obtiene la nota media de varios expedientes
+        """Obtiene la nota media de varios expedientes.
+
         :param expedientes: Lista de expedientes (list)
         :return: media de las notas de los expedientes (float)
         """
@@ -69,7 +72,8 @@ class UtilExpedientes:
         return float(media_acumulada / n_expedientes) if n_expedientes != 0 else 0
 
     def get_rangos_expedientes(self, expedientes):
-        """Clasifica las notas de varios expedientes en los diferentes rangos de notas
+        """Clasifica las notas de varios expedientes en los diferentes rangos de notas.
+
         :param expedientes: Lista de expedientes (list)
         :return: Rango de notas (Rango)
         """
@@ -92,7 +96,8 @@ class UtilExpedientes:
         return Rango(suspensos, aprobados, notables, sobresalientes)
 
     def get_resumen(self, expedientes):
-        """Obtiene un resumen estadístico de un conjunto de expedientes
+        """Obtiene un resumen estadístico de un conjunto de expedientes.
+
         :param expedientes: Lista de expedientes (list)
         :return: Resumen estadístico de los expedientes (Resumen)
         """

@@ -17,10 +17,11 @@ from src.Entidades.Alumno import *
 
 
 def new_dni(fake, dnis):
-    """Obtiene una DNI no existente en el conjutno de entrada.
-    :param fake:Instancia de Faker.Factory (Factory)
-    :param dnis:Instancia de lista (list)
-    :return:DNI (str)
+    """Obtiene una DNI no existente en el conjunto de entrada.
+
+    :param fake: Instancia de Faker.Factory (Factory)
+    :param dnis: Instancia de lista (list)
+    :return: DNI (str)
     """
     dni = None
     while True:
@@ -32,14 +33,15 @@ def new_dni(fake, dnis):
 
 def save_data(donde, doces, tecns, alums, asigs, grads, expes, enses):
     """Guarda los datos en un fichero mediante shelve.
-    :param donde:Nombre del fichero de salida (str)
-    :param doces:Instancia de lista (list)
-    :param tecns:Instancia de lista (list)
-    :param alums:Instancia de lista (list)
-    :param asigs:Instancia de lista (list)
-    :param grads:Instancia de lista (list)
-    :param expes:Instancia de lista (list)
-    :param enses:Instancia de lista (list)
+
+    :param donde: Nombre del fichero de salida (str)
+    :param doces: Instancia de lista (list)
+    :param tecns: Instancia de lista (list)
+    :param alums: Instancia de lista (list)
+    :param asigs: Instancia de lista (list)
+    :param grads: Instancia de lista (list)
+    :param expes: Instancia de lista (list)
+    :param enses: Instancia de lista (list)
     """
     shelf = shelve.open(donde)
     shelf["docentes"] = doces
@@ -53,7 +55,8 @@ def save_data(donde, doces, tecns, alums, asigs, grads, expes, enses):
 
 def mostrar_lista(lista):
     """Imprime los elementos de una lista.
-    :param lista:Instancia de lista (list)
+
+    :param lista: Instancia de lista (list)
     """
     for elemento in lista:
         print(elemento)
@@ -61,7 +64,8 @@ def mostrar_lista(lista):
 
 def main(donde):
     """Crea y guarda las instancias de prueba.
-    :param donde:Nombre del fichero de datos
+
+    :param donde: Nombre del fichero de datos
     """
     asigs = list()
     grads = list()

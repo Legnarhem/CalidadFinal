@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modulo Asignatura Controller &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="index.html" />
+    <link rel="next" title="Modulo Sesion Controller" href="sesionController.html" />
+    <link rel="prev" title="Modulo Alumno Controller" href="alumnoController.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>Modulo Asignatura Controller</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="alumnoController.html">Modulo Alumno Controller</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="sesionController.html">Modulo Sesion Controller</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="modulo-asignatura-controller">
+<h1>Modulo Asignatura Controller<a class="headerlink" href="#modulo-asignatura-controller" title="Permalink to this headline">¶</a></h1>
+<p><em>Este modulo contiene la implementación del controlador AsignaturaController</em></p>
+<span class="target" id="module-src.Controladores.AsignaturaController"></span><p>Módulo AsignaturaController del paquete Controladores</p>
+<dl class="class">
+<dt id="src.Controladores.AsignaturaController.AsignaturaController">
+<em class="property">class </em><tt class="descclassname">src.Controladores.AsignaturaController.</tt><tt class="descname">AsignaturaController</tt><big>(</big><em>terminales</em><big>)</big><a class="reference internal" href="_modules/src/Controladores/AsignaturaController.html#AsignaturaController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Controladores.AsignaturaController.AsignaturaController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Esta clase es un controlador de la entidad Asignatura.</p>
+<p>Args:</p>
+<p>terminales (list&lt;Terminal): Lista de terminales/vistas asociadas al controlador</p>
+<dl class="staticmethod">
+<dt id="src.Controladores.AsignaturaController.AsignaturaController.get_almacen">
+<em class="property">static </em><tt class="descname">get_almacen</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Controladores/AsignaturaController.html#AsignaturaController.get_almacen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Controladores.AsignaturaController.AsignaturaController.get_almacen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una instancia de Almacen.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Instancia de Almacen (Almacen)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Controladores.AsignaturaController.AsignaturaController.listar">
+<tt class="descname">listar</tt><big>(</big><em>sesion</em><big>)</big><a class="reference internal" href="_modules/src/Controladores/AsignaturaController.html#AsignaturaController.listar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Controladores.AsignaturaController.AsignaturaController.listar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de todos las asignaturas a las que el usuario conectado al gestor académico tiene acceso.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sesion</strong> &#8211; Sesion del usuario conectado al gestor académico (Sesion)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Lista de asignaturas (list) si existen o None en caso contrario o de carencia de privilegios</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Controladores.AsignaturaController.AsignaturaController.obtener_asigs_grado">
+<tt class="descname">obtener_asigs_grado</tt><big>(</big><em>codigo</em>, <em>sesion</em><big>)</big><a class="reference internal" href="_modules/src/Controladores/AsignaturaController.html#AsignaturaController.obtener_asigs_grado"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Controladores.AsignaturaController.AsignaturaController.obtener_asigs_grado" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una lista de las asignaturas asociadas al grado/curso indicado, si el usuario
+conectado al gestor académico tiene acceso.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>codigo</strong> &#8211; Codigo de grado/curso (int)</li>
+<li><strong>sesion</strong> &#8211; Sesion del usuario conectado al gestor académico (Sesion)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Lista de asignaturas asociadas (list) si existen o None en caso contrario o de carencia de privilegios</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Controladores.AsignaturaController.AsignaturaController.obtener_media">
+<tt class="descname">obtener_media</tt><big>(</big><em>codigo</em>, <em>sesion</em><big>)</big><a class="reference internal" href="_modules/src/Controladores/AsignaturaController.html#AsignaturaController.obtener_media"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Controladores.AsignaturaController.AsignaturaController.obtener_media" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene la media global de una asignatura indicada, si el usuario conectado al gestor académico tiene acceso.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>codigo</strong> &#8211; Codigo de asignatura (int)</li>
+<li><strong>sesion</strong> &#8211; Sesion del usuario conectado al gestor académico (Sesion)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Media global de asignatura (float) si existe o None en caso contrario o de carencia de privilegios</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Controladores.AsignaturaController.AsignaturaController.obtener_rango">
+<tt class="descname">obtener_rango</tt><big>(</big><em>codigo</em>, <em>sesion</em><big>)</big><a class="reference internal" href="_modules/src/Controladores/AsignaturaController.html#AsignaturaController.obtener_rango"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Controladores.AsignaturaController.AsignaturaController.obtener_rango" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene el rango de notas de los distintos expedientes asociados a la asignatura indicada
+que es accesible por el usuario conectado al gestor academico.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>codigo</strong> &#8211; Codigo de asignatura (int)</li>
+<li><strong>sesion</strong> &#8211; Sesion del usuario conectado al gestor académico (Sesion)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Rango de notas (Rango) si existe o None en caso contrario o de carencia de privilegios</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="alumnoController.html">Modulo Alumno Controller</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="sesionController.html">Modulo Sesion Controller</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

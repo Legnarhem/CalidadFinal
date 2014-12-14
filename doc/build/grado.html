@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modulo Grado &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="index.html" />
+    <link rel="next" title="Modulo Asignatura" href="asignatura.html" />
+    <link rel="prev" title="Modulo Expediente" href="expediente.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>Modulo Grado</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="expediente.html">Modulo Expediente</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="asignatura.html">Modulo Asignatura</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="modulo-grado">
+<h1>Modulo Grado<a class="headerlink" href="#modulo-grado" title="Permalink to this headline">¶</a></h1>
+<p><em>Este modulo contiene la implementación de la entidad Grado</em></p>
+<span class="target" id="module-src.Entidades.Grado"></span><p>Modulo Grado</p>
+<dl class="class">
+<dt id="src.Entidades.Grado.Grado">
+<em class="property">class </em><tt class="descclassname">src.Entidades.Grado.</tt><tt class="descname">Grado</tt><big>(</big><em>codigo</em>, <em>nombre</em>, <em>asignaturas</em><big>)</big><a class="reference internal" href="_modules/src/Entidades/Grado.html#Grado"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Entidades.Grado.Grado" title="Permalink to this definition">¶</a></dt>
+<dd><p>Esta clase representa un grado/curso concreto del centro académico.</p>
+<p>Args:</p>
+<p>codigo (int): Identificado único del grado/curso</p>
+<p>nombre (str): Título del grado/curso</p>
+<p>asignaturas (list&lt;Asignatura&gt;): Asignaturas asociadas al grado/curso</p>
+<dl class="method">
+<dt id="src.Entidades.Grado.Grado.get_asignaturas">
+<tt class="descname">get_asignaturas</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Entidades/Grado.html#Grado.get_asignaturas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Entidades.Grado.Grado.get_asignaturas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene las asignaturas del grado/curso.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Lista de asignaturas del grado/curso (list)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Entidades.Grado.Grado.get_codigo">
+<tt class="descname">get_codigo</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Entidades/Grado.html#Grado.get_codigo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Entidades.Grado.Grado.get_codigo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene el identificador único del grado/curso.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Identificador único del grado/curso (int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Entidades.Grado.Grado.get_nombre">
+<tt class="descname">get_nombre</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Entidades/Grado.html#Grado.get_nombre"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Entidades.Grado.Grado.get_nombre" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene el título del grado/curso.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Título del grado/curso (str)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Entidades.Grado.Grado.set_codigo">
+<tt class="descname">set_codigo</tt><big>(</big><em>codigo</em><big>)</big><a class="reference internal" href="_modules/src/Entidades/Grado.html#Grado.set_codigo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Entidades.Grado.Grado.set_codigo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el identificador úncico del grado/curso.</p>
+<p>Lanza una excepcion si no es de tipo int.
+:param codigo: Identificador del grado/curso (int)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="expediente.html">Modulo Expediente</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="asignatura.html">Modulo Asignatura</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

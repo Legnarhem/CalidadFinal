@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.Entidades.Asignatura &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../../index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>src.Entidades.Asignatura</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <h1>Source code for src.Entidades.Asignatura</h1><div class="highlight"><pre>
+<span class="c"># encoding=UTF-8</span>
+<span class="sd">&quot;&quot;&quot;Módulo Asignatura</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gregorio y Ángel&#39;</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Comparable</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="Asignatura"><a class="viewcode-back" href="../../../asignatura.html#src.Entidades.Asignatura.Asignatura">[docs]</a><span class="k">class</span> <span class="nc">Asignatura</span><span class="p">(</span><span class="n">Comparable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Esta clase representa una asignatura del centro academico.\n</span>
+<span class="sd">        Args:\n</span>
+<span class="sd">        codigo (str): Identificador único de la asignatura\n</span>
+<span class="sd">        nombre (str): Título de la asignatura</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codigo</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__codigo</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_codigo</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_cmpkey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_codigo</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Asignatura.set_codigo"><a class="viewcode-back" href="../../../asignatura.html#src.Entidades.Asignatura.Asignatura.set_codigo">[docs]</a>    <span class="k">def</span> <span class="nf">set_codigo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codigo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Actualiza el identificador de la asignatura.</span>
+
+<span class="sd">        :param codigo: Identificador de la asignatura (int)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__codigo</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Asignatura.get_codigo"><a class="viewcode-back" href="../../../asignatura.html#src.Entidades.Asignatura.Asignatura.get_codigo">[docs]</a>    <span class="k">def</span> <span class="nf">get_codigo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene el identificador de la asignatura.</span>
+
+<span class="sd">        :return: Identificador de la asignatura (int)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__codigo</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Asignatura.get_nombre"><a class="viewcode-back" href="../../../asignatura.html#src.Entidades.Asignatura.Asignatura.get_nombre">[docs]</a>    <span class="k">def</span> <span class="nf">get_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene el nombre de la asignatura.</span>
+
+<span class="sd">        :return: Nombre de la asignatura (str)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="se">\t\t</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_codigo</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">())</span></div>
+</pre></div>
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

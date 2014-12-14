@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.CreadorDatos &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>src.CreadorDatos</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <h1>Source code for src.CreadorDatos</h1><div class="highlight"><pre>
+<span class="c"># encoding=UTF-8</span>
+<span class="sd">&quot;&quot;&quot;Módulo creados de datos de prueba</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gregorio y Ángel&#39;</span>
+<span class="kn">import</span> <span class="nn">shelve</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="kn">from</span> <span class="nn">faker</span> <span class="kn">import</span> <span class="n">Factory</span>
+
+<span class="kn">from</span> <span class="nn">src.Entidades.Asignatura</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Expediente</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.TecnicoCalidad</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Docente</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Ensenyanza</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Grado</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Alumno</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="new_dni"><a class="viewcode-back" href="../../creadorDatos.html#src.CreadorDatos.new_dni">[docs]</a><span class="k">def</span> <span class="nf">new_dni</span><span class="p">(</span><span class="n">fake</span><span class="p">,</span> <span class="n">dnis</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Obtiene una DNI no existente en el conjunto de entrada.</span>
+
+<span class="sd">    :param fake: Instancia de Faker.Factory (Factory)</span>
+<span class="sd">    :param dnis: Instancia de lista (list)</span>
+<span class="sd">    :return: DNI (str)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dni</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">dni</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">random_int</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">10000000</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">99999999</span><span class="p">))</span> <span class="o">+</span> <span class="n">fake</span><span class="o">.</span><span class="n">random_letter</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">dnis</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">dni</span>
+
+</div>
+<div class="viewcode-block" id="save_data"><a class="viewcode-back" href="../../creadorDatos.html#src.CreadorDatos.save_data">[docs]</a><span class="k">def</span> <span class="nf">save_data</span><span class="p">(</span><span class="n">donde</span><span class="p">,</span> <span class="n">doces</span><span class="p">,</span> <span class="n">tecns</span><span class="p">,</span> <span class="n">alums</span><span class="p">,</span> <span class="n">asigs</span><span class="p">,</span> <span class="n">grads</span><span class="p">,</span> <span class="n">expes</span><span class="p">,</span> <span class="n">enses</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Guarda los datos en un fichero mediante shelve.</span>
+
+<span class="sd">    :param donde: Nombre del fichero de salida (str)</span>
+<span class="sd">    :param doces: Instancia de lista (list)</span>
+<span class="sd">    :param tecns: Instancia de lista (list)</span>
+<span class="sd">    :param alums: Instancia de lista (list)</span>
+<span class="sd">    :param asigs: Instancia de lista (list)</span>
+<span class="sd">    :param grads: Instancia de lista (list)</span>
+<span class="sd">    :param expes: Instancia de lista (list)</span>
+<span class="sd">    :param enses: Instancia de lista (list)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">shelf</span> <span class="o">=</span> <span class="n">shelve</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">donde</span><span class="p">)</span>
+    <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;docentes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">doces</span>
+    <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;tecnicosCalidad&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tecns</span>
+    <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;alumnos&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">alums</span>
+    <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;asignaturas&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">asigs</span>
+    <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;grados&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grads</span>
+    <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;expedientes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">expes</span>
+    <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;ensenyanzas&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enses</span>
+
+</div>
+<div class="viewcode-block" id="mostrar_lista"><a class="viewcode-back" href="../../creadorDatos.html#src.CreadorDatos.mostrar_lista">[docs]</a><span class="k">def</span> <span class="nf">mostrar_lista</span><span class="p">(</span><span class="n">lista</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Imprime los elementos de una lista.</span>
+
+<span class="sd">    :param lista: Instancia de lista (list)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">elemento</span> <span class="ow">in</span> <span class="n">lista</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">elemento</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../creadorDatos.html#src.CreadorDatos.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">donde</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Crea y guarda las instancias de prueba.</span>
+
+<span class="sd">    :param donde: Nombre del fichero de datos</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">asigs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">grads</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">doces</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">enses</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">alums</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">expes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">tecns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">dnis</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+    <span class="n">fake</span> <span class="o">=</span> <span class="n">Factory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s">&#39;es_ES&#39;</span><span class="p">)</span>
+
+    <span class="n">asigs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Asignatura</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Quimica general&#39;</span><span class="p">))</span>
+    <span class="n">asigs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Asignatura</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#39;Fisica&#39;</span><span class="p">))</span>
+    <span class="n">asigs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Asignatura</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#39;Algebra y fundamentos de analisis&#39;</span><span class="p">))</span>
+    <span class="n">asigs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Asignatura</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&#39;Informatica&#39;</span><span class="p">))</span>
+    <span class="n">asigs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Asignatura</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s">&#39;Biologia celular&#39;</span><span class="p">))</span>
+    <span class="n">asigs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Asignatura</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s">&#39;Bioquimica: biomoleculas&#39;</span><span class="p">))</span>
+    <span class="n">asigs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Asignatura</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="s">&#39;Biologia animal y vegetal&#39;</span><span class="p">))</span>
+    <span class="n">asigs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Asignatura</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s">&#39;Quimica organica&#39;</span><span class="p">))</span>
+    <span class="n">asigs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Asignatura</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="s">&#39;Genetica&#39;</span><span class="p">))</span>
+    <span class="n">asigs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Asignatura</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s">&#39;Analisis matematico&#39;</span><span class="p">))</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Asignaturas:&quot;</span><span class="p">)</span>
+    <span class="n">mostrar_lista</span><span class="p">(</span><span class="n">asigs</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Alumnos:&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%9s</span><span class="s"> </span><span class="se">\t</span><span class="s"> </span><span class="si">%15s</span><span class="s"> </span><span class="se">\t</span><span class="si">%s</span><span class="s"> &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;DNI&#39;</span><span class="p">,</span> <span class="s">&#39;Nombre&#39;</span><span class="p">,</span> <span class="s">&#39;Apellidos&#39;</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">):</span>
+        <span class="n">alu</span> <span class="o">=</span> <span class="n">Alumno</span><span class="p">(</span><span class="n">new_dni</span><span class="p">(</span><span class="n">fake</span><span class="p">,</span> <span class="n">dnis</span><span class="p">),</span>
+                     <span class="n">fake</span><span class="o">.</span><span class="n">first_name</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">),</span> <span class="n">fake</span><span class="o">.</span><span class="n">last_name</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">))</span>
+        <span class="n">alums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">alu</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">asigs</span><span class="p">:</span>
+            <span class="n">exp</span> <span class="o">=</span> <span class="n">Expediente</span><span class="p">(</span><span class="n">alu</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;</span><span class="si">%.2f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="nb">float</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">/</span> <span class="mf">0.05</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.05</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
+            <span class="n">expes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exp</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">alu</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Expedientes:&quot;</span><span class="p">)</span>
+    <span class="n">mostrar_lista</span><span class="p">(</span><span class="n">expes</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Profesores:&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%10s</span><span class="s"> </span><span class="se">\t</span><span class="s"> </span><span class="si">%9s</span><span class="s"> </span><span class="se">\t</span><span class="s"> </span><span class="si">%15s</span><span class="s"> </span><span class="se">\t</span><span class="si">%s</span><span class="s"> &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;Usuario&#39;</span><span class="p">,</span> <span class="s">&#39;DNI&#39;</span><span class="p">,</span> <span class="s">&#39;Nombre&#39;</span><span class="p">,</span> <span class="s">&#39;Apellidos&#39;</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">):</span>
+        <span class="n">dni</span> <span class="o">=</span> <span class="n">new_dni</span><span class="p">(</span><span class="n">fake</span><span class="p">,</span> <span class="n">dnis</span><span class="p">)</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">Docente</span><span class="p">(</span><span class="s">&#39;u&#39;</span> <span class="o">+</span> <span class="n">dni</span><span class="p">,</span> <span class="s">&#39;docente&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dni</span><span class="p">,</span> <span class="n">fake</span><span class="o">.</span><span class="n">first_name</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">),</span>
+                      <span class="n">fake</span><span class="o">.</span><span class="n">last_name</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">))</span>
+        <span class="n">doces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+        <span class="n">ens</span> <span class="o">=</span> <span class="n">Ensenyanza</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">asigs</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">asigs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)])</span>
+        <span class="n">enses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ens</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Enseñanzas:&quot;</span><span class="p">)</span>
+    <span class="n">mostrar_lista</span><span class="p">(</span><span class="n">enses</span><span class="p">)</span>
+
+    <span class="n">dni</span> <span class="o">=</span> <span class="n">new_dni</span><span class="p">(</span><span class="n">fake</span><span class="p">,</span> <span class="n">dnis</span><span class="p">)</span>
+    <span class="n">tecns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TecnicoCalidad</span><span class="p">(</span><span class="s">&#39;u&#39;</span> <span class="o">+</span> <span class="n">dni</span><span class="p">,</span> <span class="s">&#39;tecnico&#39;</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span>
+                                <span class="n">fake</span><span class="o">.</span><span class="n">first_name</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">),</span> <span class="n">fake</span><span class="o">.</span><span class="n">last_name</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">)))</span>
+    <span class="n">dni</span> <span class="o">=</span> <span class="n">new_dni</span><span class="p">(</span><span class="n">fake</span><span class="p">,</span> <span class="n">dnis</span><span class="p">)</span>
+    <span class="n">tecns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TecnicoCalidad</span><span class="p">(</span><span class="s">&#39;u&#39;</span> <span class="o">+</span> <span class="n">dni</span><span class="p">,</span> <span class="s">&#39;tecnico&#39;</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span>
+                                <span class="n">fake</span><span class="o">.</span><span class="n">first_name</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">),</span> <span class="n">fake</span><span class="o">.</span><span class="n">last_name</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">)))</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Tecnicos de calidad:&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%10s</span><span class="s"> </span><span class="se">\t</span><span class="s"> </span><span class="si">%9s</span><span class="s"> </span><span class="se">\t</span><span class="s"> </span><span class="si">%15s</span><span class="s"> </span><span class="se">\t</span><span class="si">%s</span><span class="s"> &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;Usuario&#39;</span><span class="p">,</span> <span class="s">&#39;DNI&#39;</span><span class="p">,</span> <span class="s">&#39;Nombre&#39;</span><span class="p">,</span> <span class="s">&#39;Apellidos&#39;</span><span class="p">))</span>
+    <span class="n">mostrar_lista</span><span class="p">(</span><span class="n">tecns</span><span class="p">)</span>
+
+    <span class="n">grads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Grado</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;Grado en Biotecnologia&quot;</span><span class="p">,</span> <span class="n">asigs</span><span class="p">))</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Grados:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grads</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">get_asignaturas</span><span class="p">():</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+
+    <span class="n">save_data</span><span class="p">(</span><span class="n">donde</span><span class="p">,</span> <span class="n">doces</span><span class="p">,</span> <span class="n">tecns</span><span class="p">,</span> <span class="n">alums</span><span class="p">,</span> <span class="n">asigs</span><span class="p">,</span> <span class="n">grads</span><span class="p">,</span> <span class="n">expes</span><span class="p">,</span> <span class="n">enses</span><span class="p">)</span>
+
+</div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">)</span>
+</pre></div>
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

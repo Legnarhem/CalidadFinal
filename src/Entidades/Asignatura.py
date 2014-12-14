@@ -6,9 +6,9 @@ from src.Entidades.Comparable import *
 
 
 class Asignatura(Comparable):
-    """Esta clase representa una asignatura del centro academico.
-    Args:
-        codigo (str): Identificador único de la asignatura
+    """Esta clase representa una asignatura del centro academico.\n
+        Args:\n
+        codigo (str): Identificador único de la asignatura\n
         nombre (str): Título de la asignatura
     """
     def __init__(self, codigo, nombre):
@@ -21,18 +21,21 @@ class Asignatura(Comparable):
 
     def set_codigo(self, codigo):
         """Actualiza el identificador de la asignatura.
-        :param codigo:Identificador de la asignatura (int)
+
+        :param codigo: Identificador de la asignatura (int)
         """
         self.__codigo = int(codigo)
 
     def get_codigo(self):
         """Obtiene el identificador de la asignatura.
+
         :return: Identificador de la asignatura (int)
         """
         return int(self.__codigo)
 
     def get_nombre(self):
         """Obtiene el nombre de la asignatura.
+
         :return: Nombre de la asignatura (str)
         """
         return str(self.__nombre)

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.Entidades.Expediente &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../../index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>src.Entidades.Expediente</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <h1>Source code for src.Entidades.Expediente</h1><div class="highlight"><pre>
+<span class="c"># encoding=UTF-8</span>
+<span class="sd">&quot;&quot;&quot;Modulo Expediente</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gregorio y Ángel&#39;</span>
+
+
+<div class="viewcode-block" id="Expediente"><a class="viewcode-back" href="../../../expediente.html#src.Entidades.Expediente.Expediente">[docs]</a><span class="k">class</span> <span class="nc">Expediente</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Esta clase representa una relación entre un alumno, una asignatura y sus notas en la misma.\n</span>
+<span class="sd">        Args:\n</span>
+<span class="sd">        alumno (Alumno): Alumno involucrado en la asignatura\n</span>
+<span class="sd">        asignatura (Asignatura): Asignatura en la que el alumno expedienta\n</span>
+<span class="sd">        notas (list&lt;float&gt;): Lista de notas reales del alumno en la asignatura</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alumno</span><span class="p">,</span> <span class="n">asignatura</span><span class="p">,</span> <span class="n">notas</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__alumno</span> <span class="o">=</span> <span class="n">alumno</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__asignatura</span> <span class="o">=</span> <span class="n">asignatura</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__notas</span> <span class="o">=</span> <span class="n">notas</span>
+
+<div class="viewcode-block" id="Expediente.get_alumno"><a class="viewcode-back" href="../../../expediente.html#src.Entidades.Expediente.Expediente.get_alumno">[docs]</a>    <span class="k">def</span> <span class="nf">get_alumno</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene el alumno involucrado.</span>
+
+<span class="sd">        :return: Alumno involucrado (Alumno)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__alumno</span>
+</div>
+<div class="viewcode-block" id="Expediente.get_asignatura"><a class="viewcode-back" href="../../../expediente.html#src.Entidades.Expediente.Expediente.get_asignatura">[docs]</a>    <span class="k">def</span> <span class="nf">get_asignatura</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene la asignatura en la que se expedienta.</span>
+
+<span class="sd">        return: Asignatura que expedienta (Asignatura)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__asignatura</span>
+</div>
+<div class="viewcode-block" id="Expediente.get_notas"><a class="viewcode-back" href="../../../expediente.html#src.Entidades.Expediente.Expediente.get_notas">[docs]</a>    <span class="k">def</span> <span class="nf">get_notas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene las notas del alumno en la asignatura.</span>
+
+<span class="sd">        :return: Lista de notas del alumno (List&lt;Float&gt;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__notas</span>
+</div>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="se">\t</span><span class="s"> </span><span class="si">%s</span><span class="s"> </span><span class="se">\n</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_alumno</span><span class="p">()</span><span class="o">.</span><span class="n">get_dni</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_asignatura</span><span class="p">()</span><span class="o">.</span><span class="n">get_codigo</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_notas</span><span class="p">())</span></div>
+</pre></div>
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modulo Sesion Controller &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="index.html" />
+    <link rel="next" title="Test Almacen" href="test_almacen.html" />
+    <link rel="prev" title="Modulo Asignatura Controller" href="asignaturaController.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>Modulo Sesion Controller</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="asignaturaController.html">Modulo Asignatura Controller</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="test_almacen.html">Test Almacen</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="modulo-sesion-controller">
+<h1>Modulo Sesion Controller<a class="headerlink" href="#modulo-sesion-controller" title="Permalink to this headline">¶</a></h1>
+<p><em>Este modulo contiene la implementación del controlador SesionController</em></p>
+<span class="target" id="module-src.Controladores.SesionController"></span><p>Módulo SesionController del paquete Controladores</p>
+<dl class="class">
+<dt id="src.Controladores.SesionController.SesionController">
+<em class="property">class </em><tt class="descclassname">src.Controladores.SesionController.</tt><tt class="descname">SesionController</tt><big>(</big><em>terminales</em><big>)</big><a class="reference internal" href="_modules/src/Controladores/SesionController.html#SesionController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Controladores.SesionController.SesionController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Esta clase es un controlador de la entidad Sesion.</p>
+<p>Args:</p>
+<p>terminales (list&lt;Terminal): Lista de terminales/vistas asociadas al controlador</p>
+<dl class="staticmethod">
+<dt id="src.Controladores.SesionController.SesionController.get_almacen">
+<em class="property">static </em><tt class="descname">get_almacen</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Controladores/SesionController.html#SesionController.get_almacen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Controladores.SesionController.SesionController.get_almacen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una instancia de Almacen.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Instancia de Almacen (Almacen)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Controladores.SesionController.SesionController.obtener_sesion">
+<tt class="descname">obtener_sesion</tt><big>(</big><em>user</em>, <em>passw</em><big>)</big><a class="reference internal" href="_modules/src/Controladores/SesionController.html#SesionController.obtener_sesion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Controladores.SesionController.SesionController.obtener_sesion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una sesion en el gestor académico.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user</strong> &#8211; Usuario del gestor académico (str)</li>
+<li><strong>passw</strong> &#8211; Contraseña del usuario del gestor académico (str)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Sesion (Sesion) si las credenciales son validas o None en caso contrario</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="asignaturaController.html">Modulo Asignatura Controller</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="test_almacen.html">Test Almacen</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

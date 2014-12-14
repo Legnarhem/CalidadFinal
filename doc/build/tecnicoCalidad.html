@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modulo Técnico Calidad &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="index.html" />
+    <link rel="next" title="Modulo Alumno" href="alumno.html" />
+    <link rel="prev" title="Modulo Docente" href="docente.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>Modulo Técnico Calidad</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="docente.html">Modulo Docente</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="alumno.html">Modulo Alumno</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="modulo-tecnico-calidad">
+<h1>Modulo Técnico Calidad<a class="headerlink" href="#modulo-tecnico-calidad" title="Permalink to this headline">¶</a></h1>
+<p><em>Este modulo contiene la implementación de la entidad TecnicoCalidad</em></p>
+<span class="target" id="module-src.Entidades.TecnicoCalidad"></span><p>Modulo TecnicoCalidad</p>
+<dl class="class">
+<dt id="src.Entidades.TecnicoCalidad.TecnicoCalidad">
+<em class="property">class </em><tt class="descclassname">src.Entidades.TecnicoCalidad.</tt><tt class="descname">TecnicoCalidad</tt><big>(</big><em>username</em>, <em>password</em>, <em>dni</em>, <em>nombre</em>, <em>apellidos</em><big>)</big><a class="reference internal" href="_modules/src/Entidades/TecnicoCalidad.html#TecnicoCalidad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Entidades.TecnicoCalidad.TecnicoCalidad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Esta clase representa a un técnico de calidad del centro académico.</p>
+<p>Args:</p>
+<p>username (str): Usuario de acceso del técnico de calidad</p>
+<p>password (str): Contraseña para el usuario del técnico de calidad</p>
+<p>dni (str): DNI del técnico de calidad. Es atributo comparador</p>
+<p>nombre (str): Nombre completo del técnico de calidad</p>
+<p>apellidos (str): Apellidos del técnico de calidad</p>
+<dl class="method">
+<dt id="src.Entidades.TecnicoCalidad.TecnicoCalidad.get_apellidos">
+<tt class="descname">get_apellidos</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Entidades/TecnicoCalidad.html#TecnicoCalidad.get_apellidos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Entidades.TecnicoCalidad.TecnicoCalidad.get_apellidos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene los apellidos del técnico de calidad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Apellidos del técnico de calidad (str)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Entidades.TecnicoCalidad.TecnicoCalidad.get_dni">
+<tt class="descname">get_dni</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Entidades/TecnicoCalidad.html#TecnicoCalidad.get_dni"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Entidades.TecnicoCalidad.TecnicoCalidad.get_dni" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene el DNI del técnico de calidad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">DNI del técnico de calidad (str)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Entidades.TecnicoCalidad.TecnicoCalidad.get_nombre">
+<tt class="descname">get_nombre</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Entidades/TecnicoCalidad.html#TecnicoCalidad.get_nombre"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Entidades.TecnicoCalidad.TecnicoCalidad.get_nombre" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene el nombre completo del técnico de calidad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Nombre completo del técnico de calidad (str)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="docente.html">Modulo Docente</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="alumno.html">Modulo Alumno</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

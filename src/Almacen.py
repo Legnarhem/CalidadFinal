@@ -6,7 +6,7 @@ import shelve
 
 
 class Almacen(object):
-    """Esta clase es un almacen de datos del Gestor Académico.
+    """Esta clase es un almacen de datos del Gestor Académico.\n
         Es una clase estática y para obtener una instancia debe de llamarse al método Almacen.get_instance()
     """
 
@@ -51,7 +51,8 @@ class Almacen(object):
     @staticmethod
     def get_instance():
         """Obtiene una instancia de Almacen con datos precargados.
-        :return:Instancia de Almacen (Almacen)
+
+        :return: Instancia de Almacen (Almacen)
         """
         if Almacen.__store is None:
             Almacen.__store = Almacen()
@@ -61,8 +62,9 @@ class Almacen(object):
     # ALUMNOS
     def obtener_alumno(self, alumno):
         """Obtiene un alumno indicado.
-        :param alumno:Instancia de alumno (Alumno)
-        :return:Alumno (Alumno) si existe o None en caso contrario
+
+        :param alumno: Instancia de alumno (Alumno)
+        :return: Alumno (Alumno) si existe o None en caso contrario
         """
         alu = None
         for a in self.listar_alumnos_centro():
@@ -73,8 +75,9 @@ class Almacen(object):
 
     def listar_alumnos_asignatura(self, asignatura):
         """Obtiene una lista de los alumnos expedientados en la asignatura indicada.
-        :param asignatura:Instancia de asignatura (Asignatura)
-        :return:Lista de Alumnos (list) si existe asignatura y alumnos en ella o None en caso contrario
+
+        :param asignatura: Instancia de asignatura (Asignatura)
+        :return: Lista de Alumnos (list) si existe asignatura y alumnos en ella o None en caso contrario
         """
         alus = []
         for e in self.listar_expedientes_centro():
@@ -84,15 +87,17 @@ class Almacen(object):
 
     def listar_alumnos_centro(self):
         """Obtiene una lista de los alumnos involucrados en el centro académico.
-        :return:Lista de Alumnos (list)
+
+        :return: Lista de Alumnos (list)
         """
         return self.__get_alumnos()
 
     def listar_alumnos_docente(self, docente):
         """Obtiene una lista de los alumnos expedientados en alguna asignatura que involucre al docente indicado.
-        :param docente:Instancia de docente (Docente)
-        :return:Lista de Alumnos (list) si existe docente con asignatura(s) y alumnos en ella(s)
-        o None en caso contrario
+
+        :param docente: Instancia de docente (Docente)
+        :return: Lista de Alumnos (list) si existe docente con asignatura(s) y alumnos en ella(s)
+         o None en caso contrario
         """
         alus = []
         asig_doc = self.listar_asignaturas_docente(docente)
@@ -106,8 +111,9 @@ class Almacen(object):
 
     def listar_alumnos_grado(self, grado):
         """Obtiene una lista de los alumnos involucrados en un grado/curso indicado.
-        :param grado:Instancia de grado/curso (Grado)
-        :return:Lista de alumnos (list) si existen o None en caso contrario
+
+        :param grado: Instancia de grado/curso (Grado)
+        :return: Lista de alumnos (list) si existen o None en caso contrario
         """
         alus = None
         for g in self.listar_grados_centro():
@@ -124,8 +130,9 @@ class Almacen(object):
 
     def obtener_asignatura(self, asignatura):
         """Obtiene una asignatura indicada.
-        :param asignatura:Instancia de asignatura (Asignatura)
-        :return:Asignatura (Asignatura) si existe o None en caso contrario
+
+        :param asignatura: Instancia de asignatura (Asignatura)
+        :return: Asignatura (Asignatura) si existe o None en caso contrario
         """
         asig = None
         for a in self.listar_asignaturas_centro():
@@ -136,14 +143,16 @@ class Almacen(object):
 
     def listar_asignaturas_centro(self):
         """Obtiene una lista de los asignaturas impartidas en el centro académico.
-        :return:Lista de asignaturas (list)
+
+        :return: Lista de asignaturas (list)
         """
         return self.__get_asignaturas()
 
     def listar_asignaturas_docente(self, docente):
         """Obtiene una lista de las asignaturas que involucra al docente indicado.
-        :param docente:Instancia de docente (Docente)
-        :return:Lista de asignaturas (list) si existe docente con asignatura(s) o None en caso contrario
+
+        :param docente: Instancia de docente (Docente)
+        :return: Lista de asignaturas (list) si existe docente con asignatura(s) o None en caso contrario
         """
         asigs = []
         for e in self.listar_ensenyanzas_centro():
@@ -154,8 +163,9 @@ class Almacen(object):
 
     def listar_asignaturas_grado(self, grado):
         """Obtiene una lista de las asignaturas que estan asociadas al grado/curso indicado.
-        :param grado:Instancia de grado/curso (Grado)
-        :return:Lista de asignaturas (list) si existe grado/curso con asignatura(s) o None en caso contrario
+
+        :param grado: Instancia de grado/curso (Grado)
+        :return: Lista de asignaturas (list) si existe grado/curso con asignatura(s) o None en caso contrario
         """
         asigs = None
         for g in self.listar_grados_centro():
@@ -168,8 +178,9 @@ class Almacen(object):
 
     def obtener_docente(self, docente):
         """Obtiene un docente indicado.
-        :param docente:Instancia de docente (Docente)
-        :return:Docente (Docente) si existe o None en caso contrario
+
+        :param docente: Instancia de docente (Docente)
+        :return: Docente (Docente) si existe o None en caso contrario
         """
         doc = None
         for d in self.listar_docentes_centro():
@@ -180,15 +191,17 @@ class Almacen(object):
 
     def listar_docentes_centro(self):
         """Obtiene una lista de los docentes involucrados en el centro académico.
-        :return:Lista de docentes (list)
+
+        :return: Lista de docentes (list)
         """
         return self.__get_docentes()
 
     # GRADO
     def obtener_grado(self, grado):
         """Obtiene un grado/curso indicado.
-        :param grado:Instancia de grado/curso (Grado)
-        :return:Grado/curso (Grado) si existe o None en caso contrario
+
+        :param grado: Instancia de grado/curso (Grado)
+        :return: Grado/curso (Grado) si existe o None en caso contrario
         """
         gra = None
         for g in self.listar_grados_centro():
@@ -199,14 +212,16 @@ class Almacen(object):
 
     def listar_grados_centro(self):
         """Obtiene una lista de los grados/cursos involucrados en el centro académico.
-        :return:Lista de grados/cursos (list)
+
+        :return: Lista de grados/cursos (list)
         """
         return self.__get_grados()
 
     def listar_grados_docente(self, docente):
         """Obtiene una lista de las grados/cursos que involucra al docente indicado.
-        :param docente:Instancia de docente (Docente)
-        :return:Lista de grados/crusos (list) si existe docente con grados(s)/curso(s) o None en caso contrario
+
+        :param docente: Instancia de docente (Docente)
+        :return: Lista de grados/crusos (list) si existe docente con grados(s)/curso(s) o None en caso contrario
         """
         grads = []
         asignaturas_doc = self.listar_asignaturas_docente(docente)
@@ -220,7 +235,8 @@ class Almacen(object):
 
     def listar_grados_tecnico_calidad(self):
         """Obtiene una lista de los tecnicos de calidad involucrados en el centro académico.
-        :return:Lista de tecnicos de calidad (list)
+
+        :return: Lista de tecnicos de calidad (list)
         """
         return self.listar_grados_centro()
 
@@ -228,10 +244,11 @@ class Almacen(object):
 
     def obtener_expediente(self, alumno, asignatura):
         """Obtiene el expediente de un alumno indicado en una asignatura indicada.
-        :param alumno:Instancia de alumno (Alumno)
-        :param asignatura:Instancia de asignatura (Asignatura)
-        :return:Expediente (Expediente) si existe alumno y asignatura y este primero se encuentra
-        expedientado en la asignatura o None en caso contrario
+
+        :param alumno: Instancia de alumno (Alumno)
+        :param asignatura: Instancia de asignatura (Asignatura)
+        :return: Expediente (Expediente) si existe alumno y asignatura y este primero se encuentra
+         expedientado en la asignatura o None en caso contrario
         """
         exp = None
         for e in self.listar_expedientes_centro():
@@ -242,9 +259,10 @@ class Almacen(object):
 
     def listar_expedientes_alumno(self, alumno):
         """Obtiene una lista de las expedientes que involucran al alumno indicado.
-        :param alumno:Instancia de alumno (Alumno)
-        :return:Lista de expedientes (list) si existe alumno y se encuentra expedientado en alguna asignatura o None en
-        caso contrario
+
+        :param alumno: Instancia de alumno (Alumno)
+        :return: Lista de expedientes (list) si existe alumno y se encuentra expedientado en alguna asignatura o None en
+         caso contrario
         """
         exps = []
         for e in self.listar_expedientes_centro():
@@ -254,14 +272,16 @@ class Almacen(object):
 
     def listar_expedientes_centro(self):
         """Obtiene una lista de los expedientes existentes en el centro académico.
-        :return:Lista de expedientes (list)
+
+        :return: Lista de expedientes (list)
         """
         return self.__get_expedientes()
 
     def listar_expedientes_asignatura(self, asignatura):
         """Obtiene una lista de los expedientes asociados a la asignatura indicada.
-        :param asignatura:Instancia de asignatura (Asignatura)
-        :return:Lista de expedientes (list) si existe asignatura y tiene asociados expedientes o None en caso contrario
+
+        :param asignatura: Instancia de asignatura (Asignatura)
+        :return: Lista de expedientes (list) si existe asignatura y tiene asociados expedientes o None en caso contrario
         """
         exps = []
         for e in self.listar_expedientes_centro():
@@ -271,9 +291,10 @@ class Almacen(object):
 
     def listar_expedientes_grado(self, grado):
         """Obtiene una lista de los expedientes existentes asociados a alguna asignatura del grado/curso indicado.
-        :param grado:Instancia de grado/curso (Grado)
-        :return:Lista de expedientes (list) si existe grado/curso y tiene asignatura(s) con expediente(s) o None en
-        caso contrario
+
+        :param grado: Instancia de grado/curso (Grado)
+        :return: Lista de expedientes (list) si existe grado/curso y tiene asignatura(s) con expediente(s) o None en
+         caso contrario
         """
         exps = []
         asigs_grado = self.listar_asignaturas_grado(grado)
@@ -289,8 +310,9 @@ class Almacen(object):
 
     def obtener_tecnico_calidad(self, tecnico):
         """Obtiene un tecnico indicado.
-        :param tecnico:Instancia de tecnico (Tecnico)
-        :return:Tecnico (Tecnico) si existe o None en caso contrario
+
+        :param tecnico: Instancia de tecnico (Tecnico)
+        :return: Tecnico (Tecnico) si existe o None en caso contrario
         """
         tecn = None
         for t in self.listar_tecnicos_calidad():
@@ -301,7 +323,8 @@ class Almacen(object):
 
     def listar_tecnicos_calidad(self):
         """Obtiene una lista de los tecnicos de calidad existentes en el centro académico.
-        :return:Lista de tecnicos de calidad (list)
+
+        :return: Lista de tecnicos de calidad (list)
         """
         return self.__get_tecnicos_calidad()
 
@@ -309,10 +332,11 @@ class Almacen(object):
 
     def obtener_ensenyanza(self, docente, asignatura):
         """Obtiene la ensenyanza de un docente en una asignatura.
-        :param docente:Instancia de docente (Docente)
-        :param asignatura:Instancia de asignatura (Asignatura)
-        :return:Ensenyanza (Ensenyanza) si existe docente y asignatura y este primero imparte
-        en la asignatura o None en caso contrario
+
+        :param docente: Instancia de docente (Docente)
+        :param asignatura: Instancia de asignatura (Asignatura)
+        :return: Ensenyanza (Ensenyanza) si existe docente y asignatura y este primero imparte
+         en la asignatura o None en caso contrario
         """
         ens = None
         for e in self.listar_ensenyanzas_centro():
@@ -323,6 +347,7 @@ class Almacen(object):
 
     def listar_ensenyanzas_centro(self):
         """Obtiene una lista de las enseñanzas impartidas en el centro académico.
-        :return:Lista de enseñanzas (list)
+
+        :return: Lista de enseñanzas (list)
         """
         return self.__get_ensenyanzas()

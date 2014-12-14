@@ -39,7 +39,7 @@ class TestGradoController(TestCase):
         self.assertNotEqual(self.controlador.get_almacen(), None)
 
     def test_obtener_matriculas_y_menciones(self):
-        """Comprueba comportamiento normal ante grado inexistente.
+        """Comprueba comportamiento normal ante grado inexistente.\n
         Comprueba que ni un docente ni una sesión extraña puedan obtener las matriculas y menciones del grado/curso,
         independientemente del grado/curso indicado.
         """
@@ -49,7 +49,7 @@ class TestGradoController(TestCase):
         self.assertEquals(self.controlador.obtener_matriculas_y_menciones(1, self.sesion_tipo_invalido), None)
 
     def test_obtener_media(self):
-        """Comprueba comportamiento normal ante grado inexistente.
+        """Comprueba comportamiento normal ante grado inexistente.\n
         Comprueba que ni un docente ni una sesión extraña puedan obtener la media del grado/curso,
         independientemente del grado/curso indicado.
         """
@@ -59,7 +59,7 @@ class TestGradoController(TestCase):
         self.assertEquals(self.controlador.obtener_media(1, self.sesion_tipo_invalido), None)
 
     def test_obtener_rango(self):
-        """Comprueba comportamiento normal ante grado inexistente.
+        """Comprueba comportamiento normal ante grado inexistente.\n
         Comprueba que ni un docente ni una sesión extraña puedan obtener los rangos del grado/curso,
         independientemente del grado/curso indicado.
         """

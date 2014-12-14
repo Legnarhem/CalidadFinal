@@ -9,7 +9,7 @@ from src.Terminal import *
 
 
 class TestTerminal(TestCase):
-    """Esta clase corresponde al caso de prueba de src.Terminal.
+    """Esta clase corresponde al caso de prueba de src.Terminal.\n
     En ella solo se prueban aquellos métodos que no requieren de la interaccion del usuario.
     """
 

@@ -45,7 +45,7 @@ class TestAlumnoController(TestCase):
         self.assertNotEqual(self.controlador.get_almacen(), None)
 
     def test_obtener_alus_asignatura(self):
-        """Comprueba comportamiento normal ante asignaturas inexistentes.
+        """Comprueba comportamiento normal ante asignaturas inexistentes.\n
         Comprueba que una sesión extraña no puede obtener los alumnos de una asignatura, con independencia de la
         asignatura indicada.
         """
@@ -55,7 +55,7 @@ class TestAlumnoController(TestCase):
         self.assertEquals(self.controlador.obtener_alus_asignatura(1, self.sesion_tipo_invalido), None)
 
     def test_obtener_alus_grado(self):
-        """Comprueba comportamiento normal ante grados inexistentes.
+        """Comprueba comportamiento normal ante grados inexistentes.\n
         Comprueba que ni un docente ni una sesión extraña puedan obtener los alumnos de un grado, con independencia
         del grado indicado.
         """
@@ -65,7 +65,7 @@ class TestAlumnoController(TestCase):
         self.assertEquals(self.controlador.obtener_alus_grado(1, self.sesion_tipo_invalido), None)
 
     def test_obtener_media(self):
-        """Comprueba comportamiento normal ante alumnos y asignaturas inexistentes.
+        """Comprueba comportamiento normal ante alumnos y asignaturas inexistentes.\n
         Comprueba que una sesión extraña no pueda obtener la media de un alumno, con independencia del
         alumno indicado.
         """
@@ -75,7 +75,7 @@ class TestAlumnoController(TestCase):
         self.assertEquals(self.controlador.obtener_media(self.alumno, "1", self.sesion_tipo_invalido), None)
 
     def test_obtener_media_centro(self):
-        """Comprueba comportamiento normal ante alumno inexistente.
+        """Comprueba comportamiento normal ante alumno inexistente.\n
         Compreba que ni un docente ni una sesion extraña puedan obtener la media del centro
         con independencia del alumno indicado.
         """
@@ -84,7 +84,7 @@ class TestAlumnoController(TestCase):
         self.assertEquals(self.controlador.obtener_media_centro(self.alumno, self.sesion_tipo_invalido), None)
 
     def test_obtener_rango(self):
-        """Comprueba comportamiento normal ante alumno inexistente.
+        """Comprueba comportamiento normal ante alumno inexistente.\n
         Comprueba ni un docente ni una sesión extraña puedan obtener el rango de notas de un alumno,
         con independencia del alumno indicado.
         """

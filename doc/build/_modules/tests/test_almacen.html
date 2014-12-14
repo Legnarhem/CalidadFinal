@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tests.test_almacen &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>tests.test_almacen</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <h1>Source code for tests.test_almacen</h1><div class="highlight"><pre>
+<span class="c"># encoding=UTF-8</span>
+<span class="sd">&quot;&quot;&quot;Módulo de Test para la clase src.Almacen</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gregorio y Ángel&#39;</span>
+
+<span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">src.Almacen</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Grado</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Alumno</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Asignatura</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Docente</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="TestAlmacen"><a class="viewcode-back" href="../../test_almacen.html#tests.test_almacen.TestAlmacen">[docs]</a><span class="k">class</span> <span class="nc">TestAlmacen</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Esta clase corresponde al caso de prueba de src.TestAlmacen.\n</span>
+<span class="sd">    En ella solo se prueban aquellos métodos no cubiertos por los tests de src/Controladores.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TestAlmacen.setUp"><a class="viewcode-back" href="../../test_almacen.html#tests.test_almacen.TestAlmacen.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Este método prepara el contexto necesario para las pruebas de TestTerminal</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Preparando contexto para &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">almacen</span> <span class="o">=</span> <span class="n">Almacen</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alumno_valido</span> <span class="o">=</span> <span class="n">Alumno</span><span class="p">(</span><span class="s">&quot;13936349T&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">asignatura_invalida</span> <span class="o">=</span> <span class="n">Asignatura</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">docente_valido</span> <span class="o">=</span> <span class="n">Docente</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&quot;49251223B&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grado_valido</span> <span class="o">=</span> <span class="n">Grado</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestAlmacen.tearDown"><a class="viewcode-back" href="../../test_almacen.html#tests.test_almacen.TestAlmacen.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Este método elimina el contexto utilizado para las pruebas de TestTerminal</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Destruyendo contexto para &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">almacen</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">alumno_valido</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">asignatura_invalida</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">docente_valido</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">grado_valido</span>
+</div>
+<div class="viewcode-block" id="TestAlmacen.test_obtener_alumno"><a class="viewcode-back" href="../../test_almacen.html#tests.test_almacen.TestAlmacen.test_obtener_alumno">[docs]</a>    <span class="k">def</span> <span class="nf">test_obtener_alumno</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba el comportamiento normal ante un alumno válido.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">almacen</span><span class="o">.</span><span class="n">obtener_alumno</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alumno_valido</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>   
+</div>
+<div class="viewcode-block" id="TestAlmacen.test_listar_alumnos_grado"><a class="viewcode-back" href="../../test_almacen.html#tests.test_almacen.TestAlmacen.test_listar_alumnos_grado">[docs]</a>    <span class="k">def</span> <span class="nf">test_listar_alumnos_grado</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba el comportamiento normal ante un grado valido.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">almacen</span><span class="o">.</span><span class="n">listar_alumnos_grado</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grado_valido</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestAlmacen.test_obtener_grado"><a class="viewcode-back" href="../../test_almacen.html#tests.test_almacen.TestAlmacen.test_obtener_grado">[docs]</a>    <span class="k">def</span> <span class="nf">test_obtener_grado</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba el comportamiento normal ante un grado valido.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">almacen</span><span class="o">.</span><span class="n">obtener_grado</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grado_valido</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestAlmacen.test_listar_grados_docente"><a class="viewcode-back" href="../../test_almacen.html#tests.test_almacen.TestAlmacen.test_listar_grados_docente">[docs]</a>    <span class="k">def</span> <span class="nf">test_listar_grados_docente</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba el comportamiento normal ante un docente valido.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">almacen</span><span class="o">.</span><span class="n">listar_grados_docente</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">docente_valido</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestAlmacen.test_listar_expedientes_grado"><a class="viewcode-back" href="../../test_almacen.html#tests.test_almacen.TestAlmacen.test_listar_expedientes_grado">[docs]</a>    <span class="k">def</span> <span class="nf">test_listar_expedientes_grado</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba el comportamiento normal ante un grado valido.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">almacen</span><span class="o">.</span><span class="n">listar_expedientes_grado</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grado_valido</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestAlmacen.test_obtener_ensenyanza"><a class="viewcode-back" href="../../test_almacen.html#tests.test_almacen.TestAlmacen.test_obtener_ensenyanza">[docs]</a>    <span class="k">def</span> <span class="nf">test_obtener_ensenyanza</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba el comportamiento normal ante un docente valido y asignatura inexistente.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">almacen</span><span class="o">.</span><span class="n">obtener_ensenyanza</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">docente_valido</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">asignatura_invalida</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span></div></div>
+</pre></div>
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

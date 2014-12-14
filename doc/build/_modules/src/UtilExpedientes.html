@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.UtilExpedientes &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>src.UtilExpedientes</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <h1>Source code for src.UtilExpedientes</h1><div class="highlight"><pre>
+<span class="c"># encoding=UTF-8</span>
+<span class="sd">&quot;&quot;&quot;Módulo UtilExpedientes</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gregorio y Ángel&#39;</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Resumen</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Rango</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.MatriculasYMenciones</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="UtilExpedientes"><a class="viewcode-back" href="../../utilExpedientes.html#src.UtilExpedientes.UtilExpedientes">[docs]</a><span class="k">class</span> <span class="nc">UtilExpedientes</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;En esta clase se gestionan los expedientes de los alumnos</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">NOTA_MATRICULAS</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">NOTA_MENCION</span> <span class="o">=</span> <span class="mf">9.5</span>
+
+    <span class="n">NOTA_APROBADOS</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">NOTA_NOTABLES</span> <span class="o">=</span> <span class="mi">7</span>
+    <span class="n">NOTA_SOBRESALIENTES</span> <span class="o">=</span> <span class="mi">9</span>
+    <span class="n">NOTA_LIMITE</span> <span class="o">=</span> <span class="mi">10</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="UtilExpedientes.get_matriculas_y_menciones"><a class="viewcode-back" href="../../utilExpedientes.html#src.UtilExpedientes.UtilExpedientes.get_matriculas_y_menciones">[docs]</a>    <span class="k">def</span> <span class="nf">get_matriculas_y_menciones</span><span class="p">(</span><span class="n">expedientes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene el número de matrículas y menciones.</span>
+
+<span class="sd">        :param expedientes: Listas de expedientes</span>
+<span class="sd">        :return: Las matrículas y menciones (MatriculasYMenciones)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mat</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">men</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">expedientes</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">expedientes</span><span class="p">:</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">UtilExpedientes</span><span class="o">.</span><span class="n">get_media_expediente</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">UtilExpedientes</span><span class="o">.</span><span class="n">NOTA_MENCION</span> <span class="o">&lt;=</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="n">UtilExpedientes</span><span class="o">.</span><span class="n">NOTA_MATRICULAS</span><span class="p">:</span>
+                <span class="n">men</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">m</span> <span class="o">==</span> <span class="n">UtilExpedientes</span><span class="o">.</span><span class="n">NOTA_MATRICULAS</span><span class="p">:</span>
+                <span class="n">mat</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">MatriculasYMenciones</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">men</span><span class="p">)</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="UtilExpedientes.get_media_expediente"><a class="viewcode-back" href="../../utilExpedientes.html#src.UtilExpedientes.UtilExpedientes.get_media_expediente">[docs]</a>    <span class="k">def</span> <span class="nf">get_media_expediente</span><span class="p">(</span><span class="n">expediente</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene la nota media de un expediente.</span>
+
+<span class="sd">        :param expediente: El expediente de un alumno (Expediente)</span>
+<span class="sd">        :return: media de las notas del expediente (float)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nota_acumulada</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">n_notas</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">expediente</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">expediente</span><span class="o">.</span><span class="n">get_notas</span><span class="p">():</span>
+            <span class="n">nota_acumulada</span> <span class="o">+=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+            <span class="n">n_notas</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">nota_acumulada</span> <span class="o">/</span> <span class="n">n_notas</span><span class="p">)</span> <span class="k">if</span> <span class="n">n_notas</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+</div>
+<div class="viewcode-block" id="UtilExpedientes.get_media_expedientes"><a class="viewcode-back" href="../../utilExpedientes.html#src.UtilExpedientes.UtilExpedientes.get_media_expedientes">[docs]</a>    <span class="k">def</span> <span class="nf">get_media_expedientes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expedientes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene la nota media de varios expedientes.</span>
+
+<span class="sd">        :param expedientes: Lista de expedientes (list)</span>
+<span class="sd">        :return: media de las notas de los expedientes (float)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">media_acumulada</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">n_expedientes</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">expedientes</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">expedientes</span><span class="p">:</span>
+            <span class="n">media_acumulada</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_media_expediente</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="n">n_expedientes</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">media_acumulada</span> <span class="o">/</span> <span class="n">n_expedientes</span><span class="p">)</span> <span class="k">if</span> <span class="n">n_expedientes</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+</div>
+<div class="viewcode-block" id="UtilExpedientes.get_rangos_expedientes"><a class="viewcode-back" href="../../utilExpedientes.html#src.UtilExpedientes.UtilExpedientes.get_rangos_expedientes">[docs]</a>    <span class="k">def</span> <span class="nf">get_rangos_expedientes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expedientes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Clasifica las notas de varios expedientes en los diferentes rangos de notas.</span>
+
+<span class="sd">        :param expedientes: Lista de expedientes (list)</span>
+<span class="sd">        :return: Rango de notas (Rango)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">suspensos</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">aprobados</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">notables</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">sobresalientes</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">expedientes</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">expedientes</span><span class="p">:</span>
+            <span class="n">media</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_media_expediente</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">media</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NOTA_APROBADOS</span><span class="p">:</span>
+                <span class="n">suspensos</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">NOTA_APROBADOS</span> <span class="o">&lt;=</span> <span class="n">media</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">NOTA_NOTABLES</span><span class="p">:</span>
+                <span class="n">aprobados</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">NOTA_NOTABLES</span> <span class="o">&lt;=</span> <span class="n">media</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">NOTA_SOBRESALIENTES</span><span class="p">:</span>
+                <span class="n">notables</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">NOTA_SOBRESALIENTES</span> <span class="o">&lt;=</span> <span class="n">media</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NOTA_LIMITE</span><span class="p">:</span>
+                <span class="n">sobresalientes</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">Rango</span><span class="p">(</span><span class="n">suspensos</span><span class="p">,</span> <span class="n">aprobados</span><span class="p">,</span> <span class="n">notables</span><span class="p">,</span> <span class="n">sobresalientes</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="UtilExpedientes.get_resumen"><a class="viewcode-back" href="../../utilExpedientes.html#src.UtilExpedientes.UtilExpedientes.get_resumen">[docs]</a>    <span class="k">def</span> <span class="nf">get_resumen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expedientes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene un resumen estadístico de un conjunto de expedientes.</span>
+
+<span class="sd">        :param expedientes: Lista de expedientes (list)</span>
+<span class="sd">        :return: Resumen estadístico de los expedientes (Resumen)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">asignaturas</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">nota_alumno_acumulada</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">nota_asignatura_acumulada</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">n_expedientes</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">expedientes</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">expedientes</span><span class="p">:</span>
+            <span class="n">asig</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">get_asignatura</span><span class="p">()</span><span class="o">.</span><span class="n">get_codigo</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">asig</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">asignaturas</span><span class="p">:</span>
+                <span class="n">asignaturas</span><span class="p">[</span><span class="n">asig</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">asignaturas</span><span class="p">[</span><span class="n">asig</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">asig</span> <span class="ow">in</span> <span class="n">asignaturas</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">asignaturas</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">asig</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="n">l</span><span class="p">:</span>
+                <span class="n">nota_alumno_acumulada</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_media_expediente</span><span class="p">(</span><span class="n">exp</span><span class="p">)</span>
+            <span class="n">nota_asignatura_acumulada</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_media_expedientes</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+            <span class="n">n_expedientes</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Resumen</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">nota_alumno_acumulada</span> <span class="o">/</span> <span class="n">n_expedientes</span><span class="p">),</span>
+                       <span class="nb">float</span><span class="p">(</span><span class="n">nota_asignatura_acumulada</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">asignaturas</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>  <span class="k">if</span> <span class="p">(</span><span class="n">n_expedientes</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span>
+                        <span class="nb">len</span><span class="p">(</span><span class="n">asignaturas</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="n">Resumen</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span></div></div>
+</pre></div>
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

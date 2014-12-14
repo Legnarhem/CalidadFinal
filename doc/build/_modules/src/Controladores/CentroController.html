@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.Controladores.CentroController &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../../index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>src.Controladores.CentroController</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <h1>Source code for src.Controladores.CentroController</h1><div class="highlight"><pre>
+<span class="c"># encoding=UTF-8</span>
+<span class="sd">&quot;&quot;&quot;Módulo CentroController del paquete Controladores</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gregorio y Ángel&#39;</span>
+<span class="kn">from</span> <span class="nn">src.Almacen</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.UtilExpedientes</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="CentroController"><a class="viewcode-back" href="../../../centroController.html#src.Controladores.CentroController.CentroController">[docs]</a><span class="k">class</span> <span class="nc">CentroController</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Esta clase es un controlador de la entidad Centro.\n</span>
+<span class="sd">        Args:\n</span>
+<span class="sd">        terminales (list&lt;Terminal): Lista de terminales/vistas asociadas al controlador</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terminales</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__terminales</span> <span class="o">=</span> <span class="n">terminales</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="CentroController.get_almacen"><a class="viewcode-back" href="../../../centroController.html#src.Controladores.CentroController.CentroController.get_almacen">[docs]</a>    <span class="k">def</span> <span class="nf">get_almacen</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una instancia de Almacen.</span>
+
+<span class="sd">        :return: Instancia de Almacen (Almacen)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Almacen</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="CentroController.obtener_resumen"><a class="viewcode-back" href="../../../centroController.html#src.Controladores.CentroController.CentroController.obtener_resumen">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_resumen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sesion</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene un resumen estadístico del estado de la calidad del centro académico, si el usuario</span>
+<span class="sd">        conectado al gestor académico tiene acceso.</span>
+
+<span class="sd">        :param sesion: Sesion del usuario conectado al gestor académico (Sesion)</span>
+<span class="sd">        :return: Resumen estadístico del estado del centro académico (Resumen), si existe,</span>
+<span class="sd">         o None en caso contrario o de carencia de privilegios</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">sesion</span><span class="o">.</span><span class="n">get_tipo</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;TecnicoCalidad&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">UtilExpedientes</span><span class="p">()</span><span class="o">.</span><span class="n">get_resumen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">()</span><span class="o">.</span><span class="n">listar_expedientes_centro</span><span class="p">())</span>
+        <span class="k">return</span> <span class="bp">None</span></div></div>
+</pre></div>
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

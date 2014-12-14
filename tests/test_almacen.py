@@ -12,7 +12,7 @@ from src.Entidades.Docente import *
 
 
 class TestAlmacen(TestCase):
-    """Esta clase corresponde al caso de prueba de src.TestAlmacen.
+    """Esta clase corresponde al caso de prueba de src.TestAlmacen.\n
     En ella solo se prueban aquellos métodos no cubiertos por los tests de src/Controladores.
     """
 

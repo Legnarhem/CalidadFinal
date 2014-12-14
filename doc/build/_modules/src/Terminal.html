@@ -1,0 +1,656 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.Terminal &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>src.Terminal</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <h1>Source code for src.Terminal</h1><div class="highlight"><pre>
+<span class="c"># encoding=UTF-8</span>
+<span class="sd">&quot;&quot;&quot;Módulo Terminal</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gregorio y Ángel&#39;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<div class="viewcode-block" id="Terminal"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal">[docs]</a><span class="k">class</span> <span class="nc">Terminal</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Esta clase es la vista del programa.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__alumnoController</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__asignaturaController</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__centroController</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__gradoController</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__sesionController</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__sesion</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="Terminal.get_alumno_controller"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal.get_alumno_controller">[docs]</a>    <span class="k">def</span> <span class="nf">get_alumno_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene el controlador de la entidad alumno.</span>
+
+<span class="sd">        :return: Controlador alumno (AlumnoController)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__alumnoController</span>
+</div>
+<div class="viewcode-block" id="Terminal.get_asignatura_controller"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal.get_asignatura_controller">[docs]</a>    <span class="k">def</span> <span class="nf">get_asignatura_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene el controlador de la entidad asignatura.</span>
+
+<span class="sd">        :return: Controlador asignatura (AsignaturaController)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__asignaturaController</span>
+</div>
+<div class="viewcode-block" id="Terminal.get_centro_controller"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal.get_centro_controller">[docs]</a>    <span class="k">def</span> <span class="nf">get_centro_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene el controlador de la entidad centro.</span>
+
+<span class="sd">        :return: Controlador centro (CentroController)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__centroController</span>
+</div>
+<div class="viewcode-block" id="Terminal.get_grado_controller"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal.get_grado_controller">[docs]</a>    <span class="k">def</span> <span class="nf">get_grado_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene el controlador de la entidad grado.</span>
+
+<span class="sd">        :return: Controlador grado (GradoController)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__gradoController</span>
+</div>
+<div class="viewcode-block" id="Terminal.get_sesion_controller"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal.get_sesion_controller">[docs]</a>    <span class="k">def</span> <span class="nf">get_sesion_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene el controlador de la entidad sesion.</span>
+
+<span class="sd">        :return: Controlador sesion (SesionController)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sesionController</span>
+</div>
+<div class="viewcode-block" id="Terminal.get_sesion"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal.get_sesion">[docs]</a>    <span class="k">def</span> <span class="nf">get_sesion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene la sesión activa asignada a este terminal.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sesion</span>
+</div>
+<div class="viewcode-block" id="Terminal.set_alumno_controller"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal.set_alumno_controller">[docs]</a>    <span class="k">def</span> <span class="nf">set_alumno_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alumno_controller</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Actualiza el controlador de la entidad alumno.</span>
+
+<span class="sd">        :param alumno_controller: Controlador de alumno (AlumnoController)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__alumnoController</span> <span class="o">=</span> <span class="n">alumno_controller</span>
+</div>
+<div class="viewcode-block" id="Terminal.set_asignatura_controller"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal.set_asignatura_controller">[docs]</a>    <span class="k">def</span> <span class="nf">set_asignatura_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asignatura_controller</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Actualiza el controlador de la entidad asignatura.</span>
+
+<span class="sd">        :param asignatura_controller: Controlador de asignatura (AsignaturaController)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__asignaturaController</span> <span class="o">=</span> <span class="n">asignatura_controller</span>
+</div>
+<div class="viewcode-block" id="Terminal.set_centro_controller"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal.set_centro_controller">[docs]</a>    <span class="k">def</span> <span class="nf">set_centro_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">centro_controller</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Actualiza el controlador de la entidad centro.</span>
+
+<span class="sd">        :param centro_controller: Controlador de centro (CentroController)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__centroController</span> <span class="o">=</span> <span class="n">centro_controller</span>
+</div>
+<div class="viewcode-block" id="Terminal.set_grado_controller"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal.set_grado_controller">[docs]</a>    <span class="k">def</span> <span class="nf">set_grado_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grado_controller</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Actualiza el controlador de la entidad grado.</span>
+
+<span class="sd">        :param grado_controller: Controlador de grado (GradoController)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__gradoController</span> <span class="o">=</span> <span class="n">grado_controller</span>
+</div>
+<div class="viewcode-block" id="Terminal.set_sesion_controller"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal.set_sesion_controller">[docs]</a>    <span class="k">def</span> <span class="nf">set_sesion_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sesion_controller</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Actualiza el controlador de la entidad sesión.</span>
+
+<span class="sd">        :param sesion_controller: Controlador de sesión (SesionController)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__sesionController</span> <span class="o">=</span> <span class="n">sesion_controller</span>
+</div>
+<div class="viewcode-block" id="Terminal.set_sesion"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal.set_sesion">[docs]</a>    <span class="k">def</span> <span class="nf">set_sesion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sesion</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Actualiza la sesión activa del terminal.</span>
+
+<span class="sd">        :param sesion: Sesión activa (Sesion)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__sesion</span> <span class="o">=</span> <span class="n">sesion</span>
+</div>
+<div class="viewcode-block" id="Terminal.iniciar"><a class="viewcode-back" href="../../terminal.html#src.Terminal.Terminal.iniciar">[docs]</a>    <span class="k">def</span> <span class="nf">iniciar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Este método en la primera pantalla que nos aparece al iniciar el programa.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">str_logo1</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">   _____           _</span>
+<span class="s">  / ____|         | |</span>
+<span class="s"> | |  __  ___  ___| |_ ___  _ __</span>
+<span class="s"> | | |_ |/ _ </span><span class="se">\\</span><span class="s">/ __| __/ _ </span><span class="se">\\</span><span class="s">| &#39;__|</span>
+<span class="s"> | |__| |  __/</span><span class="se">\\</span><span class="s">__ </span><span class="se">\\</span><span class="s"> || (_) | |</span>
+<span class="s">  </span><span class="se">\\</span><span class="s">_____|</span><span class="se">\\</span><span class="s">___||___/</span><span class="se">\\</span><span class="s">__</span><span class="se">\\</span><span class="s">___/|_|</span>
+<span class="s">&quot;&quot;&quot;</span>
+        <span class="n">str_logo2</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">                        _                _</span>
+<span class="s">     /</span><span class="se">\\</span><span class="s">                | |              (_)</span>
+<span class="s">    /  </span><span class="se">\\</span><span class="s">   ___ __ _  __| | ___ _ __ ___  _  ___ ___</span>
+<span class="s">   / /</span><span class="se">\\</span><span class="s"> </span><span class="se">\\</span><span class="s"> / __/ _` |/ _` |/ _ </span><span class="se">\\</span><span class="s"> &#39;_ ` _ </span><span class="se">\\</span><span class="s">| |/ __/ _ </span><span class="se">\\</span><span class="s"></span>
+<span class="s">  / ____ </span><span class="se">\\</span><span class="s"> (_| (_| | (_| |  __/ | | | | | | (_| (_) |</span>
+<span class="s"> /_/    </span><span class="se">\\</span><span class="s">_</span><span class="se">\\</span><span class="s">___</span><span class="se">\\</span><span class="s">__,_|</span><span class="se">\\</span><span class="s">__,_|</span><span class="se">\\</span><span class="s">___|_| |_| |_|_|</span><span class="se">\\</span><span class="s">___</span><span class="se">\\</span><span class="s">___/ ®</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+        <span class="n">str_copy1</span> <span class="o">=</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">Angel Crujera &amp; Gregorio L. Mármol&quot;</span>
+        <span class="n">str_copy2</span> <span class="o">=</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">Copyright 2015 – Todos los derechos reservados&quot;</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="n">str_logo1</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">str_logo2</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">str_copy1</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">str_copy2</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;Presione una tecla para continuar...&quot;</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">()</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__login</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">()</span><span class="o">.</span><span class="n">get_tipo</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;Docente&quot;</span><span class="p">:</span>
+            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__menu_docente</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">()</span><span class="o">.</span><span class="n">get_tipo</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;TecnicoCalidad&quot;</span><span class="p">:</span>
+            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__menu_tecnico</span><span class="p">()</span>
+</div>
+    <span class="k">def</span> <span class="nf">__clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Limpia el terminal.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&#39;nt&#39;</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;cls&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;clear&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Método que gestiona el log en la aplicación.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">str_login</span> <span class="o">=</span> <span class="s">&quot;Por favor, identifiquese.&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">str_login</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">usr</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;Usuario: </span><span class="se">\t</span><span class="s">&quot;</span><span class="p">)</span>
+        <span class="n">pwd</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;Contraseña: </span><span class="se">\t</span><span class="s">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_sesion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_sesion_controller</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_sesion</span><span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="n">pwd</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">()</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;Credenciales incorrectos.&quot;</span><span class="p">)</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__welcome</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Imprime la bienvenida al usuario que ha iniciado sesión.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;-----------------------o--------------------------&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;         Bienvenido de nuevo, </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">()</span><span class="o">.</span><span class="n">get_dni</span><span class="p">()))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;-----------------------o--------------------------&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__menu_docente</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Imprime el menú de un usuario registrado como docente y gestiona la siguiente pantalla.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__welcome</span><span class="p">()</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot; Elija opcion:&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 1) Gestionar asignaturas&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 0) Salir&quot;</span><span class="p">)</span>
+
+        <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">opc</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">opc</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; &gt;&gt; &quot;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">opc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">asignatura</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__menu_asignaturas</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_asignaturas</span><span class="p">(</span><span class="n">asignatura</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">exit</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__sub_menu_alumnos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alumno</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Imprime un menú con diferentes opciones sobre un alumno seleccionado y gestiona el paso</span>
+<span class="sd">        a la siguiente pantalla.</span>
+
+<span class="sd">        :param alumno: Alumno (Alumno)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">alumno</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot; Elija opcion:&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 1) Mostrar media de alumno&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 2) Mostrar rangos de alumno&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 0) Volver&quot;</span><span class="p">)</span>
+
+            <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+            <span class="k">while</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">opc</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; &gt;&gt; &quot;</span><span class="p">))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+            <span class="k">if</span> <span class="n">opc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_media_alumno_centro</span><span class="p">(</span><span class="n">alumno</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">opc</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_rangos_alumno_centro</span><span class="p">(</span><span class="n">alumno</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__sub_menu_asignaturas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asignatura</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Imprime un menú con diferentes opciones sobre una asignatura seleccionada y gestiona el paso</span>
+<span class="sd">        a la siguiente pantalla.</span>
+
+<span class="sd">        :param asignatura: Asignatura (Asignatura)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">asignatura</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot; Elija opcion:&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 1) Mostrar media de alumno&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 2) Mostrar media de asignatura&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 3) Mostrar rangos de asignatura&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 0) Volver&quot;</span><span class="p">)</span>
+
+            <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+            <span class="k">while</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">opc</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; &gt;&gt; &quot;</span><span class="p">))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+            <span class="k">if</span> <span class="n">opc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">alumno</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_alumnos_asignatura</span><span class="p">(</span><span class="n">asignatura</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_med_alu_asignatura</span><span class="p">(</span><span class="n">alumno</span><span class="p">,</span> <span class="n">asignatura</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">opc</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_media_asignatura</span><span class="p">(</span><span class="n">asignatura</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">opc</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_rangos_asignatura</span><span class="p">(</span><span class="n">asignatura</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__sub_menu_grados</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grado</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Imprime un menú con diferentes opciones sobre un grado seleccionado y gestiona el paso</span>
+<span class="sd">        a la siguiente pantalla.</span>
+
+<span class="sd">        :param grado: Grado (Grado)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">grado</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot; Elija opcion:&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 1) Mostrar media grado&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 2) Mostrar rangos grado&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 3) Mostrar matriculas y menciones&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 0) Volver&quot;</span><span class="p">)</span>
+
+            <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+            <span class="k">while</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">opc</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; &gt;&gt; &quot;</span><span class="p">))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+            <span class="k">if</span> <span class="n">opc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_media_grado</span><span class="p">(</span><span class="n">grado</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">opc</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_rangos_grado</span><span class="p">(</span><span class="n">grado</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">opc</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_mat_y_men_grado</span><span class="p">(</span><span class="n">grado</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__sub_menu_alumnos_asignatura</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asignatura</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Imprime un menú con los diferentes alumnos que pertenecen a una asignatura y gestiona el paso a la siguiente</span>
+<span class="sd">        pantalla, imprime si el usuario no tiene acceso a dicha información.</span>
+
+<span class="sd">        :param asignatura: Asignatura de la que queremos obtener los alumnos (Asignatura)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">asignatura</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">mis_alumnos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_alumno_controller</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_alus_asignatura</span><span class="p">(</span><span class="n">asignatura</span><span class="o">.</span><span class="n">get_codigo</span><span class="p">(),</span>
+                                                                               <span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_alumnos</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot; Elija alumno:&quot;</span><span class="p">)</span>
+                <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_alumnos</span><span class="p">):</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="si">%d</span><span class="s">) </span><span class="si">%s</span><span class="s">, </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mis_alumnos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_apellidos</span><span class="p">(),</span> <span class="n">mis_alumnos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">()))</span>
+                    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">while</span> <span class="ow">not</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">opc</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_alumnos</span><span class="p">):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">opc</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; &gt;&gt; &quot;</span><span class="p">))</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="k">return</span> <span class="n">mis_alumnos</span><span class="p">[</span><span class="n">opc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usted no tiene acceso a alumno alguno&quot;</span><span class="p">)</span>
+                <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__sub_menu_med_alu_asignatura</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alumno</span><span class="p">,</span> <span class="n">asignatura</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Muestra la media de un alumno en una asignatura, en caso de que el usuario no tenga acceso a dicha</span>
+<span class="sd">         información se imprimirá en pantalla.</span>
+
+<span class="sd">        :param alumno: Alumno del que queremos obtener la media de las notas (Alumno)</span>
+<span class="sd">        :param asignatura: Asignatura de la que queremos obtener la nota media (Asignatura)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">alumno</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+            <span class="n">media</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_alumno_controller</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_media</span><span class="p">(</span><span class="n">alumno</span><span class="o">.</span><span class="n">get_dni</span><span class="p">(),</span> <span class="n">asignatura</span><span class="o">.</span><span class="n">get_codigo</span><span class="p">(),</span>
+                                                               <span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">media</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot; La media de </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s"> en la asignatura es </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span>
+                      <span class="p">(</span><span class="n">alumno</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">(),</span> <span class="n">alumno</span><span class="o">.</span><span class="n">get_apellidos</span><span class="p">(),</span> <span class="n">media</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usted no tiene acceso a la media del alumno&quot;</span><span class="p">)</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__sub_menu_media_alumno_centro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alumno</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Muestra la nota media de un alumno en el centro, en caso de que el usuario no tenga acceso a dicha</span>
+<span class="sd">        información se mostrará en pantalla.</span>
+
+<span class="sd">        :param alumno: Alumno del que queremos obtener la nota media en el centro (Alumno)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">alumno</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+            <span class="n">media</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_alumno_controller</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_media_centro</span><span class="p">(</span><span class="n">alumno</span><span class="o">.</span><span class="n">get_dni</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">media</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot; La media global de </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s"> en el centro es </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">alumno</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">(),</span> <span class="n">alumno</span><span class="o">.</span><span class="n">get_apellidos</span><span class="p">(),</span> <span class="n">media</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usted no tiene acceso a la media global del alumno&quot;</span><span class="p">)</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__sub_menu_media_grado</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grado</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Muestra la nota media de los alumnos de un grado concreto, en caso de que el usuario no tenga acceso a dicha</span>
+<span class="sd">        información lo muestra por pantalla.</span>
+
+<span class="sd">        :param grado: Grado del que queremos obtener la nota media de sus alumnos (Grado)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">grado</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+            <span class="n">media</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_grado_controller</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_media</span><span class="p">(</span><span class="n">grado</span><span class="o">.</span><span class="n">get_codigo</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">media</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot; La media del grado de </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s"> es de </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">grado</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">(),</span> <span class="n">media</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usted no tiene acceso a la media global del grado&quot;</span><span class="p">)</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__sub_menu_media_asignatura</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asignatura</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Muestra la nota media de los alumnos de una asignatura, en caso de que el usuario no tenga acceso a dicha</span>
+<span class="sd">        información se mostrará en pantalla.</span>
+
+<span class="sd">        :param asignatura: Asignatura de la que queremos obtener la nota media de sus alumnos (Asignatura)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">asignatura</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+            <span class="n">media</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_asignatura_controller</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_media</span><span class="p">(</span><span class="n">asignatura</span><span class="o">.</span><span class="n">get_codigo</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">media</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot; El promedio de nota de la asignatura de </span><span class="si">%s</span><span class="s"> es </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">asignatura</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">(),</span> <span class="n">media</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usted no tiene acceso a la media de la asignatura&quot;</span><span class="p">)</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__sub_menu_rangos_alumno_centro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alumno</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Muestra los rangos de notas de un alumno del centro, en caso de que el usuario no tenga acceso a dicha</span>
+<span class="sd">        información se mostrará por pantalla.</span>
+
+<span class="sd">        :param alumno: Alumno del que se quiere obtener el rango de sus notas (Alumno)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">alumno</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+            <span class="n">rango</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_alumno_controller</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_rango</span><span class="p">(</span><span class="n">alumno</span><span class="o">.</span><span class="n">get_dni</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">rango</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot; Estadisticas del alumno </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">alumno</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">(),</span> <span class="n">alumno</span><span class="o">.</span><span class="n">get_apellidos</span><span class="p">()))</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de suspensos totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">rango</span><span class="o">.</span><span class="n">get_suspensos</span><span class="p">())</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de aprobados totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">rango</span><span class="o">.</span><span class="n">get_aprobados</span><span class="p">())</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de notables totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">rango</span><span class="o">.</span><span class="n">get_notables</span><span class="p">())</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de sobresalientes totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">rango</span><span class="o">.</span><span class="n">get_sobresalientes</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usted no tiene acceso a los rangos del alumno&quot;</span><span class="p">)</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__sub_menu_rangos_asignatura</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asignatura</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Muestra los rangos de notas de una asignatura, en caso de que el usuario no tenga acceso a dicha información</span>
+<span class="sd">        se mostrará por pantalla.</span>
+
+<span class="sd">        :param asignatura: Asignatura del que se quiere obtener el rango de notas (Asignatura)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">asignatura</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+            <span class="n">rango</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_asignatura_controller</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_rango</span><span class="p">(</span><span class="n">asignatura</span><span class="o">.</span><span class="n">get_codigo</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">rango</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot; Estadisticas de la asignatura </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">asignatura</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">())</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de suspensos totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">rango</span><span class="o">.</span><span class="n">get_suspensos</span><span class="p">())</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de aprobados totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">rango</span><span class="o">.</span><span class="n">get_aprobados</span><span class="p">())</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de notables totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">rango</span><span class="o">.</span><span class="n">get_notables</span><span class="p">())</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de sobresalientes totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">rango</span><span class="o">.</span><span class="n">get_sobresalientes</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usted no tiene acceso a los rangos de la asignatura&quot;</span><span class="p">)</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__sub_menu_rangos_grado</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grado</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Muestra los rangos de notas de un grado, en caso de que el usuario no tenga acceso a dicha información</span>
+<span class="sd">        se mostrará por pantalla.</span>
+
+<span class="sd">        :param grado: Grado del que se quiere obtener el rango de notas (Grado)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">grado</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+            <span class="n">rango</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_grado_controller</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_rango</span><span class="p">(</span><span class="n">grado</span><span class="o">.</span><span class="n">get_codigo</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">rango</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot; Estadisticas del grado de </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">grado</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">())</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de suspensos totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">rango</span><span class="o">.</span><span class="n">get_suspensos</span><span class="p">())</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de aprobados totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">rango</span><span class="o">.</span><span class="n">get_aprobados</span><span class="p">())</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de notables totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">rango</span><span class="o">.</span><span class="n">get_notables</span><span class="p">())</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de sobresalientes totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">rango</span><span class="o">.</span><span class="n">get_sobresalientes</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usted no tiene acceso a los rangos del grado&quot;</span><span class="p">)</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__sub_menu_mat_y_men_grado</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grado</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Muestra el número de matrículas y menciones de un grado, en caso de que el usuario no tenga acceso a dicha</span>
+<span class="sd">        información se mostrará por pantalla.</span>
+
+<span class="sd">        :param grado: Grado del que se quiere obtener las matrículas y menciones (Grado)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">grado</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+            <span class="n">matriculas_y_menciones</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_grado_controller</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_matriculas_y_menciones</span><span class="p">(</span><span class="n">grado</span><span class="o">.</span><span class="n">get_codigo</span><span class="p">(),</span>
+                                                                                                <span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">matriculas_y_menciones</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot; Estadisticas del grado de </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">grado</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">())</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de menciones totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">matriculas_y_menciones</span><span class="o">.</span><span class="n">get_menciones</span><span class="p">())</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Numero de matriculas totales: </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">matriculas_y_menciones</span><span class="o">.</span><span class="n">get_matriculas</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usted no tiene acceso a las matriculas y menciones del grado&quot;</span><span class="p">)</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__sub_menu_resumen_centro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Muestra el resumen estadístico del centro.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">resumen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_centro_controller</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_resumen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">resumen</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;Estado del centro.&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;------------------&quot;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;Nota promedio de alumno     </span><span class="se">\t</span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">resumen</span><span class="o">.</span><span class="n">get_nota_promedio_alumno</span><span class="p">())</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;Nota promedio de asignatura </span><span class="se">\t</span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">resumen</span><span class="o">.</span><span class="n">get_nota_promedio_asignatura</span><span class="p">())</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__menu_tecnico</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Imprime el menú de un usuario registrado como técnico y gestiona la siguiente pantalla.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__welcome</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_resumen_centro</span><span class="p">()</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot; Elija opcion:&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 1) Gestionar alumnos&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 2) Gestionar asignaturas&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 3) Gestionar grados&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> 0) Salir&quot;</span><span class="p">)</span>
+
+        <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">opc</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">opc</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; &gt;&gt; &quot;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">opc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">alumno</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__menu_alumnos</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_alumnos</span><span class="p">(</span><span class="n">alumno</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">opc</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">asignatura</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__menu_asignaturas</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_asignaturas</span><span class="p">(</span><span class="n">asignatura</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">opc</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">grado</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__menu_grados</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__sub_menu_grados</span><span class="p">(</span><span class="n">grado</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">exit</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__menu_alumnos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Imprime la lista de alumnos del centro, en caso de que el usuario no tenga acceso a esta información</span>
+<span class="sd">        se mostrará por pantalla.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">mis_alumnos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_alumno_controller</span><span class="p">()</span><span class="o">.</span><span class="n">listar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_alumnos</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot; Elija alumno:&quot;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_alumnos</span><span class="p">):</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="si">%d</span><span class="s">) </span><span class="si">%s</span><span class="se">\t</span><span class="si">%s</span><span class="s">, </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mis_alumnos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_dni</span><span class="p">(),</span> <span class="n">mis_alumnos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_apellidos</span><span class="p">(),</span> <span class="n">mis_alumnos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">()))</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">opc</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_alumnos</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; &gt;&gt; &quot;</span><span class="p">))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="k">return</span> <span class="n">mis_alumnos</span><span class="p">[</span><span class="n">opc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot; Usted no tiene acceso a alumno alguno.&quot;</span><span class="p">)</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__menu_asignaturas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Imprime las asignaturas a la que el usuario tiene acceso, en caso de que el usuario no tenga acceso</span>
+<span class="sd">         a esta ninguna se mostrará por pantalla.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">mis_asignaturas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_asignatura_controller</span><span class="p">()</span><span class="o">.</span><span class="n">listar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_asignaturas</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot; Elija asignatura:&quot;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_asignaturas</span><span class="p">):</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="si">%d</span><span class="s">) </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mis_asignaturas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">()))</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">opc</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_asignaturas</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; &gt;&gt; &quot;</span><span class="p">))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="k">return</span> <span class="n">mis_asignaturas</span><span class="p">[</span><span class="n">opc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot; Usted no tiene acceso a asignatura alguna.&quot;</span><span class="p">)</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__menu_grados</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Imprime los grados a los que tiene acceso, en caso de que el usuario no tenga acceso a ninguno se mostrará</span>
+<span class="sd">         por pantalla.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__clear</span><span class="p">()</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">mis_grados</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_grado_controller</span><span class="p">()</span><span class="o">.</span><span class="n">listar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_grados</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot; Elija grado:&quot;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_grados</span><span class="p">):</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="si">%d</span><span class="s">) </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mis_grados</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">()))</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">opc</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_grados</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; &gt;&gt; &quot;</span><span class="p">))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="k">return</span> <span class="n">mis_grados</span><span class="p">[</span><span class="n">opc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot; Usted no tiene acceso a grado alguno.&quot;</span><span class="p">)</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__menu_mis_alumnos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Imprime la lista de alumnos a los que tiene acceso el usuario, en caso de no tener acceso a ninguno</span>
+<span class="sd">        se mostrará por pantalla.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">mis_alumnos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_alumno_controller</span><span class="p">()</span><span class="o">.</span><span class="n">listar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_sesion</span><span class="p">())</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_alumnos</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot; Elija alumno:&quot;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_alumnos</span><span class="p">):</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="si">%d</span><span class="s">) </span><span class="si">%s</span><span class="s">, </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mis_alumnos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_apellidos</span><span class="p">(),</span> <span class="n">mis_alumnos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">()))</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">opc</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mis_alumnos</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; &gt;&gt; &quot;</span><span class="p">))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">opc</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="k">return</span> <span class="n">mis_alumnos</span><span class="p">[</span><span class="n">opc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usted no tiene acceso a alumno alguno&quot;</span><span class="p">)</span>
+            <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot; Presione cualquier tecla... &quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span></div>
+</pre></div>
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

@@ -45,7 +45,7 @@ class TestAsignaturaController(TestCase):
         self.assertNotEqual(self.controlador.get_almacen(), None)
 
     def test_obtener_asigs_grado(self):
-        """Comprueba comportamiento normal ante grado inexistente.
+        """Comprueba comportamiento normal ante grado inexistente.\n
         Comprueba que una sesión extraña no pueda obtener la lista de asignaturas de un grado, con independencia del
         grado/curso indicado.
         """
@@ -54,7 +54,7 @@ class TestAsignaturaController(TestCase):
         self.assertEquals(self.controlador.obtener_asigs_grado(1, self.sesion_tipo_invalido), None)
 
     def test_obtener_media(self):
-        """Comprueba comportamiento normal ante asignatura inexistente.
+        """Comprueba comportamiento normal ante asignatura inexistente.\n
         Comprueba que una sesión extraña no pueda obtener la media de una asignatura, con independencia de la
         asignatura indicada.
         """
@@ -63,7 +63,7 @@ class TestAsignaturaController(TestCase):
         self.assertEquals(self.controlador.obtener_media("1", self.sesion_tipo_invalido), None)
 
     def test_obtener_rango(self):
-        """Comprueba comportamiento normal ante asignatura inexistente.
+        """Comprueba comportamiento normal ante asignatura inexistente.\n
         Comprueba que una sesión extraña no pueda obtener el rango de notas de una asignatura,
         con independencia de la asignatura indicada.
         """

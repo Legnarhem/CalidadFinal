@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.Almacen &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>src.Almacen</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <h1>Source code for src.Almacen</h1><div class="highlight"><pre>
+<span class="c"># encoding=UTF-8</span>
+<span class="sd">&quot;&quot;&quot;Módulo Almacen del Gestor Académico</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gregorio y Ángel&#39;</span>
+<span class="kn">import</span> <span class="nn">shelve</span>
+
+
+<div class="viewcode-block" id="Almacen"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen">[docs]</a><span class="k">class</span> <span class="nc">Almacen</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Esta clase es un almacen de datos del Gestor Académico.\n</span>
+<span class="sd">        Es una clase estática y para obtener una instancia debe de llamarse al método Almacen.get_instance()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__filename</span> <span class="o">=</span> <span class="s">&quot;data&quot;</span>
+    <span class="n">__store</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__store</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Ya existe una instancia de Almacen.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__cargar_datos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">shelf</span> <span class="o">=</span> <span class="n">shelve</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__docentes</span> <span class="o">=</span> <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;docentes&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__tecnicosCalidad</span> <span class="o">=</span> <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;tecnicosCalidad&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__alumnos</span> <span class="o">=</span> <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;alumnos&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__asignaturas</span> <span class="o">=</span> <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;asignaturas&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grados</span> <span class="o">=</span> <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;grados&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__expedientes</span> <span class="o">=</span> <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;expedientes&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__ensenyanzas</span> <span class="o">=</span> <span class="n">shelf</span><span class="p">[</span><span class="s">&quot;ensenyanzas&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__get_docentes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__docentes</span>
+
+    <span class="k">def</span> <span class="nf">__get_tecnicos_calidad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__tecnicosCalidad</span>
+
+    <span class="k">def</span> <span class="nf">__get_alumnos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__alumnos</span>
+
+    <span class="k">def</span> <span class="nf">__get_asignaturas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__asignaturas</span>
+
+    <span class="k">def</span> <span class="nf">__get_grados</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__grados</span>
+
+    <span class="k">def</span> <span class="nf">__get_expedientes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__expedientes</span>
+
+    <span class="k">def</span> <span class="nf">__get_ensenyanzas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ensenyanzas</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Almacen.get_instance"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.get_instance">[docs]</a>    <span class="k">def</span> <span class="nf">get_instance</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una instancia de Almacen con datos precargados.</span>
+
+<span class="sd">        :return: Instancia de Almacen (Almacen)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">Almacen</span><span class="o">.</span><span class="n">__store</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">Almacen</span><span class="o">.</span><span class="n">__store</span> <span class="o">=</span> <span class="n">Almacen</span><span class="p">()</span>
+            <span class="n">Almacen</span><span class="o">.</span><span class="n">__store</span><span class="o">.</span><span class="n">__cargar_datos</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">Almacen</span><span class="o">.</span><span class="n">__store</span>
+
+    <span class="c"># ALUMNOS</span></div>
+<div class="viewcode-block" id="Almacen.obtener_alumno"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.obtener_alumno">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_alumno</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alumno</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene un alumno indicado.</span>
+
+<span class="sd">        :param alumno: Instancia de alumno (Alumno)</span>
+<span class="sd">        :return: Alumno (Alumno) si existe o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">alu</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_alumnos_centro</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">alumno</span><span class="p">:</span>
+                <span class="n">alu</span> <span class="o">=</span> <span class="n">a</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">alu</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_alumnos_asignatura"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_alumnos_asignatura">[docs]</a>    <span class="k">def</span> <span class="nf">listar_alumnos_asignatura</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asignatura</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los alumnos expedientados en la asignatura indicada.</span>
+
+<span class="sd">        :param asignatura: Instancia de asignatura (Asignatura)</span>
+<span class="sd">        :return: Lista de Alumnos (list) si existe asignatura y alumnos en ella o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">alus</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_expedientes_centro</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">get_asignatura</span><span class="p">()</span> <span class="o">==</span> <span class="n">asignatura</span><span class="p">:</span>
+                <span class="n">alus</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">get_alumno</span><span class="p">())</span>
+        <span class="k">return</span> <span class="bp">None</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alus</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="n">alus</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_alumnos_centro"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_alumnos_centro">[docs]</a>    <span class="k">def</span> <span class="nf">listar_alumnos_centro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los alumnos involucrados en el centro académico.</span>
+
+<span class="sd">        :return: Lista de Alumnos (list)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_alumnos</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_alumnos_docente"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_alumnos_docente">[docs]</a>    <span class="k">def</span> <span class="nf">listar_alumnos_docente</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docente</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los alumnos expedientados en alguna asignatura que involucre al docente indicado.</span>
+
+<span class="sd">        :param docente: Instancia de docente (Docente)</span>
+<span class="sd">        :return: Lista de Alumnos (list) si existe docente con asignatura(s) y alumnos en ella(s)</span>
+<span class="sd">         o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">alus</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">asig_doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_asignaturas_docente</span><span class="p">(</span><span class="n">docente</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">asig_doc</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">asig_doc</span><span class="p">:</span>
+            <span class="n">alumnos_asig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_alumnos_asignatura</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">alumnos_asig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">alus</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">alumnos_asig</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alus</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="n">alus</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_alumnos_grado"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_alumnos_grado">[docs]</a>    <span class="k">def</span> <span class="nf">listar_alumnos_grado</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grado</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los alumnos involucrados en un grado/curso indicado.</span>
+
+<span class="sd">        :param grado: Instancia de grado/curso (Grado)</span>
+<span class="sd">        :return: Lista de alumnos (list) si existen o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">alus</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_grados_centro</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">g</span> <span class="o">==</span> <span class="n">grado</span><span class="p">:</span>
+                <span class="n">alus</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">get_asignaturas</span><span class="p">():</span>
+                    <span class="n">alumnos_asig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_alumnos_asignatura</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">alumnos_asig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="n">alus</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">alumnos_asig</span><span class="p">)</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">alus</span>
+
+    <span class="c"># ASIGNATURAS</span>
+</div>
+<div class="viewcode-block" id="Almacen.obtener_asignatura"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.obtener_asignatura">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_asignatura</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asignatura</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una asignatura indicada.</span>
+
+<span class="sd">        :param asignatura: Instancia de asignatura (Asignatura)</span>
+<span class="sd">        :return: Asignatura (Asignatura) si existe o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">asig</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_asignaturas_centro</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">asignatura</span><span class="p">:</span>
+                <span class="n">asig</span> <span class="o">=</span> <span class="n">a</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">asig</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_asignaturas_centro"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_asignaturas_centro">[docs]</a>    <span class="k">def</span> <span class="nf">listar_asignaturas_centro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los asignaturas impartidas en el centro académico.</span>
+
+<span class="sd">        :return: Lista de asignaturas (list)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_asignaturas</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_asignaturas_docente"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_asignaturas_docente">[docs]</a>    <span class="k">def</span> <span class="nf">listar_asignaturas_docente</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docente</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de las asignaturas que involucra al docente indicado.</span>
+
+<span class="sd">        :param docente: Instancia de docente (Docente)</span>
+<span class="sd">        :return: Lista de asignaturas (list) si existe docente con asignatura(s) o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">asigs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_ensenyanzas_centro</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">get_docente</span><span class="p">()</span> <span class="o">==</span> <span class="n">docente</span><span class="p">:</span>
+                <span class="n">asigs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">get_asignatura</span><span class="p">())</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="bp">None</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">asigs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="n">asigs</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_asignaturas_grado"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_asignaturas_grado">[docs]</a>    <span class="k">def</span> <span class="nf">listar_asignaturas_grado</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grado</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de las asignaturas que estan asociadas al grado/curso indicado.</span>
+
+<span class="sd">        :param grado: Instancia de grado/curso (Grado)</span>
+<span class="sd">        :return: Lista de asignaturas (list) si existe grado/curso con asignatura(s) o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">asigs</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_grados_centro</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">g</span> <span class="o">==</span> <span class="n">grado</span><span class="p">:</span>
+                <span class="n">asigs</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">get_asignaturas</span><span class="p">()</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">asigs</span>
+
+    <span class="c"># DOCENTE</span>
+</div>
+<div class="viewcode-block" id="Almacen.obtener_docente"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.obtener_docente">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_docente</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docente</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene un docente indicado.</span>
+
+<span class="sd">        :param docente: Instancia de docente (Docente)</span>
+<span class="sd">        :return: Docente (Docente) si existe o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_docentes_centro</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="n">docente</span><span class="p">:</span>
+                <span class="n">doc</span> <span class="o">=</span> <span class="n">d</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">doc</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_docentes_centro"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_docentes_centro">[docs]</a>    <span class="k">def</span> <span class="nf">listar_docentes_centro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los docentes involucrados en el centro académico.</span>
+
+<span class="sd">        :return: Lista de docentes (list)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_docentes</span><span class="p">()</span>
+
+    <span class="c"># GRADO</span></div>
+<div class="viewcode-block" id="Almacen.obtener_grado"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.obtener_grado">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_grado</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grado</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene un grado/curso indicado.</span>
+
+<span class="sd">        :param grado: Instancia de grado/curso (Grado)</span>
+<span class="sd">        :return: Grado/curso (Grado) si existe o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">gra</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_grados_centro</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">g</span> <span class="o">==</span> <span class="n">grado</span><span class="p">:</span>
+                <span class="n">gra</span> <span class="o">=</span> <span class="n">g</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">gra</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_grados_centro"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_grados_centro">[docs]</a>    <span class="k">def</span> <span class="nf">listar_grados_centro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los grados/cursos involucrados en el centro académico.</span>
+
+<span class="sd">        :return: Lista de grados/cursos (list)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_grados</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_grados_docente"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_grados_docente">[docs]</a>    <span class="k">def</span> <span class="nf">listar_grados_docente</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docente</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de las grados/cursos que involucra al docente indicado.</span>
+
+<span class="sd">        :param docente: Instancia de docente (Docente)</span>
+<span class="sd">        :return: Lista de grados/crusos (list) si existe docente con grados(s)/curso(s) o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">grads</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">asignaturas_doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_asignaturas_docente</span><span class="p">(</span><span class="n">docente</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">asignaturas_doc</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">asignaturas_doc</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_grados_centro</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">get_asignaturas</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">grads</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">grads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grads</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="n">grads</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_grados_tecnico_calidad"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_grados_tecnico_calidad">[docs]</a>    <span class="k">def</span> <span class="nf">listar_grados_tecnico_calidad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los tecnicos de calidad involucrados en el centro académico.</span>
+
+<span class="sd">        :return: Lista de tecnicos de calidad (list)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_grados_centro</span><span class="p">()</span>
+
+    <span class="c"># EXPEDIENTES</span>
+</div>
+<div class="viewcode-block" id="Almacen.obtener_expediente"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.obtener_expediente">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_expediente</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alumno</span><span class="p">,</span> <span class="n">asignatura</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene el expediente de un alumno indicado en una asignatura indicada.</span>
+
+<span class="sd">        :param alumno: Instancia de alumno (Alumno)</span>
+<span class="sd">        :param asignatura: Instancia de asignatura (Asignatura)</span>
+<span class="sd">        :return: Expediente (Expediente) si existe alumno y asignatura y este primero se encuentra</span>
+<span class="sd">         expedientado en la asignatura o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">exp</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_expedientes_centro</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">get_alumno</span><span class="p">()</span> <span class="o">==</span> <span class="n">alumno</span> <span class="ow">and</span> <span class="n">e</span><span class="o">.</span><span class="n">get_asignatura</span><span class="p">()</span> <span class="o">==</span> <span class="n">asignatura</span><span class="p">:</span>
+                <span class="n">exp</span> <span class="o">=</span> <span class="n">e</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">exp</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_expedientes_alumno"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_expedientes_alumno">[docs]</a>    <span class="k">def</span> <span class="nf">listar_expedientes_alumno</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alumno</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de las expedientes que involucran al alumno indicado.</span>
+
+<span class="sd">        :param alumno: Instancia de alumno (Alumno)</span>
+<span class="sd">        :return: Lista de expedientes (list) si existe alumno y se encuentra expedientado en alguna asignatura o None en</span>
+<span class="sd">         caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">exps</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_expedientes_centro</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">get_alumno</span><span class="p">()</span> <span class="o">==</span> <span class="n">alumno</span><span class="p">:</span>
+                <span class="n">exps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">exps</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="n">exps</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_expedientes_centro"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_expedientes_centro">[docs]</a>    <span class="k">def</span> <span class="nf">listar_expedientes_centro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los expedientes existentes en el centro académico.</span>
+
+<span class="sd">        :return: Lista de expedientes (list)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_expedientes</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_expedientes_asignatura"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_expedientes_asignatura">[docs]</a>    <span class="k">def</span> <span class="nf">listar_expedientes_asignatura</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asignatura</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los expedientes asociados a la asignatura indicada.</span>
+
+<span class="sd">        :param asignatura: Instancia de asignatura (Asignatura)</span>
+<span class="sd">        :return: Lista de expedientes (list) si existe asignatura y tiene asociados expedientes o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">exps</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_expedientes_centro</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">get_asignatura</span><span class="p">()</span> <span class="o">==</span> <span class="n">asignatura</span><span class="p">:</span>
+                <span class="n">exps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">exps</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="n">exps</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_expedientes_grado"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_expedientes_grado">[docs]</a>    <span class="k">def</span> <span class="nf">listar_expedientes_grado</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grado</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los expedientes existentes asociados a alguna asignatura del grado/curso indicado.</span>
+
+<span class="sd">        :param grado: Instancia de grado/curso (Grado)</span>
+<span class="sd">        :return: Lista de expedientes (list) si existe grado/curso y tiene asignatura(s) con expediente(s) o None en</span>
+<span class="sd">         caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">exps</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">asigs_grado</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_asignaturas_grado</span><span class="p">(</span><span class="n">grado</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">asigs_grado</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">asigs_grado</span><span class="p">:</span>
+            <span class="n">exps_alumno</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_expedientes_asignatura</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">exps_alumno</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">exps</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">exps_alumno</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">exps</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="n">exps</span>
+
+    <span class="c"># TecnicoCalidad</span>
+</div>
+<div class="viewcode-block" id="Almacen.obtener_tecnico_calidad"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.obtener_tecnico_calidad">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_tecnico_calidad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tecnico</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene un tecnico indicado.</span>
+
+<span class="sd">        :param tecnico: Instancia de tecnico (Tecnico)</span>
+<span class="sd">        :return: Tecnico (Tecnico) si existe o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tecn</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_tecnicos_calidad</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="n">tecnico</span><span class="p">:</span>
+                <span class="n">tecn</span> <span class="o">=</span> <span class="n">t</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">tecn</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_tecnicos_calidad"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_tecnicos_calidad">[docs]</a>    <span class="k">def</span> <span class="nf">listar_tecnicos_calidad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de los tecnicos de calidad existentes en el centro académico.</span>
+
+<span class="sd">        :return: Lista de tecnicos de calidad (list)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_tecnicos_calidad</span><span class="p">()</span>
+
+    <span class="c">#Ensenyanzas</span>
+</div>
+<div class="viewcode-block" id="Almacen.obtener_ensenyanza"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.obtener_ensenyanza">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_ensenyanza</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docente</span><span class="p">,</span> <span class="n">asignatura</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene la ensenyanza de un docente en una asignatura.</span>
+
+<span class="sd">        :param docente: Instancia de docente (Docente)</span>
+<span class="sd">        :param asignatura: Instancia de asignatura (Asignatura)</span>
+<span class="sd">        :return: Ensenyanza (Ensenyanza) si existe docente y asignatura y este primero imparte</span>
+<span class="sd">         en la asignatura o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ens</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">listar_ensenyanzas_centro</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">get_docente</span><span class="p">()</span> <span class="o">==</span> <span class="n">docente</span> <span class="ow">and</span> <span class="n">e</span><span class="o">.</span><span class="n">get_asignatura</span><span class="p">()</span> <span class="o">==</span> <span class="n">asignatura</span><span class="p">:</span>
+                <span class="n">ens</span> <span class="o">=</span> <span class="n">e</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">ens</span>
+</div>
+<div class="viewcode-block" id="Almacen.listar_ensenyanzas_centro"><a class="viewcode-back" href="../../almacen.html#src.Almacen.Almacen.listar_ensenyanzas_centro">[docs]</a>    <span class="k">def</span> <span class="nf">listar_ensenyanzas_centro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una lista de las enseñanzas impartidas en el centro académico.</span>
+
+<span class="sd">        :return: Lista de enseñanzas (list)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_ensenyanzas</span><span class="p">()</span></div></div>
+</pre></div>
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.Controladores.SesionController &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../../index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>src.Controladores.SesionController</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <h1>Source code for src.Controladores.SesionController</h1><div class="highlight"><pre>
+<span class="c"># encoding=UTF-8</span>
+<span class="sd">&quot;&quot;&quot;Módulo SesionController del paquete Controladores</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gregorio y Ángel&#39;</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Sesion</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Almacen</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.Docente</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Entidades.TecnicoCalidad</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="SesionController"><a class="viewcode-back" href="../../../sesionController.html#src.Controladores.SesionController.SesionController">[docs]</a><span class="k">class</span> <span class="nc">SesionController</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Esta clase es un controlador de la entidad Sesion.\n</span>
+<span class="sd">        Args:\n</span>
+<span class="sd">        terminales (list&lt;Terminal): Lista de terminales/vistas asociadas al controlador</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terminales</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__terminales</span> <span class="o">=</span> <span class="n">terminales</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="SesionController.get_almacen"><a class="viewcode-back" href="../../../sesionController.html#src.Controladores.SesionController.SesionController.get_almacen">[docs]</a>    <span class="k">def</span> <span class="nf">get_almacen</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una instancia de Almacen.</span>
+
+<span class="sd">        :return: Instancia de Almacen (Almacen)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Almacen</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="SesionController.obtener_sesion"><a class="viewcode-back" href="../../../sesionController.html#src.Controladores.SesionController.SesionController.obtener_sesion">[docs]</a>    <span class="k">def</span> <span class="nf">obtener_sesion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">passw</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtiene una sesion en el gestor académico.</span>
+
+<span class="sd">        :param user: Usuario del gestor académico (str)</span>
+<span class="sd">        :param passw: Contraseña del usuario del gestor académico (str)</span>
+<span class="sd">        :return: Sesion (Sesion) si las credenciales son validas o None en caso contrario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dni</span> <span class="o">=</span> <span class="n">user</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">sesion</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_docente</span><span class="p">(</span><span class="n">Docente</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">doc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">doc</span><span class="o">.</span><span class="n">get_password</span><span class="p">()</span> <span class="o">==</span> <span class="n">passw</span><span class="p">:</span>
+            <span class="n">sesion</span> <span class="o">=</span> <span class="n">Sesion</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">()</span><span class="o">.</span><span class="n">obtener_tecnico_calidad</span><span class="p">(</span><span class="n">TecnicoCalidad</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">tec</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">tec</span><span class="o">.</span><span class="n">get_password</span><span class="p">()</span> <span class="o">==</span> <span class="n">passw</span><span class="p">:</span>
+                <span class="n">sesion</span> <span class="o">=</span> <span class="n">Sesion</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="n">tec</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sesion</span></div></div>
+</pre></div>
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

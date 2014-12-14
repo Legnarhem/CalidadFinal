@@ -7,10 +7,10 @@ __author__ = 'Gregorio y Ángel'
 
 
 class Alumno(Comparable):
-    """Esta clase representa a un alumno del centro académico.
-    Args:
-        dni (str): DNI del alumno
-        nombre (str): Nombre del alumno
+    """Esta clase representa a un alumno del centro académico.\n
+        Args:\n
+        dni (str): DNI del alumno\n
+        nombre (str): Nombre del alumno\n
         apellidos (str): Apellidos del alumno
     """
     def __init__(self, dni, nombre, apellidos):
@@ -23,19 +23,22 @@ class Alumno(Comparable):
 
     def get_dni(self):
         """Obtiene el DNI del alumno.
-        :return:DNI del alumno (str)
+
+        :return: DNI del alumno (str)
         """
         return self.__dni
 
     def get_nombre(self):
         """Obtiene el nombre del alumno.
-        :return:Nombre del alumno (str)
+
+        :return: Nombre del alumno (str)
         """
         return self.__nombre
 
     def get_apellidos(self):
         """Obtiene los apellidos del alumno.
-        :return:Apellidos del alumno (str)
+        
+        :return: Apellidos del alumno (str)
         """
         return self.__apellidos
 

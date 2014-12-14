@@ -5,9 +5,9 @@ __author__ = 'Gregorio y Ángel'
 
 
 class Ensenyanza:
-    """Esta clase representa una relacion de enseñanza entre un docente y una asignatura.
-    Args:
-        docente (Docente): Docente que imparte
+    """Esta clase representa una relacion de enseñanza entre un docente y una asignatura.\n
+        Args:\n
+        docente (Docente): Docente que imparte\n
         asignatura (Asignatura): Asignatura impartida
     """
     def __init__(self, docente, asignatura):
@@ -16,13 +16,15 @@ class Ensenyanza:
 
     def get_docente(self):
         """Obtiene el docente que imparte enseñanza.
-        :return:Docente que imparte la enseñanza (Docente)
+
+        :return: Docente que imparte la enseñanza (Docente)
         """
         return self.__docente
 
     def get_asignatura(self):
         """Obtiene la asignatura que es impartida.
-        :return:Asignatura impartida (Asignatura)
+
+        :return: Asignatura impartida (Asignatura)
         """
         return self.__asignatura
 

@@ -8,12 +8,12 @@ __author__ = 'Gregorio y Ángel'
 
 
 class TecnicoCalidad(Usuario, Comparable):
-    """Esta clase representa a un técnico de calidad del centro académico.
-    Args:
-        username (str): Usuario de acceso del técnico de calidad
-        password (str): Contraseña para el usuario del técnico de calidad
-        dni (str): DNI del técnico de calidad. Es atributo comparador
-        nombre (str): Nombre completo del técnico de calidad
+    """Esta clase representa a un técnico de calidad del centro académico.\n
+        Args:\n
+        username (str): Usuario de acceso del técnico de calidad\n
+        password (str): Contraseña para el usuario del técnico de calidad\n
+        dni (str): DNI del técnico de calidad. Es atributo comparador\n
+        nombre (str): Nombre completo del técnico de calidad\n
         apellidos (str): Apellidos del técnico de calidad
     """
 
@@ -28,19 +28,22 @@ class TecnicoCalidad(Usuario, Comparable):
 
     def get_dni(self):
         """Obtiene el DNI del técnico de calidad.
-        :return:DNI del técnico de calidad (str)
+
+        :return: DNI del técnico de calidad (str)
         """
         return self.__dni
 
     def get_nombre(self):
         """Obtiene el nombre completo del técnico de calidad.
-        :return:Nombre completo del técnico de calidad (str)
+
+        :return: Nombre completo del técnico de calidad (str)
         """
         return self.__nombre
 
     def get_apellidos(self):
         """Obtiene los apellidos del técnico de calidad.
-        :return:Apellidos del técnico de calidad (str)
+
+        :return: Apellidos del técnico de calidad (str)
         """
         return self.__apellidos
 

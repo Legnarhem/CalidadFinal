@@ -7,12 +7,12 @@ from src.Entidades.Usuario import *
 
 
 class Docente(Usuario, Comparable):
-    """Esta clase representa a un docente del centro académico.
-    Args:
-        username (str): Usuario de acceso del docente
-        password (str): Contraseña para el usuario del docente
-        dni (str): DNI del docente. Es atributo comparador
-        nombre (str): Nombre completo del docente
+    """Esta clase representa a un docente del centro académico.\n
+        Args:\n
+        username (str): Usuario de acceso del docente\n
+        password (str): Contraseña para el usuario del docente\n
+        dni (str): DNI del docente. Es atributo comparador\n
+        nombre (str): Nombre completo del docente\n
         apellidos (str): Apellidos del docente
     """
 
@@ -27,19 +27,22 @@ class Docente(Usuario, Comparable):
 
     def get_dni(self):
         """Obtiene el DNI del docente.
-        :return:DNI del docente (str)
+
+        :return: DNI del docente (str)
         """
         return str(self.__dni)
 
     def get_nombre(self):
         """Obtiene el nombre completo del docente.
-        :return:Nombre completo del docente (str)
+
+        :return: Nombre completo del docente (str)
         """
         return str(self.__nombre)
 
     def get_apellidos(self):
         """Obtiene los apellidos del docente.
-        :return:Apellidos del docente (str)
+
+        :return: Apellidos del docente (str)
         """
         return str(self.__apellidos)
 

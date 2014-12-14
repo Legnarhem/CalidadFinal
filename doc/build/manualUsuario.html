@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Manual de usuario de Gestor Académico &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="index.html" />
+    <link rel="prev" title="Test SesionController" href="test_sesionController.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>Manual de usuario de Gestor Académico</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="test_sesionController.html">Test SesionController</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="manual-de-usuario-de-gestor-academico">
+<h1>Manual de usuario de Gestor Académico<a class="headerlink" href="#manual-de-usuario-de-gestor-academico" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">¶</a></h2>
+<p>En este manual de usuario constará de dos partes fundamentales, que harán referencia a los dos roles contemplados en esta versión de la aplicación. Estos roles o nivel de usuario son: <em>Docente</em> y <em>Técnico de calidad</em>.</p>
+<p>Esta diferencia es necesaria en el manual, ya que cada uno de los perfiles tiene restringido el acceso a parte de la información.</p>
+</div>
+<div class="section" id="pantalla-de-inicio">
+<h2>Pantalla de inicio<a class="headerlink" href="#pantalla-de-inicio" title="Permalink to this headline">¶</a></h2>
+<p>La pantalla de inicio de la aplicación es común para todos los usuarios.</p>
+<img alt="_images/1.png" src="_images/1.png" />
+<p>Para avanzar a la siguiente pantalla hay tenemos que pulsar cualquier tecla, y nos aparecerá una pantalla para introducir nuestras credenciales, usuario y contraseña. A continuación mostraremos el usuario y la contraseña de un usuario de cada uno de los roles para poder hacer pruebas.</p>
+<p>Credenciales de docente para el ejemplo:</p>
+<p>Usuario: <strong>u49251223B</strong></p>
+<p>Password: <strong>docente1</strong></p>
+<p>Técnico de calidad:</p>
+<p>Usuario: <strong>u10025580R</strong></p>
+<p>Password: <strong>tecnico</strong></p>
+</div>
+<div class="section" id="rol-docente">
+<h2>Rol: Docente<a class="headerlink" href="#rol-docente" title="Permalink to this headline">¶</a></h2>
+<p>En este apartado se explicaran las diferentes opciones a la que se le permite acceder a un usuario con el rol de docente.
+El menú que nos aparecerá si nos logueamos con un perfil de este tipo es el siguiente:</p>
+<img alt="_images/3-.png" src="_images/3-.png" />
+<p>En el podemos ver dos opciones después de un mensaje de bienvenida, la primera que nos permite hacer algunas gestiones sobre asignaturas que imparta el usuario con el que nos hayamos registrado, y la segunda que cierra la aplicación. Para elegir una de las dos introducimos el número correspondiente.</p>
+<p>La imagen a continuación mostrada es la correspondiente a pulsar 1 en el menú anterior y la tecla <em>Enter</em>, donde se mostraran las asignaturas a la que el usuario tiene acceso:</p>
+<img alt="_images/3-1-1.png" src="_images/3-1-1.png" />
+<p>En este caso el usuario con el que nos hemos logueado solo tiene acceso a una asignatura, para seleccionarla volvemos a introducir el número que le corresponde en el menú. Una vez seleccionada, pulsamos <em>Enter</em> y nos aparece la siguiente pantalla:</p>
+<img alt="_images/3-1-2-.png" src="_images/3-1-2-.png" />
+<p>Nos aparecen las siguientes opciones:</p>
+<p>1 - Mostrar media de alumno: esta opción nos permite seleccionar a un alumno de la asignatura y ver su nota media en ésta.</p>
+<p>2 - Mostrar media de asignatura: esta opción nos muestra la nota media de todos los alumnos matriculados en la asignatura.</p>
+<p>3 - Mostrar rangos de asignatura: esta opción nos clasifica las notas de los alumnos en los rangos de notas ya conocidos
+(suspenso, aprobado, notable y sobresaliente) y nos muestra el número de notas que se encuentra en cada rango.</p>
+<p>0 - Volver: vuelve a la pantalla de selección de asignatura.</p>
+<p>A continuación, se mostrará para cada opción las pantallas que se mostrarán. Empecemos por la opción 1, la siguiente pantalla que visualizaremos es:</p>
+<img alt="_images/3-1-2-1-1.png" src="_images/3-1-2-1-1.png" />
+<img alt="_images/3-1-2-1-2.png" src="_images/3-1-2-1-2.png" />
+<p>En la imagen podemos ver que nos aparecen nombres listados, éstos son los nombres de los alumnos matriculados o que están cursando esa asignatura. Para seleccionar el alumno del que queremos obtener su nota media, introducimos el número que tiene asociado y pulsamos <em>Enter</em>, en el ejemplo seleccionaremos a la alumna 8 <em>Ana Novoa</em>. La nota media se presentará de esta forma:</p>
+<img alt="_images/3-1-2-1-3.png" src="_images/3-1-2-1-3.png" />
+<p>Cuando pulsemos una tecla, retrocederemos hasta el menú de gestión de la asignatura.</p>
+<img alt="_images/3-1-2-.png" src="_images/3-1-2-.png" />
+<p>Si seleccionamos la segunda opción nos aparecerá una pantalla con la nota media de la asignatura, como la siguiente:</p>
+<img alt="_images/3-1-2-2.png" src="_images/3-1-2-2.png" />
+<p>Cuando presionemos cualquier tecla volveremos al menú. Por último si seleccionamos la tercera opción, nos aparecerán las notas de los alumnos de la asignatura clasificadas de las siguiente forma:</p>
+<img alt="_images/3-1-2-3.png" src="_images/3-1-2-3.png" />
+</div>
+<div class="section" id="rol-tecnico-de-calidad">
+<h2>Rol: Técnico de calidad<a class="headerlink" href="#rol-tecnico-de-calidad" title="Permalink to this headline">¶</a></h2>
+<p>En este apartado se explicaran las diferentes opciones a la que se le permite acceder a un usuario con el rol de técnico de calidad.
+La pantalla que nos aparecerá si nos logueamos con un perfil de este tipo es la siguiente:</p>
+<img alt="_images/3-1.png" src="_images/3-1.png" />
+<p>Podemos ver que después del mensaje de bienvenida, el sistema nos muestra dos tipos de medias que nos hacen tener un visión del estado del centro en cada momento. La primera es una nota promedio por alumno, y la segunda es por asignaturas.
+Éstas se actualizan automáticamente cada vez que llegamos a esa pantalla. Debajo de estas estadísticas, nos aparecerá el siguiente menú:
+1 - Gestionar alumnos: esta opción nos permite ver datos estadísticos sobre un alumno concreto del centro.
+2 - Gestionar asignaturas: esta opción nos permite ver datos estadísticos sobre una asignatura impartida en el centro.
+3 - Gestionar grados: esta opción nos permite ver datos estadísticos sobre los grados/cursos del centro.
+0 - Salir: esta opción sale de la aplicación.</p>
+<p>Vamos a comenzar viendo el contenido de <em>Gestionar alumnos</em>, para ello pulsamos <em>1</em> y le damos a <em>Enter</em>. Nos aparecerá la lista de todos los alumnos del centro:</p>
+<img alt="_images/3-1-11.png" src="_images/3-1-11.png" />
+<img alt="_images/3-1-2-1.png" src="_images/3-1-2-1.png" />
+<p>Seleccionamos al alumno del que queramos obtener información, para ello tenemos que introducir el número con el que aparece y pulsar <em>Enter</em>. Nosotros hemos introducido el número <em>8</em> correspondiente con la alumna <em>Ana Novoa</em>.
+Una vez pulsado <em>Enter</em>, nos aparecerá el siguiente menú, en el que la forma de seleccionar una opción será igual que en los menús anteriores:</p>
+<img alt="_images/3-1-3-.png" src="_images/3-1-3-.png" />
+<p>1 - Mostrar media de alumno: nos presentará la media general del alumno.</p>
+<img alt="_images/3-1-3-1.png" src="_images/3-1-3-1.png" />
+<p>2 - Mostrar rangos de alumno: nos clasificará todas las notas del alumno en los rangos estándar de notas (suspenso, aprobado, notable y sobresaliente).</p>
+<img alt="_images/3-1-3-2.png" src="_images/3-1-3-2.png" />
+<p>Para salir de las dos pantallas anteriores tenemos que pulsar cualquier tecla, como podemos observar en las imágenes.</p>
+<p>0 - Volver: retorna a la pantalla anterior.</p>
+<p>Ahora vamos a mostrar el submenú que aparece cuando elegimos la opción 2 <em>Gestionar asignaturas</em>:</p>
+<img alt="_images/3-2-1.png" src="_images/3-2-1.png" />
+<p>Como podemos observar lo primero que tenemos que hacer es seleccionar la asignatura de la que queremos hacer el análisis estadístico. En este ejemplo seleccionaremos la asignatura de <em>Fisica</em>.</p>
+<img alt="_images/3-2-2-.png" src="_images/3-2-2-.png" />
+<p>Nos aparecerán las opciones que podemos ver en la imagen anterior. Vamos a ver que pasos tenemos que dar si seleccionamos la primera opción, que nos permite ver la media de un alumno en la asignatura que hemos seleccionado anteriormente, en nuestro caso <em>Fisica</em>:</p>
+<img alt="_images/3-2-2-1-1.png" src="_images/3-2-2-1-1.png" />
+<img alt="_images/3-2-2-1-2.png" src="_images/3-2-2-1-2.png" />
+<p>Se nos presenta la lista de los alumnos que están matriculados en la asignatura. Seleccionamos a uno de ellos, en el ejemplo volvemos a seleccionar a <em>Ana Novoa</em>, y nos aparecerá su media en la asignatura:</p>
+<img alt="_images/3-2-2-1-3.png" src="_images/3-2-2-1-3.png" />
+<p>Si seleccionamos, en el menú de gestión de asignaturas, la opción 2 <em>Mostrar media de la asignatura</em>, nos llevará a la siguiente pantalla donde se nos mostrará la nota media de la asignatura, en el ejemplo recordamos que estamos con <em>Fisica</em>:</p>
+<img alt="_images/3-2-2-2.png" src="_images/3-2-2-2.png" />
+<p>Si lo que queremos son las notas clasificadas por rangos, elegimos la opción 3 <em>Mostrar rangos de asignatura</em>, y nos aparecerá una pantalla tal que:</p>
+<img alt="_images/3-2-2-3.png" src="_images/3-2-2-3.png" />
+<p>Por último nos queda la opción del menú principal de <em>Gestionar grados</em>, para acceder a ella en el menú principal de técnico pulsamos 3 y <em>Enter</em>.</p>
+<p>Nos aparecerá una pantalla en la que tenemos que elegir el grado del que queremos obtener datos estadísticos.</p>
+<img alt="_images/3-3-1.png" src="_images/3-3-1.png" />
+<p>En el ejemplo seleccionaremos el único grado que hay. A continuación nos aparece el siguiente menú:</p>
+<img alt="_images/3-3-2-.png" src="_images/3-3-2-.png" />
+<p>1 - Mostrar media grado: nos dará la media global del grado:</p>
+<img alt="_images/3-3-2-1.png" src="_images/3-3-2-1.png" />
+<p>2 - Mostrar rangos grado: nos dirá la cantidad de suspensos, aprobados, notables y sobresalientes hay actualmente en el grado:</p>
+<img alt="_images/3-3-2-2.png" src="_images/3-3-2-2.png" />
+<p>3 - Mostrar matrículas y menciones: nos mostrará el número de matrículas y menciones que hay en el grado:</p>
+<img alt="_images/3-3-2-3.png" src="_images/3-3-2-3.png" />
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="test_sesionController.html">Test SesionController</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

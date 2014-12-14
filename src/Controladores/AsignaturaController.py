@@ -10,8 +10,8 @@ from src.Entidades.Docente import *
 
 
 class AsignaturaController:
-    """Esta clase es un controlador de la entidad Asignatura.
-    Args:
+    """Esta clase es un controlador de la entidad Asignatura.\n
+        Args:\n
         terminales (list<Terminal): Lista de terminales/vistas asociadas al controlador
     """
 
@@ -21,16 +21,18 @@ class AsignaturaController:
     @staticmethod
     def get_almacen():
         """Obtiene una instancia de Almacen.
-        :return:Instancia de Almacen (Almacen)
+
+        :return: Instancia de Almacen (Almacen)
         """
         return Almacen.get_instance()
 
     def obtener_asigs_grado(self, codigo, sesion):
         """Obtiene una lista de las asignaturas asociadas al grado/curso indicado, si el usuario
         conectado al gestor académico tiene acceso.
-        :param codigo:Codigo de grado/curso (int)
-        :param sesion:Sesion del usuario conectado al gestor académico (Sesion)
-        :return:Lista de asignaturas asociadas (list) si existen o None en caso contrario o de carencia de privilegios
+
+        :param codigo: Codigo de grado/curso (int)
+        :param sesion: Sesion del usuario conectado al gestor académico (Sesion)
+        :return: Lista de asignaturas asociadas (list) si existen o None en caso contrario o de carencia de privilegios
         """
         if sesion.get_tipo() == "TecnicoCalidad":
             return self.get_almacen().listar_asignaturas_grado(Grado(codigo, None, None))
@@ -38,9 +40,10 @@ class AsignaturaController:
 
     def obtener_media(self, codigo, sesion):
         """Obtiene la media global de una asignatura indicada, si el usuario conectado al gestor académico tiene acceso.
-        :param codigo:Codigo de asignatura (int)
-        :param sesion:Sesion del usuario conectado al gestor académico (Sesion)
-        :return:Media global de asignatura (float) si existe o None en caso contrario o de carencia de privilegios
+
+        :param codigo: Codigo de asignatura (int)
+        :param sesion: Sesion del usuario conectado al gestor académico (Sesion)
+        :return: Media global de asignatura (float) si existe o None en caso contrario o de carencia de privilegios
         """
         apto = False
         asignatura = Asignatura(codigo, None)
@@ -55,9 +58,10 @@ class AsignaturaController:
     def obtener_rango(self, codigo, sesion):
         """Obtiene el rango de notas de los distintos expedientes asociados a la asignatura indicada
         que es accesible por el usuario conectado al gestor academico.
-        :param codigo:Codigo de asignatura (int)
-        :param sesion:Sesion del usuario conectado al gestor académico (Sesion)
-        :return:Rango de notas (Rango) si existe o None en caso contrario o de carencia de privilegios
+
+        :param codigo: Codigo de asignatura (int)
+        :param sesion: Sesion del usuario conectado al gestor académico (Sesion)
+        :return: Rango de notas (Rango) si existe o None en caso contrario o de carencia de privilegios
         """
         apto = False
         asignatura = Asignatura(codigo, None)
@@ -71,8 +75,9 @@ class AsignaturaController:
 
     def listar(self, sesion):
         """Obtiene una lista de todos las asignaturas a las que el usuario conectado al gestor académico tiene acceso.
-        :param sesion:Sesion del usuario conectado al gestor académico (Sesion)
-        :return:Lista de asignaturas (list) si existen o None en caso contrario o de carencia de privilegios
+
+        :param sesion: Sesion del usuario conectado al gestor académico (Sesion)
+        :return: Lista de asignaturas (list) si existen o None en caso contrario o de carencia de privilegios
         """
         if sesion.get_tipo() == "TecnicoCalidad":
             return self.get_almacen().listar_asignaturas_centro()

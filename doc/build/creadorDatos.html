@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modulo Creador Datos &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="index.html" />
+    <link rel="next" title="Modulo UtilExpedientes" href="utilExpedientes.html" />
+    <link rel="prev" title="Modulo Almacen" href="almacen.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>Modulo Creador Datos</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="almacen.html">Modulo Almacen</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="utilExpedientes.html">Modulo UtilExpedientes</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="modulo-creador-datos">
+<h1>Modulo Creador Datos<a class="headerlink" href="#modulo-creador-datos" title="Permalink to this headline">¶</a></h1>
+<p><em>Este modulo contiene la implementación del controlador CentroController</em></p>
+<span class="target" id="module-src.CreadorDatos"></span><p>Módulo creados de datos de prueba</p>
+<dl class="function">
+<dt id="src.CreadorDatos.main">
+<tt class="descclassname">src.CreadorDatos.</tt><tt class="descname">main</tt><big>(</big><em>donde</em><big>)</big><a class="reference internal" href="_modules/src/CreadorDatos.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.CreadorDatos.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crea y guarda las instancias de prueba.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>donde</strong> &#8211; Nombre del fichero de datos</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.CreadorDatos.mostrar_lista">
+<tt class="descclassname">src.CreadorDatos.</tt><tt class="descname">mostrar_lista</tt><big>(</big><em>lista</em><big>)</big><a class="reference internal" href="_modules/src/CreadorDatos.html#mostrar_lista"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.CreadorDatos.mostrar_lista" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imprime los elementos de una lista.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lista</strong> &#8211; Instancia de lista (list)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.CreadorDatos.new_dni">
+<tt class="descclassname">src.CreadorDatos.</tt><tt class="descname">new_dni</tt><big>(</big><em>fake</em>, <em>dnis</em><big>)</big><a class="reference internal" href="_modules/src/CreadorDatos.html#new_dni"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.CreadorDatos.new_dni" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una DNI no existente en el conjunto de entrada.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fake</strong> &#8211; Instancia de Faker.Factory (Factory)</li>
+<li><strong>dnis</strong> &#8211; Instancia de lista (list)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">DNI (str)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.CreadorDatos.save_data">
+<tt class="descclassname">src.CreadorDatos.</tt><tt class="descname">save_data</tt><big>(</big><em>donde</em>, <em>doces</em>, <em>tecns</em>, <em>alums</em>, <em>asigs</em>, <em>grads</em>, <em>expes</em>, <em>enses</em><big>)</big><a class="reference internal" href="_modules/src/CreadorDatos.html#save_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.CreadorDatos.save_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Guarda los datos en un fichero mediante shelve.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>donde</strong> &#8211; Nombre del fichero de salida (str)</li>
+<li><strong>doces</strong> &#8211; Instancia de lista (list)</li>
+<li><strong>tecns</strong> &#8211; Instancia de lista (list)</li>
+<li><strong>alums</strong> &#8211; Instancia de lista (list)</li>
+<li><strong>asigs</strong> &#8211; Instancia de lista (list)</li>
+<li><strong>grads</strong> &#8211; Instancia de lista (list)</li>
+<li><strong>expes</strong> &#8211; Instancia de lista (list)</li>
+<li><strong>enses</strong> &#8211; Instancia de lista (list)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="almacen.html">Modulo Almacen</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="utilExpedientes.html">Modulo UtilExpedientes</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

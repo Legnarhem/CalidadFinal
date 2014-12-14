@@ -9,8 +9,8 @@ from src.Entidades.TecnicoCalidad import *
 
 
 class SesionController:
-    """Esta clase es un controlador de la entidad Sesion.
-    Args:
+    """Esta clase es un controlador de la entidad Sesion.\n
+        Args:\n
         terminales (list<Terminal): Lista de terminales/vistas asociadas al controlador
     """
     def __init__(self, terminales):
@@ -19,15 +19,17 @@ class SesionController:
     @staticmethod
     def get_almacen():
         """Obtiene una instancia de Almacen.
-        :return:Instancia de Almacen (Almacen)
+
+        :return: Instancia de Almacen (Almacen)
         """
         return Almacen.get_instance()
 
     def obtener_sesion(self, user, passw):
         """Obtiene una sesion en el gestor académico.
-        :param user:Usuario del gestor académico (str)
-        :param passw:Contraseña del usuario del gestor académico (str)
-        :return:Sesion (Sesion) si las credenciales son validas o None en caso contrario
+
+        :param user: Usuario del gestor académico (str)
+        :param passw: Contraseña del usuario del gestor académico (str)
+        :return: Sesion (Sesion) si las credenciales son validas o None en caso contrario
         """
         dni = user[1:]
         sesion = None

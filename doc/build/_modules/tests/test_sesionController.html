@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tests.test_sesionController &mdash; Gestor Academico 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Gestor Academico 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../index.html">
+          <span>Gestor Academico 0.2 documentation</span></a></h1>
+        <h2 class="heading"><span>tests.test_sesionController</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <h1>Source code for tests.test_sesionController</h1><div class="highlight"><pre>
+<span class="c"># encoding=UTF-8</span>
+<span class="sd">&quot;&quot;&quot;Módulo de Test para la clase src.Controladores.SesionController</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">src.Controladores.SesionController</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Gregorio y Ángel&#39;</span>
+
+
+<div class="viewcode-block" id="TestSesionController"><a class="viewcode-back" href="../../test_sesionController.html#tests.test_sesionController.TestSesionController">[docs]</a><span class="k">class</span> <span class="nc">TestSesionController</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Esta clase corresponde al caso de prueba de src.Controladores.SesionController</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TestSesionController.setUp"><a class="viewcode-back" href="../../test_sesionController.html#tests.test_sesionController.TestSesionController.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Este método prepara el contexto necesario para las pruebas de TestSesionController.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Preparando contexto para &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controlador</span> <span class="o">=</span> <span class="n">SesionController</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">usuario_tec</span> <span class="o">=</span> <span class="s">&quot;u10025580R&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">passwrd_tec</span> <span class="o">=</span> <span class="s">&quot;tecnico&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">usuario_doc</span> <span class="o">=</span> <span class="s">&quot;u49251223B&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">passwrd_doc</span> <span class="o">=</span> <span class="s">&quot;docente1&quot;</span>
+</div>
+<div class="viewcode-block" id="TestSesionController.tearDown"><a class="viewcode-back" href="../../test_sesionController.html#tests.test_sesionController.TestSesionController.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Este método elimina el contexto utilizado para las pruebas de TestSesionController.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Destruyendo contexto para &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">controlador</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">usuario_tec</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">passwrd_tec</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">usuario_doc</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">passwrd_doc</span>
+</div>
+<div class="viewcode-block" id="TestSesionController.test_get_almacen"><a class="viewcode-back" href="../../test_sesionController.html#tests.test_sesionController.TestSesionController.test_get_almacen">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_almacen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba que el controlador puede obtener una instancia de almacen.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">get_almacen</span><span class="p">(),</span> <span class="bp">None</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestSesionController.test_obtener_sesion"><a class="viewcode-back" href="../../test_sesionController.html#tests.test_sesionController.TestSesionController.test_obtener_sesion">[docs]</a>    <span class="k">def</span> <span class="nf">test_obtener_sesion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Comprueba que no devulve ninguna sesión cuando se introducen credenciales erróneas,</span>
+<span class="sd">        y que se devuelva una sesión cuando las credenciales son correctas.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">obtener_sesion</span><span class="p">(</span><span class="s">&quot;upepito&quot;</span><span class="p">,</span> <span class="s">&quot;pepito&quot;</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">obtener_sesion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">usuario_tec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">passwrd_tec</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">obtener_sesion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">usuario_doc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">passwrd_doc</span><span class="p">),</span> <span class="bp">None</span><span class="p">)</span></div></div>
+</pre></div>
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, A. Crujera Mora &amp; G. L. Marmol Martinez.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
