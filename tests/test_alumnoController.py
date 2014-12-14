@@ -88,7 +88,7 @@ class TestAlumnoController(TestCase):
         self.assertEquals(self.controlador.obtener_rango("1", self.sesion_tipo_invalido), None)
 
     def test_listar(self):
-        """Comprueba que tanto un docente como un técnico pueden obtener sus asignaturas mientras que una
+        """Comprueba que tanto un docente como un técnico pueden obtener sus alumnos mientras que una
         sesión extraña no puede.
         """
         self.assertNotEqual(self.controlador.listar(self.sesion_doc), None)
